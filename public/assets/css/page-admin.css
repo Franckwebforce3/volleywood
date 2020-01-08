@@ -1,0 +1,51 @@
+section, table, caption{
+    padding: 1rem;
+}
+label{
+display: block;
+}
+.textarea{
+    display: block;
+}
+table{
+    width: 100%;
+}
+caption{
+    caption-side: top;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+table, tr, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.photo{
+    width: 150px;
+}
+/* LIGHTBOX SUR sectionUserUpdate 
+.sectionUserUpdate, .sectionArticleUpdate{
+    display: none;
+    transition: all 5s linear;
+    opacity:0;
+}
+*/
+/* LA BALISE DOIT AVOIR LES 2 CLASSES (AND)
+.sectionUserUpdate.show, .sectionArticleUpdate.show {
+    opacity:1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+}
+
+.sectionUserUpdate h2 {
+    color: #cccccc;
+}
+*/

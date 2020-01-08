@@ -3,18 +3,275 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <!-- DELETE -->
+        <section>
+            <h2>Formulaire de delete sur tables SQL</h2>
+            <form class="formDelete" action="traitement.php" method="POST">
+                <label>
+                    <span>Sur quelle table voulez-vous agir :</span>
+                    <input type="text" name="nomTable" required placeholder="nom de la table">
+                </label>
+                <label>
+                    <span>sur quelle ligne voulez-vous agir :</span>
+                    <input type="text" name="id" required placeholder="Identifiant de la ligne">
+                </label>
+                <button type="submit">Supprimer</button>
+                <!-- partie technique -->
+                <input type="hidden" name="identifiantFormulaire" value="delete">
+                <div class="alert">
+                </div>
+            </form>
+        </section>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/volleywood/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/volleywood/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <!-- PARTIE MODERATION COMMENTAIRE -->
+        <table>
+        <caption>IL Y A <?php echo countSQL("commentaire")?> LIGNE(S) DANS LA TABLE COMMENTAIRE</caption>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>Photo</td>
+                    <td>Pseudo</td>
+                    <td>Message</td>
+                    <td>Date de publication</td>
+                    <td>Supprimer</td>
+                </tr>
+        <?php
+
+// JE VAIS CREER MA REQUETE AVEC JOINTURE
+        $requeteSQLPreparee =
+<<<CODESQL
+
+        SELECT  commentaire.*,
+                user.*
+        FROM commentaire_user
+            INNER JOIN commentaire
+                ON commentaire_user.id_commentaire = commentaire.id
+            INNER JOIN user
+                ON commentaire_user.id_user = user.id
+CODESQL;
+
+        $tabAssoColonneValeur = [];
+
+
+        $PDOStatement = envoyerRequeteSQL($requeteSQLPreparee, $tabAssoColonneValeur);
+
+        $tabResultat = $PDOStatement->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($tabResultat as $cle => $tabAssoCommentaire ) {
+            // let_dump($tabAssoCommentaire);
+            extract($tabAssoCommentaire);
+        
+            echo
+<<<CODEHTML
+                <tr data-id="$id" class="comm$id">
+                    <td class="id" contentEditable="true">$id</td>
+                    <td class="photo"><img src="$photo" alt="author"></td>
+                    <td class="pseudo" contentEditable="true">$pseudo</td>
+                    <td class="message" contentEditable="true">$message</td>
+                    <td class="dateEnvoi" contentEditable="true">$datePublication</td>
+                    <td><button data-table="contact" data-id="$id" class="delete">Supprimer</button></td>
+                </tr>
+CODEHTML;
+        }
+
+        ?>
+            </tbody>
+        </table>
+
+        <section>
+            
+            <h2>Lecture des utilisateurs</h2>
+            <table>
+                <tbody>
+                    <caption>IL Y A <?php echo countSQL("user")?> LIGNE(S) DANS LA TABLE USER</caption>
+                    <tr>
+                        <td>Id</td>
+                        <td>Photo</td>
+                        <td>Email</td>
+                        <td>Pseudo</td>
+                        <td>Level</td>
+                        <td>Date d'inscription</td>
+                        <td>Modifier</td>
+                        <!-- actuellement c'est supprimer -->
+                        <td>'Supprimer' || bannir ?</td>
+                    </tr>
+            <?php
+            $tabResultat = lireTableSQL("user", "ORDER BY id ASC");
+
+            foreach ($tabResultat as $cle => $tabAssoContact ) {
+                extract($tabAssoContact);
+            
+                echo
+<<<CODEHTML
+                    <tr>
+                        <td class="id">$id</td>
+                        <td class="photo"><img src="$photo" alt="author"></td>
+                        <td class="email">$email</td>
+                        <td class="pseudo">$pseudo</td>
+                        <td class="level">$level</td>
+                        <td class="dateInscription">$dateInscription</td>
+                        <td><button data-photo="$photo" data-id="$id" data-level="$level" data-pseudo="$pseudo" data-email="$email" class="userUpdate">modifier</button></td>
+                        <td><button data-table="user" data-id="$id" class="delete">supprimer</button></td>
+                    </tr>
+CODEHTML;
+            }
+            ?>
+                </tbody>
+            </table>
+        </section>
+        <section class="sectionUserUpdate">
+            <h2>UPDATE SUR TABLE SQL user</h2>
+            <form class="formUserUpdate" action="traitement.php" method="POST" enctype="multipart/form-data">
+                <!-- PARTIE PUBLIQUE VISIBLE DU FORMULAIRE-->
+                <label>
+                    <span>Photo :</span>
+                    <input type="file" name="photo" placeholder="Votre photo" maxlength="160">
+                </label>
+                <label>
+                    <span>Email :</span>
+                    <input type="email" name="email" required placeholder="votre email" maxlength="160">
+                </label>
+                <label>
+                    <span>Pseudo :</span>
+                    <input type="text" name="pseudo" required placeholder="votre Pseudo" maxlength="160">
+                </label>
+                <label>
+                    <span>Level :</span>
+                    <input type="number" name="level" required placeholder="votre level">
+                </label>
+                <div>
+                    <button class="cancel">Annuler</button>
+                    <button type="submit">MODIFIER LE COMPTE</button>
+                </div>
+                <!-- PARTIE TECHNIQUE INVISIBLE DE NOTRE FRAMEWORK -->
+                <!-- ATTENTION: POUR LE UPDATE IL FAUT id POUR SELECTIONNER LA BONNE LIGNE -->
+                <input type="text" name="id" value="" required placeholder="id">
+                <input type="hidden" name="identifiantFormulaire" value="user-update">
+                <div class="alert">
+                    <!-- ICI AVEC AJAX, JE POURRAI AFFICHER LE MESSAGE DE CONFIRMATION -->
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2>FORMULAIRE CREATE SUR TABLE SQL ARTICLE</h2>
+                    <!-- 
+                        LE NAVIGATEUR VA AJOUTER DES DELIMITEURS 
+                        POUR MIEUX SEPARER LE CONTENU DU FICHIER 
+                        DES AUTRES INFORMATIONS DU FORMULAIRE 
+                    -->
+            <form action="traitement.php" method="POST" enctype="multipart/form-data">
+                <!-- PARTIE PUBLIQUE VISIBLE DU FORMULAIRE-->
+                <label>
+                    <span>Titre :</span>
+                    <input type="text" name="titre" required placeholder="Votre titre" maxlength="160">
+                </label>
+                <label>
+                    <span>Photo :</span>
+                    <input type="file" name="photo" required placeholder="Votre photo" maxlength="160">
+                </label>
+                <label>
+                    <span>Description :</span>
+                    <textarea name="description" cols="80" rows="8" required placeholder="Votre texte"></textarea>
+                </label>
+                <label>
+                    <span>Categorie :</span>
+                    <input type="text" name="categorie" required placeholder="Votre categorie">
+                </label>
+                <div>
+                    <button type="submit">Publier</button>
+                </div>
+                <!-- PARTIE TECHNIQUE INVISIBLE DE NOTRE FRAMEWORK -->
+                <input type="hidden" name="identifiantFormulaire" value="article">
+                <div class="alert">
+                    <!-- ICI AVEC AJAX, JE POURRAI AFFICHER LE MESSAGE DE CONFIRMATION -->
+                </div>
+            </form>
+        </section>
+
+        <table>
+            <caption>IL Y A <?php echo countSQL("article")?> LIGNE(S) DANS LA TABLE</caption>
+            <tbody>
+                <tr>
+                    <td>Id</td>
+                    <td>Titre</td>
+                    <td>Photo</td>
+                    <td>Description</td>
+                    <td>Categorie</td>
+                    <td>Date de publication</td>
+                    <td>Modifier</td>
+                    <td>Supprimer</td>
+                </tr>
+                <?php
+                // READ TABLE SQL ARTICLE
+                $tabResultat = lireTableSQL("article", "ORDER BY datePublication DESC");
+
+                foreach ($tabResultat as $cle => $tabAssoArticle ) {
+                    extract($tabAssoArticle);
+
+                    echo
+                <<<CODEHTML
+                <tr>
+                    <td class="id">$id</td>
+                    <td class="titre">$titre</td>
+                    <td class="photo"><img src="$photo" alt="photo"></td>
+                    <td class="description">$description</td>
+                    <td class="categorie">$categorie</td>
+                    <td class="datePublication">$datePublication</td>
+                    <td><button class="articleUpdate">modifier</button></td>
+                    <td><button data-table="article" data-id="$id" class="delete">Supprimer</button></td>
+                </tr>
+                CODEHTML;
+                }
+
+                ?>
+            </tbody>
+        </table>
+
+        <section class="sectionArticleUpdate">
+            <h2>FORMULAIRE UPDATE SUR TABLE SQL ARTICLE</h2>
+                <!-- 
+                    LE NAVIGATEUR VA AJOUTER DES DELIMITEURS 
+                    POUR MIEUX SEPARER LE CONTENU DU FICHIER 
+                    DES AUTRES INFORMATIONS DU FORMULAIRE 
+                -->
+            <form class="formArticleUpdate" action="traitement.php" method="POST" enctype="multipart/form-data">
+                <!-- PARTIE PUBLIQUE VISIBLE DU FORMULAIRE-->
+                <label>
+                    <span>Titre :</span>
+                    <input type="text" name="titre" required placeholder="Votre titre" maxlength="160">
+                </label>
+                <label>
+                    <span>Photo :</span>
+                    <input type="file" name="photo" placeholder="Votre photo" maxlength="160">
+                </label>
+                <label>
+                    <span>Description :</span>
+                    <textarea name="description" cols="80" rows="8" required placeholder="Votre texte"></textarea>
+                </label>
+                
+                <label>
+                    <span>Categorie :</span>
+                    <input type="text" name="categorie" required placeholder="Votre categorie">
+                </label>
+                <label>
+                    <span>date de publication :</span>
+                    <input type="text" name="datePublication" required placeholder="Entrez votre date">
+                </label>
+                <div>
+                    <button class="articleCancel">Annuler</button>
+                    <button class="articleUpdate" type="submit">Mettre à jour</button>
+                </div>
+                <!-- PARTIE TECHNIQUE INVISIBLE DE NOTRE FRAMEWORK -->
+                <!-- ATTENTION: POUR LE UPDATE IL FAUT id POUR SELECTIONNER LA BONNE LIGNE -->
+                <input type="number" name="id" value="" required>
+                <input type="hidden" name="identifiantFormulaire" value="article-update">
+                <div class="alert">
+                    <!-- ICI AVEC AJAX, JE POURRAI AFFICHER LE MESSAGE DE CONFIRMATION -->
+                </div>
+            </form>
+        </section>
+    </main>
+    <!-- Comment Area End -->
 {% endblock %}
