@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Volleywood{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/site.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/site.css') }}">{# en.twig cette forme du href est conseillé #}
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/page-admin.css') }}">
