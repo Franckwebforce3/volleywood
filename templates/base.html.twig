@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Volleywood{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="../public/assets/css/site.css">
-        <link rel="stylesheet" type="text/css" href="../public/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/site.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
         {% block stylesheets %}
-            <link rel="stylesheet" type="text/css" href="../public/assets/css/page-admin.css">
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/page-admin.css') }}">
         {% endblock %}
     </head>
     <!-- Header Area Start -->
@@ -71,7 +71,7 @@
         {% block body %}{% endblock %}
         {% block javascripts %}
             <!-- Bootstrap -->
-            <script src="js/bootstrap.min.js"></script>
+            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>
