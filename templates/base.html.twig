@@ -9,71 +9,88 @@
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/page-admin.css') }}">
         {% endblock %}
     </head>
-    <!-- Header Area Start -->
-    <header class="header-area">
-        <!-- Main Header Start -->
-        <div class="main-header-area">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Classy Menu -->
-                    <nav class="classy-navbar justify-content-between" id="alimeNav">
+    <body>
+        <!-- Header Area Start -->
+        <header class="header-area">
+            <!-- Main Header Start -->
+            <div class="main-header-area">
+                <div class="classy-nav-container breakpoint-off">
+                    <div class="container">
+                        <!-- Classy Menu -->
+                        <nav class="classy-navbar justify-content-between" id="alimeNav">
 
-                        <!-- Logo -->
-                        <a class="nav-brand" href="./index.html"><img src="./img/core-img/logo.png" alt=""></a>
+                            <!-- Logo -->
+                            <a class="nav-brand" href="./index.html"><img src="./img/core-img/logo.png" alt=""></a>
 
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-                            <!-- Menu Close Button -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            <!-- Navbar Toggler -->
+                            <div class="classy-navbar-toggler">
+                                <span class="navbarToggler"><span></span><span></span><span></span></span>
                             </div>
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul id="nav">
-                                    <li class="active"><a href="./index.html">Accueil</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="./index.html"> Accueil</a></li>
-                                            <li><a href="./boutique.html"> Boutique</a></li>
-                                            
-                                        
-                                            <li><a href="./single-blog.html">Blog section VIP</a></li>
-                                            <li><a href="./contact.html">Contact</a></li>
 
-                                            <li><a href="./applivolleywood.html">Appli-Volleywood</a></li>
+                            <!-- Menu -->
+                            <div class="classy-menu">
+                                <!-- Menu Close Button -->
+                                <div class="classycloseIcon">
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                                </div>
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul id="nav">
+                                        <li class="active"><a href="./index.html">Accueil</a></li>
+                                        <li><a href="#">Pages</a>
+                                            <ul class="dropdown">
+                                                <li><a href="./index.html"> Accueil</a></li>
+                                                <li><a href="./boutique.html"> Boutique</a></li>
+                                                
                                             
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="./boutique.html">Boutique</a></li>
-                                    <li><a href="./gallery.html">Gallery</a></li>
-                                    <li><a href="./blog.html">Blog</a></li>
-                                    <li><a href="./contact.html">Contact</a></li>
-                                </ul>
+                                                <li><a href="./single-blog.html">Blog section VIP</a></li>
+                                                <li><a href="./contact.html">Contact</a></li>
 
-                                <!-- Search Icon -->
-                                <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
+                                                <li><a href="./applivolleywood.html">Appli-Volleywood</a></li>
+                                                
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="./boutique.html">Boutique</a></li>
+                                        <li><a href="./gallery.html">Gallery</a></li>
+                                        <li><a href="./blog.html">Blog</a></li>
+                                        <li><a href="./contact.html">Contact</a></li>
+                                    </ul>
+
+                                    <!-- Search Icon -->
+                                    <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
+                                </div>
+                                <!-- Nav End -->
                             </div>
-                            <!-- Nav End -->
-                        </div>
-                    </nav>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
     <!-- Header Area End -->
-    <body>
+    
         {% block body %}{% endblock %}
         {% block javascripts %}
             <!-- Bootstrap -->
             <script src="{{ asset('assets/js/popper.min.js') }}"></script>
             <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
             <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/active.js') }}"></script>
+            <script src="{{ asset('assets/js/alime.bundle.js') }}"></script>
+            <script src="{{ asset('assets/js/avoid.console.error.js') }}"></script>
+            <script src="{{ asset('assets/js/classy-nav.js') }}"></script>
+            <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
+            <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jarallax-video.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jarallax.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.scrollup.min.js') }}"></script>
+            <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+            <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+            <script src="{{ asset('assets/js/wow.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>
