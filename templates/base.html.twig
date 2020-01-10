@@ -43,27 +43,42 @@
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul id="nav">
-                                        <li class="active"><a href="./index.html">Accueil</a></li>
-                                        <li><a href="#">Pages</a>
+                                        <li class="active">
+                                            <a href="./index.html">Accueil</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Pages</a>
                                             <ul class="dropdown">
-                                                <li><a href="./index.html"> Accueil</a></li>
-                                                <li><a href="./boutique.html"> Boutique</a></li>
-                                                
-                                            
-                                                <li><a href="./single-blog.html">Blog section VIP</a></li>
-                                                <li><a href="./contact.html">Contact</a></li>
-
-                                                <li><a href="./applivolleywood.html">Appli-Volleywood</a></li>
-                                                
+                                                <li>
+                                                    <a href="{{ path('public') }}">Accueil</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('#') }}">Boutique</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('admin') }}">Admin</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('#') }}">Contact</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('#') }}">Appli-Volleywood</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="./boutique.html">Boutique</a></li>
-                                        <li><a href="./gallery.html">Gallery</a></li>
-                                        <li><a href="./blog.html">Blog</a></li>
-                                        <li><a href="./contact.html">Contact</a></li>
+                                        <li>
+                                            <a href="{{ path('#') }}">Boutique</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('#') }}">Gallery</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('#') }}">Blog</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('#') }}">Contact</a>
+                                        </li>
                                     </ul>
-
                                     <!-- Search Icon -->
                                     <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
                                 </div>
