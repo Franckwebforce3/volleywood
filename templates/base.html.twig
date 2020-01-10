@@ -44,39 +44,28 @@
                                 <div class="classynav">
                                     <ul id="nav">
                                         <li class="active">
-                                            <a href="./index.html">Accueil</a>
+                                            <a href="{{ path('public') }}">Accueil</a>
                                         </li>
                                         <li>
-                                            <a href="#">Pages</a>
-                                            <ul class="dropdown">
-                                                <li>
-                                                    <a href="{{ path('public') }}">Accueil</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ path('#') }}">Boutique</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ path('admin') }}">Admin</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ path('#') }}">Contact</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ path('#') }}">Appli-Volleywood</a>
-                                                </li>
-                                            </ul>
+                                            <a class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" href="{# {{ path('') }} #}">Pages</a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{# {{ path('') }} #}">Boutique</a>
+                                                <a class="dropdown-item" href="{{ path('admin') }}">Administration</a>
+                                                <a class="dropdown-item" href="{# {{ path('') }} #}">Contact</a>
+                                                <a class="dropdown-item" href="{# {{ path('') }} #}">Appli-Volleywood</a>
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="{{ path('#') }}">Boutique</a>
+                                            <a href="{# {{ path('') }} #}">Boutique</a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('#') }}">Gallery</a>
+                                            <a href="{# {{ path('') }} #}">Gallery</a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('#') }}">Blog</a>
+                                            <a href="{# {{ path('') }} #}">Blog</a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('#') }}">Contact</a>
+                                            <a href="{# {{ path('') }} #}">Contact</a>
                                         </li>
                                     </ul>
                                     <!-- Search Icon -->
@@ -94,8 +83,8 @@
         {% block body %}{% endblock %}
         {% block javascripts %}
             <!-- Bootstrap -->
-            <script src="{{ asset('assets/js/popper.min.js') }}"></script>
             <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+            <script src="{{ asset('assets/js/popper.min.js') }}"></script>
             <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('assets/js/wow.min.js') }}"></script>
             <script src="{{ asset('assets/js/active.js') }}"></script>
