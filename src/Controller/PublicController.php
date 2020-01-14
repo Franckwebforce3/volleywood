@@ -97,4 +97,13 @@ class PublicController extends AbstractController
         ]);
     }
 
+                                /**
+     * @Route("/beachvolleymarathon", name="beachvolleymarathon")
+     */
+    public function beachvolleymarathon()
+    {
+        return $this->render('public/beachvolleymarathon.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
