@@ -35,7 +35,8 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // MODIF BY JEJ
+            ///////////////////////////// MODIF BY JEJ/////////////////////////////////////////////////
+
             // BRICOLAGE POUR RATTRAPER LE PROBLEME SUR roles
             $user->setRoles(["ROLE_USER"]);
 
@@ -58,7 +59,7 @@ class UserController extends AbstractController
             'user' => $user,
             'form' => $form->createView(),
         ]);
-        // FIN DE MODIF
+        ////////////////////////////////////////// FIN DE MODIF/////////////////////////////////////
     }
 
     /**
