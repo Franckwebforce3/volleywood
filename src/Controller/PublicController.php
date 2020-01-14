@@ -147,4 +147,14 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+              
+                                /**
+     * @Route("/tournoi-pentecote", name="tournoi-pentecote")
+     */
+    public function tournoipentecote()
+    {
+        return $this->render('public/tournoi-pentecote.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
