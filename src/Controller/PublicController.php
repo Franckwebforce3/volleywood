@@ -116,4 +116,14 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+        
+                                /**
+     * @Route("/evenement-a-venir", name="evenement-a-venir")
+     */
+    public function evenementavenir()
+    {
+        return $this->render('public/evenement-a-venir.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
