@@ -77,4 +77,24 @@ class PublicController extends AbstractController
         ]);
     }
 
+                            /**
+     * @Route("/tournoi-special-greoux", name="tournoi-special-greoux")
+     */
+    public function tournoispecialgreoux()
+    {
+        return $this->render('public/tournoi-special-greoux.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
+
+                                /**
+     * @Route("/volleywood-summer", name="volleywood-summer")
+     */
+    public function volleywoodsummer()
+    {
+        return $this->render('public/volleywood-summer.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
+
 }
