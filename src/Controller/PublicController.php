@@ -46,4 +46,14 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+
+                    /**
+     * @Route("/applivolleywood", name="applivolleywood")
+     */
+    public function applivolleywood()
+    {
+        return $this->render('public/applivolleywood.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
