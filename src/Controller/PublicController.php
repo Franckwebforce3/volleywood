@@ -137,4 +137,14 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+            
+                                /**
+     * @Route("/shooting", name="shooting")
+     */
+    public function shooting()
+    {
+        return $this->render('public/shooting.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
