@@ -442,7 +442,7 @@
   display: none; }
 .breakpoint-on .classynav ul li.has-down.active > .dd-trigger,
 .breakpoint-on .classynav ul li.megamenu-item.active > .dd-trigger {
-  background-color: #27ae60;
+  background-color: #f2c506;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg); }
 
