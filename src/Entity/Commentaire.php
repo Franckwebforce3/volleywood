@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,22 @@ class Commentaire
      * @ORM\Column(type="datetime")
      */
     private $datePublication;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commentaires")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Article", inversedBy="commentaires")
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,6 +103,44 @@ class Commentaire
     public function setDatePublication(\DateTimeInterface $datePublication): self
     {
         $this->datePublication = $datePublication;
+
+        return $this;
+    }
+
+    public function getUsers(): ?User
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?User $users): self
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
+        }
 
         return $this;
     }

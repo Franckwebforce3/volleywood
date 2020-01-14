@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -44,14 +46,29 @@ class User implements UserInterface
     private $avatar;
 
     /**
-     * @ORM\Column(type="string", length=160)
+     * @ORM\Column(type="string", length=160, nullable=true)
      */
     private $ville;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=5, nullable=true)
      */
     private $cp;
+
+    /**
+     * @ORM\Column(type="string", length=160, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="users", orphanRemoval=true)
+     */
+    private $commentaires;
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -175,6 +192,49 @@ class User implements UserInterface
     public function setCp(string $cp): self
     {
         $this->cp = $cp;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getUsers() === $this) {
+                $commentaire->setUsers(null);
+            }
+        }
 
         return $this;
     }
