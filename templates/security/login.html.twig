@@ -50,8 +50,11 @@
                             <div class="col-12 col-md-6">
                                 <input type="password" name="password" id="inputPassword" class="form-control mb-30" required placeholder="Votre mot de passe">
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 col-md-6">
                                 <button type="submit" class="btn alime-btn btn-2 mt-15">Connectez-vous</button>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <a class="btn alime-btn btn-2 mt-15" href="{{ path('public') }}">Mot de passe oublié ?</a>
                             </div>
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         </div>
