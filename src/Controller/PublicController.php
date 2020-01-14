@@ -36,4 +36,14 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+
+                /**
+     * @Route("/blog", name="blog")
+     */
+    public function blog()
+    {
+        return $this->render('public/blog.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
