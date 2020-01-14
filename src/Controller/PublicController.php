@@ -126,4 +126,15 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+
+            
+                                /**
+     * @Route("/tournoi-6x6-telethon", name="tournoi-6x6-telethon")
+     */
+    public function tournoi6x6telethon()
+    {
+        return $this->render('public/tournoi-6x6-telethon.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
