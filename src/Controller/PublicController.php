@@ -106,4 +106,14 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+    
+                                /**
+     * @Route("/athletes-internationaux", name="athletes-internationaux")
+     */
+    public function athletesinternationaux()
+    {
+        return $this->render('public/athletes-internationaux.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
