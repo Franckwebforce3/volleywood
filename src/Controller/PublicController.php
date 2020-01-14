@@ -16,4 +16,24 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+
+        /**
+     * @Route("/galerie", name="galerie")
+     */
+    public function galerie()
+    {
+        return $this->render('public/galerie.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
+
+            /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact()
+    {
+        return $this->render('public/contact.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }

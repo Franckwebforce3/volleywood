@@ -1,0 +1,191 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PublicController!{% endblock %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>contact</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/core-img/favicon.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader">
+        </div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Top Search Form Area -->
+    <div class="top-search-area">
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Close -->
+                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
+                        <!-- Form -->
+                        <form action="index.html" method="post">
+                            <input type="search" name="top-search-bar" class="form-control" placeholder="Que recherchez-vous ?..">
+                            <button type="submit">Rechercher</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <!-- Main Header Start -->
+        <div class="main-header-area">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alimeNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="./index.html"><img src="./img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                         <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href="./index.html">Accueil</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="./index.html"> Accueil</a></li>
+                                            <li><a href="./boutique.html"> Boutique</a></li>
+                                            
+                                        
+                                            <li><a href="./single-blog.html">Blog section VIP</a></li>
+                                            <li><a href="./contact.html">Contact</a></li>
+
+                                            <li><a href="./applivolleywood.html">Appli-Volleywood</a></li>
+                                            
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="./boutique.html">Boutique</a></li>
+                                    <li><a href="./gallery.html">Galerie</a></li>
+                                    <li><a href="./blog.html">Blog</a></li>
+                                    <li><a href="./contact.html">Contact</a></li>
+                                </ul>
+
+
+                                <!-- Search Icon -->
+                                <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Breadcrumb Area Start -->
+    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(assets/img/bg-img/38.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="page-title">Contact</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="icon_house_alt"></i> Accueil</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+
+    <!-- Contact Area Start -->
+    <div class="contact-area section-padding-80-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <h2 class="contact-title mb-30">Ou Nous <br>Trouver ?</h2>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <!-- Contact Info -->
+                    <div class="contact-info mb-30">
+                        <p>Email</p>
+                        <a href="mailto:deniau.f@hotmail.fr">volleywood@gmail.com</a>
+                    </div>
+                    <!-- Contact Info -->
+                    <div class="contact-info mb-30">
+                        <p>Nos horaires hivers</p>
+                        <a href="https://www.facebook.com/VolleywoodMarseille">13h30 à 17h30</a>
+                    </div>
+                    <div class="contact-info mb-30">
+                        <p>Nos horaires été</p>
+                        <a href="https://www.facebook.com/VolleywoodMarseille">17h30 à 21h30</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <!-- Contact Info -->
+                    <div class="contact-info mb-30">
+                        <p>Notre point Volleywood</p>
+                        <a href="https://www.google.com/maps?client=firefox-b-d&q=plage+du+prophete&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjv_96JmMrmAhWiQEEAHT8LD4EQ_AUoAXoECBQQAw">Plage du Prophète</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Contact Area End -->
+
+    <!-- Map Area Start -->
+    <div class="map-area section-padding-0-80">
+        <div class="container">
+            <div id="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2904.9638247090634!2d5.3599226154854875!3d43.273133679136265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9c72fdbbf9aa3%3A0x44b0b38e3fa60114!2sPlage%20du%20Proph%C3%A8te!5e0!3m2!1sfr!2sfr!4v1577050494058!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2904.9638247090634!2d5.3599226154854875!3d43.273133679136265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9c72fdbbf9aa3%3A0x44b0b38e3fa60114!2sPlage%20du%20Proph%C3%A8te!5e0!3m2!1sfr!2sfr!4v1577049781840!5m2!1sfr!2sfr"></iframe> -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Map Area End -->
+
+</body>
+
+</html>
+
+{% endblock %}
