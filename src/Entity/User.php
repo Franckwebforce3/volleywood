@@ -36,12 +36,12 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=160)
+     * @ORM\Column(type="string", length=160, nullable=true)
      */
     private $pseudo;
 
     /**
-     * @ORM\Column(type="string", length=160)
+     * @ORM\Column(type="string", length=160, nullable=true)
      */
     private $avatar;
 
@@ -64,6 +64,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="users", orphanRemoval=true)
      */
     private $commentaires;
+
+    /**
+     * @ORM\Column(type="string", length=160)
+     */
+    private $cle_activation;
 
     public function __construct()
     {
@@ -235,6 +240,18 @@ class User implements UserInterface
                 $commentaire->setUsers(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCleActivation(): ?string
+    {
+        return $this->cle_activation;
+    }
+
+    public function setCleActivation(string $cle_activation): self
+    {
+        $this->cle_activation = $cle_activation;
 
         return $this;
     }
