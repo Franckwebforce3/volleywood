@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PublicController!{% endblock %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>USER/MEMBRE/UTILISATEUR</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./img/core-img/favicon.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Top Search Form Area -->
+    <div class="top-search-area">
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Close -->
+                        <button type="button" class="btn close-btn" data-dismiss="modal"><i
+                                class="ti-close"></i></button>
+                        <!-- Form -->
+                        <form action="index.html" method="post">
+                            <input type="search" name="top-search-bar" class="form-control"
+                                placeholder="Search and hit enter...">
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Area Start -->
+    <section class="breadcrumb-area bg-img bg-overlay jarallax"
+        style="background-image: url(assets/img/bg-img/38.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="page-title">Devenir Membre</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="icon_house_alt"></i>
+                                        Accueil</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Devenir Membre</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+
+    <!-- Comment Area Start -->
+    <div class="comment-area section-padding-80">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <!-- Comments Area -->
+                    <div class="comment_area clearfix">
+                        <h4 class="mb-30"></h4>
+                        <ol>
+                            <!-- Leave A Reply -->
+
+                            <div class="alime-contact-form mt-50">
+                                <h4 class="mb-30">Créer un compte</h4>
+
+                                <!-- Form -->
+                                <form method="post">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <input type="text" name="pseudo" class="form-control mb-30"
+                                                placeholder="Votre Pseudo">
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <input type="email" name="email" class="form-control mb-30"
+                                                placeholder="Votre Email">
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <input type="password" name="password" class="form-control mb-30"
+                                                placeholder="Votre mot de passe">
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <input type="password" name="password" class="form-control mb-30"
+                                                placeholder="Confirmer Votre mot de passe">
+                                        </div>
+                                        <div class="col-12">
+                                            {# <form id="inscription" method="post" action="formulaire_traitement.php"> #}
+                                            {# <img href="default/avatar.jpg" /> #}
+                                            <input type="file" name="avatar">
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn alime-btn btn-2 mt-15">Envoyer</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Comment Area End -->
+
+        {% endblock %}

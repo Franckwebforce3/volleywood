@@ -58,11 +58,11 @@ class PublicController extends AbstractController
     }
     
                         /**
-     * @Route("/user", name="user")
+     * @Route("/inscription", name="inscription")
      */
-    public function user()
+    public function inscription()
     {
-        return $this->render('public/user.html.twig', [
+        return $this->render('public/inscription.html.twig', [
             'controller_name' => 'PublicController',
         ]);
     }
