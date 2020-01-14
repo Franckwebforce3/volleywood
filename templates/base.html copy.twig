@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Volleywood{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/animate.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/classy-nav.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/magnific-popup.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themify-icons.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/site.css') }}">{# en.twig cette forme du href est conseillé ATTENTION site.css = style.css de l'ancien projet#}
+        
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/page-admin.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        <!-- Header Area Start -->
+        <header class="header-area">
+            <!-- Main Header Start -->
+            <div class="main-header-area">
+                <div class="classy-nav-container breakpoint-off">
+                    <div class="container">
+                        <!-- Classy Menu -->
+                        <nav class="classy-navbar justify-content-between" id="alimeNav">
+
+                            <!-- Logo -->
+                            <a class="nav-brand" href="./index.html"><img src="../public/assets/img/core-img/logo.png" alt=""></a>
+
+                            <!-- Navbar Toggler -->
+                            <div class="classy-navbar-toggler">
+                                <span class="navbarToggler"><span></span><span></span><span></span></span>
+                            </div>
+
+                            <!-- Menu -->
+                            <div class="classy-menu">
+                                <!-- Menu Close Button -->
+                                <div class="classycloseIcon">
+                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                                </div>
+                                <!-- Nav Start -->
+                                <div class="classynav">
+                                    <ul id="nav">
+                                        <li class="active">
+                                            <a href="{{ path('public') }}">Accueil</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" href="{# {{ path('') }} #}">Pages</a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="{# {{ path('') }} #}">Boutique</a>
+                                                <a class="dropdown-item" href="{{ path('admin') }}">Administration</a>
+                                                <a class="dropdown-item" href="{# {{ path('') }} #}">Contact</a>
+                                                <a class="dropdown-item" href="{# {{ path('') }} #}">Appli-Volleywood</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="{# {{ path('') }} #}">Boutique</a>
+                                        </li>
+                                        <li>
+                                            <a href="{# {{ path('') }} #}">Gallery</a>
+                                        </li>
+                                        <li>
+                                            <a href="{# {{ path('') }} #}">Blog</a>
+                                        </li>
+                                        <li>
+                                            <a href="{# {{ path('') }} #}">Contact</a>
+                                        </li>
+                                    </ul>
+                                    <!-- Search Icon -->
+                                    <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
+                                </div>
+                                <!-- Nav End -->
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+    <!-- Header Area End -->
+
+        {% block body %}
+        {% endblock %}
+
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/alime.bundle.js') }}"></script>
+        <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+        <script src="{{ asset('assets/js/avoid.console.error.js') }}"></script>
+        <script src="{{ asset('assets/js/classy-nav.js') }}"></script>
+        <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
+        <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jarallax-video.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jarallax.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.scrollup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+        <script src="{{ asset('assets/js/active.js') }}"></script>
+
+        {% block javascripts %}
+            <!-- Bootstrap -->
+           
+        {% endblock %}
+    </body>
+</html>

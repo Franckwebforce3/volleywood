@@ -17,72 +17,70 @@
         {% endblock %}
     </head>
     <body>
-        <!-- Header Area Start -->
-        <header class="header-area">
-            <!-- Main Header Start -->
-            <div class="main-header-area">
-                <div class="classy-nav-container breakpoint-off">
-                    <div class="container">
-                        <!-- Classy Menu -->
-                        <nav class="classy-navbar justify-content-between" id="alimeNav">
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <!-- Main Header Start -->
+        <div class="main-header-area">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alimeNav">
 
-                            <!-- Logo -->
-                            <a class="nav-brand" href="./index.html"><img src="../public/assets/img/core-img/logo.png" alt=""></a>
+                        <!-- Logo -->
+                        <a class="nav-brand" href="./index.html"><img src="./img/core-img/logo.png" alt=""></a>
 
-                            <!-- Navbar Toggler -->
-                            <div class="classy-navbar-toggler">
-                                <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                             </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href="./index.html">Accueil</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="./index.html"> Accueil</a></li>
+                                            <li><a href="./boutique.html"> Boutique</a></li>
+                                            
+                                            <li><a href="./single-blog.html">Blog section VIP</a></li>
 
-                            <!-- Menu -->
-                            <div class="classy-menu">
-                                <!-- Menu Close Button -->
-                                <div class="classycloseIcon">
-                                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                                </div>
-                                <!-- Nav Start -->
-                                <div class="classynav">
-                                    <ul id="nav">
-                                        <li class="active">
-                                            <a href="{{ path('public') }}">Accueil</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" href="{# {{ path('') }} #}">Pages</a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{# {{ path('') }} #}">Boutique</a>
-                                                <a class="dropdown-item" href="{{ path('admin') }}">Administration</a>
-                                                <a class="dropdown-item" href="{# {{ path('') }} #}">Contact</a>
-                                                <a class="dropdown-item" href="{# {{ path('') }} #}">Appli-Volleywood</a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="{# {{ path('') }} #}">Boutique</a>
-                                        </li>
-                                        <li>
-                                            <a href="{# {{ path('') }} #}">Gallery</a>
-                                        </li>
-                                        <li>
-                                            <a href="{# {{ path('') }} #}">Blog</a>
-                                        </li>
-                                        <li>
-                                            <a href="{# {{ path('') }} #}">Contact</a>
-                                        </li>
-                                    </ul>
-                                    <!-- Search Icon -->
-                                    <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
-                                </div>
-                                <!-- Nav End -->
+                                            <li><a href="./contact.html">Contact</a></li>
+
+                                            <li><a href="./applivolleywood.html">Appli-Volleywood</a></li>
+
+                                            <li><a href="./user.html">Devenir Membre</a></li>
+
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="./boutique.html">Boutique</a></li>
+                                    <li><a href="./gallery.html">Galerie</a></li>
+                                    <li><a href="./blog.html">Blog</a></li>
+                                    <li><a href="./contact.html">Contact</a></li>
+                                </ul>
+
+                                <!-- Search Icon -->
+                                <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
                             </div>
-                        </nav>
-                    </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
     <!-- Header Area End -->
 
         {% block body %}
         {% endblock %}
-
+        <script src="https://kit.fontawesome.com/2861c240a8.js" crossorigin="anonymous"></script>
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/popper.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
