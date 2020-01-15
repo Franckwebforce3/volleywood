@@ -60,39 +60,14 @@ class PublicController extends AbstractController
         ]);
     }
     
-                        /**
+    /**
      * @Route("/inscription", name="inscription")
      */
-    public function inscription(Request $request)
+    public function inscription()
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            ///////////////////////////// MODIF BY JEJ/////////////////////////////////////////////////
-
-            // BRICOLAGE POUR RATTRAPER LE PROBLEME SUR roles
-            $user->setRoles(["ROLE_USER"]);
-
-            // HASHAGE DU MOT DE PASSE
-            $passwordNonHashe = $user->getPassword();
-            $passwordHashe    = password_hash($passwordNonHashe, PASSWORD_BCRYPT);
-            $user->setPassword($passwordHashe);
-
-            
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            // IL FAUT ENVOYER UN EMAIL
-
-            return $this->redirectToRoute('user_index');
-        }
-
-        return $this->render('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
+        // AFFICHAGE DE LA PAGE
+        return $this->render('public/inscription.html.twig', [
+            'controller_name' => 'PublicController',
         ]);
     }
 
@@ -176,7 +151,6 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
-              
                                 /**
      * @Route("/tournoi-pentecote", name="tournoi-pentecote")
      */
