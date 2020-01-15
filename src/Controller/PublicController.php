@@ -20,7 +20,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-        /**
+    /**
      * @Route("/galerie", name="galerie")
      */
     public function galerie()
@@ -30,7 +30,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-            /**
+    /**
      * @Route("/contact", name="contact")
      */
     public function contact()
@@ -40,7 +40,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-                /**
+    /**
      * @Route("/blog", name="blog")
      */
     public function blog()
@@ -50,7 +50,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-                    /**
+    /**
      * @Route("/applivolleywood", name="applivolleywood")
      */
     public function applivolleywood()
@@ -71,7 +71,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-                        /**
+    /**
      * @Route("/single-blog", name="single-blog")
      */
     public function singleblog()
@@ -81,7 +81,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-                            /**
+    /**
      * @Route("/tournoi-special-greoux", name="tournoi-special-greoux")
      */
     public function tournoispecialgreoux()
@@ -91,7 +91,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-                                /**
+    /**
      * @Route("/volleywood-summer", name="volleywood-summer")
      */
     public function volleywoodsummer()
@@ -101,7 +101,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-                                /**
+    /**
      * @Route("/beachvolleymarathon", name="beachvolleymarathon")
      */
     public function beachvolleymarathon()
@@ -111,7 +111,7 @@ class PublicController extends AbstractController
         ]);
     }
     
-                                /**
+    /**
      * @Route("/athletes-internationaux", name="athletes-internationaux")
      */
     public function athletesinternationaux()
@@ -121,7 +121,7 @@ class PublicController extends AbstractController
         ]);
     }
         
-                                /**
+    /**
      * @Route("/evenement-a-venir", name="evenement-a-venir")
      */
     public function evenementavenir()
@@ -132,7 +132,7 @@ class PublicController extends AbstractController
     }
 
             
-                                /**
+    /**
      * @Route("/tournoi-6x6-telethon", name="tournoi-6x6-telethon")
      */
     public function tournoi6x6telethon()
@@ -142,7 +142,7 @@ class PublicController extends AbstractController
         ]);
     }
             
-                                /**
+    /**
      * @Route("/shooting", name="shooting")
      */
     public function shooting()
@@ -151,7 +151,7 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
-                                /**
+/**
      * @Route("/tournoi-pentecote", name="tournoi-pentecote")
      */
     public function tournoipentecote()
@@ -161,7 +161,7 @@ class PublicController extends AbstractController
         ]);
     }
 
-                                    /**
+    /**
      * @Route("/tournoi-mixte-3x3", name="tournoi-mixte-3x3")
      */
     public function tournoimixte3x3()
@@ -171,7 +171,7 @@ class PublicController extends AbstractController
         ]);
     }
     
-                                    /**
+    /**
      * @Route("/faireundon", name="faireundon")
      */
     public function faireundon()
