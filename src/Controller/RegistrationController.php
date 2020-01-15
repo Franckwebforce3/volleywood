@@ -17,11 +17,15 @@ use Symfony\Component\Mime\Email;
 // FORMULAIRE D'ACTIVATION
 use App\Form\ActivationUserType;
 use App\Repository\UserRepository;
+use Symfony\Component\Mailer\Transport\Smtp\Auth\PlainAuthenticator;
 
+/**
+ * @Route("/register")
+ */
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/", name="register")
      */
     public function register(Request $request, MailerInterface $mailer, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -33,6 +37,20 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // BRICOLAGE POUR RATTRAPER LE PROBLEME SUR roles
             $user->setRoles(["ROLE_USER"]);
+
+            // // GESTION DU MOT DE PASSE VIA TERMINAL REGISTER
+            // $user->setActive(true);
+            // $user->setOrganization(NULL);
+            // $user->setLangId("fr");
+
+            // // encode the plain password
+            // $user->setPassword(
+            //     $passwordEncoder->encodePassword(
+            //         $user,
+            //         $form->get("plainPassword")->getData()
+            //     )
+            // );
+
 
             // HASHAGE DU MOT DE PASSE
             $passwordNonHashe = $user->getPassword();
@@ -77,10 +95,12 @@ class RegistrationController extends AbstractController
         }
 
         // AFFICHAGE DE LA PAGE
-        return $this->render('public/inscription.html.twig', [
+        return $this->render('registration/register.html.twig', [
+            'controller_name' => 'RegistrationController',
+
             // CLES => VARIABLES TWIG
-            'message'           => $message,
-            'form'              => $form->createView(),
+            'message'                => $message,
+            'registrationForm'       => $form->createView(),
         ]);
     }
 
