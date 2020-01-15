@@ -1,0 +1,246 @@
+html{
+	box-sizing: border-box;
+}
+*,*:after,*:before{
+	box-sizing: inherit;
+}
+/*************************************
+* Fin BOX-SIZING
+*************************************/
+:root {
+    --a-color: #424242;
+    --hx-color: #424242;
+    --p-color: #424242;
+    --i-color: #0D47A1;
+    --bgnav-color: #f2c506;
+    --bgbleu-color: #0402d1;
+}
+
+body {
+	font-family: verdana;
+	margin: 0;
+	color: var(--p-color);
+    line-height: 1.8;
+    font-size: 16px;
+
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
+    background: #ffffff; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #ffffff 0%, #e5e5e5 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #ffffff 0%,#e5e5e5 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #ffffff 0%,#e5e5e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+a {
+	color: var(--a-color);
+	text-decoration: none;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+	text-align: center;
+	/* font-family: 'Lobster', cursive; */
+}
+/**************************************************************************
+**************************************************************************
+* Fin GLOBAL *
+**************************************************************************
+**************************************************************************/
+.container {
+    width: 100%;
+	max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+}
+
+/*************************************/
+/* Section des produits */
+/*************************************/
+.containerProduits {
+    width: 100%;
+	/* max-width: 1000px; */
+    margin: 0 auto;
+    /* border: 1px solid black; */
+}
+.containerProduits h1 {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(#424242);
+    text-transform: uppercase;
+    margin: 2rem auto 1.5rem auto;
+}
+.containerProduits aside {
+    margin-bottom: 1.5%;
+}
+.containerProduits aside ul,
+ul.listeProduits {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.containerProduits aside ul li {
+    width: 20%;
+    text-align: center;
+}
+
+/*************************************
+* Liste des produits *
+* Case produit *
+*************************************/
+ul.listeProduits {
+    width: 100%;
+    /* border: 1px solid blue; */
+}
+ul.listeProduits li {
+    /* 4 produits par ligne */
+    width: calc(100% / 5);
+    min-width: 250px;
+    margin-right: 15px;
+    margin-bottom: 1%;
+    /* background-color: white; */
+}
+ul.listeProduits figure {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
+    background: #ffffff; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #ffffff 0%, #e5e5e5 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #ffffff 0%,#e5e5e5 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #ffffff 0%,#e5e5e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    position: relative; 
+
+    transition: all 0.3s ease-in;
+}
+/* Gestion des hover */ 
+ul.listeProduits figure:hover {
+    /* box-shadow: 3px 5px 9px 3px var(--p-color); */
+    box-shadow: 1px 1px 9px 1px var(--p-color);
+    /* border: 2px solid var(--bgnav-color); */
+}
+ul.listeProduits figure:hover .panierClick {
+    opacity: 1;
+}
+ul.listeProduits figure:hover img {
+    transform: scale(1.2);
+}
+
+/*************************************
+* Description du produit *
+*************************************/
+ul.listeProduits .panierClick {
+    position: absolute; 
+    /* top: calc(100% / 1.6);  */
+    top: 270px;
+    left: calc(100% / 6);
+    /* left: 10px; */
+
+    opacity: 0;
+    transition: all 0.1s ease-in;
+}
+ul.listeProduits .panierClick a:first-of-type{
+    background-color: black;
+    color: white;
+    font-size: 1.1em;
+    padding: 5px 5px;
+    transition: all 0.1s ease-in;
+}
+ul.listeProduits .panierClick a:last-of-type{
+    background-color: black;
+    color: white;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    transition: all 0.1s ease-in;
+}
+ul.listeProduits .panierClick a:first-of-type:hover {
+    background-color: var(--bgnav-color);
+    color: black;
+}
+ul.listeProduits .panierClick a:last-of-type:hover {
+    background-color: var(--bgnav-color);
+    color: black;
+}
+
+ul.listeProduits figure figcaption {
+    /* background-color: #ffffff;  */
+    background-color: #fdf8df;
+} 
+ul.listeProduits figure h2, 
+ul.listeProduits figure h3, 
+ul.listeProduits figure p
+{
+    text-align: left;
+}
+ul.listeProduits figure img {
+    /* border-bottom: 1px solid var(--p-color); */
+    max-width: 100%;
+    max-height: 250px;
+    margin-top: 10px;
+    margin-bottom: 70px;
+
+    /* cursor: zoom-in; */
+    cursor: url('../img/shine.svg');
+    z-index: 99;
+
+    transition: all 0.1s ease-in;
+}
+
+ul.listeProduits figure p {
+	font-size: 0.85rem;
+    line-height: 1rem;
+    color: #69696c;
+    /* font-family: Overlock, cursive; */
+    text-align: center;
+    margin-top: 0.8rem;
+}
+
+ul.listeProduits figure .prix {
+	font-size: 1rem;
+    line-height: 1rem;
+    color: black;
+    /* font-family: Overlock, cursive; */
+    text-align: left;
+
+    padding: 2% 2%;
+}
+
+/* Affichage des tailles et des couleurs */
+.taille,
+.couleur {
+    width: 15px;
+    padding: 4px 11px;
+    margin-right: 5px;
+    /* margin-bottom: 30px; */
+    border: 1px solid black;
+    background-color: #f2c506;
+    color: black;
+}
+/**************************************************************************
+**************************************************************************
+* FIN Main *
+**************************************************************************
+**************************************************************************/
+
+@media screen and (max-width: 800px) {
+    ul.listeProduits {
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    ul.listeProduits li {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .containerProduits aside ul {
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+}
+/**************************************************************************
+**************************************************************************
+* FIN Media Queries *
+**************************************************************************
+**************************************************************************/
