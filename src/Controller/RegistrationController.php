@@ -18,10 +18,13 @@ use Symfony\Component\Mime\Email;
 use App\Form\ActivationUserType;
 use App\Repository\UserRepository;
 
+/**
+ * @Route("/register")
+ */
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/", name="register")
      */
     public function register(Request $request, MailerInterface $mailer, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -77,10 +80,12 @@ class RegistrationController extends AbstractController
         }
 
         // AFFICHAGE DE LA PAGE
-        return $this->render('public/inscription.html.twig', [
+        return $this->render('registration/register.html.twig', [
+            'controller_name' => 'RegistrationController',
+
             // CLES => VARIABLES TWIG
-            'message'           => $message,
-            'form'              => $form->createView(),
+            'message'                => $message,
+            'registrationForm'       => $form->createView(),
         ]);
     }
 
