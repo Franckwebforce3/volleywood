@@ -8,6 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+// A RAJOUTER POUR POUVOIR UTILISER LES CONTRAINTES SUR MON ENTITE
+// https://symfony.com/doc/current/reference/constraints/Email.html
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(
