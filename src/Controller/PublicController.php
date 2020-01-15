@@ -170,4 +170,14 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+    
+                                    /**
+     * @Route("/faireundon", name="faireundon")
+     */
+    public function faireundon()
+    {
+        return $this->render('public/faireundon.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }

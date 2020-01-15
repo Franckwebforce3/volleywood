@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VolleyWood | Boutique{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/resetcss.css') }}"/>
+<link rel="stylesheet" href="{{ asset('assets/css/boutique.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+<main class="container">
+    <section class="containerProduits">
+        <h1>Liste de nos produits</h1>
+        <aside>
+			<ul>
+				<li><a href="#">Par catégorie</a></li>
+				<li class="active"><a href="#">Voir tout</a></li>
+			</ul>	        
+        </aside>
+        <ul class="listeProduits">
+            {% for produit in produits %}
+            <li>
+                <figure>
+                    <a href="{{ path('produitId', {'id': produit.id}) }}">
+                    <img src="{{ asset('assets/img/produits/'~produit.photos[0].nom) }}" alt="{{ produit.photos[0].description }}" />
+                    </a>
+                    <p class="panierClick">
+                        <a href="#"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+                        <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a>
+                    </p>
+                    <figcaption>
+                        <h3>{{ produit.categorie }}</h3>
+                        <h2>{{ produit.titre }}</h2>
+
+
+                        {% if produit.taille %}
+                            <p>Taille disponible :</p>
+                            {% set tailleDispoTAB = produit.taille|split(';') %}
+                            <p>
+                            {% for tailleDispo in tailleDispoTAB %}
+                                 <span class="taille">{{ tailleDispo }}</span>
+                            {% endfor %}
+                            </p>
+                        {% endif %}
+
+                        {% if produit.couleur %}
+                            <p>Couleur disponible :</p>
+                            {% set couleurDispoTAB = produit.couleur|split(';') %}
+                            <p>
+                            {% for couleurDispo in couleurDispoTAB %}
+                                 <span class="couleur" style="background-color: {{ couleurDispo }}">  </span>
+                            {% endfor %}
+                            </p>
+                        {% endif %}
+
+                        <p class="prix">{{ produit.prixVente }} €</p>    
+                    </figcaption>
+                </figure>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://kit.fontawesome.com/a6c47b94c8.js" crossorigin="anonymous"></script>
+{% endblock %}

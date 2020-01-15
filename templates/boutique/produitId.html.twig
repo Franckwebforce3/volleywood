@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VolleyWood | Boutique{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" media="screen" href="{{ asset('assets//css/boutique.css') }}"/>
+{% endblock %}
+
+{% block body %}
+<main class="container">
+    <section class="containerProduits">
+        <h1>Liste de nos produits</h1>
+        <aside>
+			<ul>
+				<li><a href="#">Par catégorie</a></li>
+				<li class="active"><a href="#">Voir tout</a></li>
+			</ul>	        
+        </aside>
+        <ul class="listeProduits">
+            {# {% for produit in produits %} #}
+            <li>
+                <figure>
+                    {# <a href="{{ path('produitId', {'id': produit.id}) }}">
+                        <img src="{{ asset('assets/img/produits/'~produit.nom) }}" alt="{{ produit.descriptionPhoto }}" />
+                    </a> #}
+                    <figcaption>
+                        <a href="#">Ajouter au panier</a>
+                        <h2>{{ produit.titre }}</h2>
+
+                        {# {% for photo in produit.photos %} 
+                        <h2>{{ photo.nom }}</h2>
+                        {% endfor %} #}
+
+                        {% for photo in photos %} 
+                            <img src="{{ asset('assets/img/produits/'~photo.nom) }}" alt="{{ photo.description }}" />
+                        {% endfor %}
+
+                        <p>{{ nBPhotos }}</P>
+
+
+                        <p>{{ produit.description }}</p>    
+
+                        {# <p>{{ produit.prix_vente }} €</p>     #}
+
+                    </figcaption>
+                </figure>
+            </li>
+            {# {% endfor %} #}
+        </ul>
+    </section>
+</main>
+{% endblock %}
