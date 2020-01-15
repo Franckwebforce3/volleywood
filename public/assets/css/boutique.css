@@ -65,7 +65,7 @@ h1, h2, h3 {
 .containerProduits h1 {
     text-align: center;
     font-size: 1.2rem;
-    color: var(#424242);
+    color: var(--p-color);
     text-transform: uppercase;
     margin: 2rem auto 1.5rem auto;
 }
@@ -96,7 +96,7 @@ ul.listeProduits li {
     /* 4 produits par ligne */
     width: calc(100% / 5);
     min-width: 250px;
-    margin-right: 15px;
+    margin-right: 20px;
     margin-bottom: 1%;
     /* background-color: white; */
 }
@@ -110,19 +110,19 @@ ul.listeProduits figure {
 
     position: relative; 
 
-    transition: all 0.3s ease-in;
+    transition: all 0.7s ease-in;
 }
 /* Gestion des hover */ 
 ul.listeProduits figure:hover {
-    /* box-shadow: 3px 5px 9px 3px var(--p-color); */
-    box-shadow: 1px 1px 9px 1px var(--p-color);
+    /* box-shadow: 1px 1px 9px 1px var(--p-color); */
     /* border: 2px solid var(--bgnav-color); */
+    background: var(--bgnav-color);
 }
 ul.listeProduits figure:hover .panierClick {
     opacity: 1;
 }
 ul.listeProduits figure:hover img {
-    transform: scale(1.2);
+    transform: scale(1.2) rotate(15deg);
 }
 
 /*************************************
@@ -144,6 +144,8 @@ ul.listeProduits .panierClick a:first-of-type{
     font-size: 1.1em;
     padding: 5px 5px;
     transition: all 0.1s ease-in;
+    position: relative;
+    z-index: 1000;
 }
 ul.listeProduits .panierClick a:last-of-type{
     background-color: black;
@@ -151,26 +153,83 @@ ul.listeProduits .panierClick a:last-of-type{
     font-size: 1.1em;
     padding: 5px 10px;
     transition: all 0.1s ease-in;
+    position: relative;
+    z-index: 1000;    
 }
 ul.listeProduits .panierClick a:first-of-type:hover {
     background-color: var(--bgnav-color);
+    border: 1px solid black;
     color: black;
 }
 ul.listeProduits .panierClick a:last-of-type:hover {
     background-color: var(--bgnav-color);
+    border: 1px solid black;
     color: black;
 }
+
+/*************************
+* Panier en mode mobile *
+**************************/
+ul.listeProduits .panierClickFooter {
+    display: none;
+    /* width: 15%; */
+    transition: all 0.1s ease-in;
+}
+ul.listeProduits .panierClickFooter a:first-of-type{
+    background-color: black;
+    color: white;
+    font-size: 1.1em;
+    padding: 5px 5px;
+    transition: all 0.1s ease-in;
+    position: relative;
+    z-index: 1000;       
+}
+ul.listeProduits .panierClickFooter a:last-of-type {
+    background-color: black;
+    color: white;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    transition: all 0.1s ease-in;
+    position: relative;
+    z-index: 1000;       
+}
+ul.listeProduits .panierClickFooter a:first-of-type:hover {
+    background-color: var(--bgnav-color);
+    border: 1px solid black;
+    color: black;
+}
+ul.listeProduits .panierClickFooter a:last-of-type:hover {
+    background-color: var(--bgnav-color);
+    border: 1px solid black;
+    color: black;
+}
+/*************************
+* FIN Panier en mode mobile *
+**************************/
 
 ul.listeProduits figure figcaption {
     /* background-color: #ffffff;  */
     background-color: #fdf8df;
+    min-height: 200px;
 } 
+
 ul.listeProduits figure h2, 
 ul.listeProduits figure h3, 
 ul.listeProduits figure p
 {
     text-align: left;
 }
+ul.listeProduits figure h2
+{
+    font-size: 1em;
+    font-weight: bold;
+}
+ul.listeProduits figure h3
+{
+    font-size: 0.7em;
+    font-weight: normal;
+}
+
 ul.listeProduits figure img {
     /* border-bottom: 1px solid var(--p-color); */
     max-width: 100%;
@@ -178,11 +237,9 @@ ul.listeProduits figure img {
     margin-top: 10px;
     margin-bottom: 70px;
 
-    /* cursor: zoom-in; */
-    cursor: url('../img/shine.svg');
     z-index: 99;
 
-    transition: all 0.1s ease-in;
+    transition: all 0.5s ease-in;
 }
 
 ul.listeProduits figure p {
@@ -195,13 +252,32 @@ ul.listeProduits figure p {
 }
 
 ul.listeProduits figure .prix {
-	font-size: 1rem;
+	font-size: 1.1rem;
     line-height: 1rem;
-    color: black;
-    /* font-family: Overlock, cursive; */
-    text-align: left;
-
+    color: white;
+    font-style: italic;
+    /* text-align: left; */
     padding: 2% 2%;
+
+    position: relative;
+    left: 30px;
+    z-index: 1000;
+}
+ul.listeProduits figure .prix::before {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 4rem;
+    width: 7rem;
+    top: 2px;
+    left: -15px;
+    background: url(../img/image.png) no-repeat;
+    background-size: contain;
+    /* z-index: 450; */
+    color: white;
+    font-size: 1.5rem;
+    padding-top: 0.3rem;
+    padding-right: 0.4rem;
 }
 
 /* Affichage des tailles et des couleurs */
@@ -220,6 +296,88 @@ ul.listeProduits figure .prix {
 * FIN Main *
 **************************************************************************
 **************************************************************************/
+.containerUnProduit {
+    width: 100%;
+	max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    margin-left: 45px;
+    /* border: 1px solid black; */
+}
+
+.containerUnProduit .retour {
+    position: absolute; 
+    top: 3%;
+    left: 0.5%;
+    transform: rotate(-90deg);
+    transition: all 0.4s ease-in-out;
+}
+.containerUnProduit .retour:hover {
+    transform: rotate(-45deg);
+}
+.containerUnProduit .retour a {
+    text-decoration: none;
+    font-size: 1.1em;
+}
+aside.panier {
+    position: absolute; 
+    top: 1%;
+    right: 3%;
+}
+
+/************
+* Article : titreProduit
+************/
+.containerUnProduit .titreProduit {
+    display: inline-block;
+    width: 50%;
+    margin-top: 10px;
+    /* border: 1px solid black; */
+    vertical-align: top;
+}
+/************
+* Article : infoProduit
+************/
+.containerUnProduit .infoProduit {
+    display: inline-block;
+    width: 35%;
+    margin-top: 50px;
+    margin-left: 15px;
+
+    vertical-align: top;
+}
+
+.containerUnProduit .titreProduit figure img {
+    max-width: 100%;
+    max-height: 600px;
+    border: 2px solid black;
+    background-color: #fdf8df;
+}
+.containerUnProduit .titreProduit figcaption {
+    position: relative; 
+    top: 5px;
+    left: 30px;
+}
+
+.titreProduit .listePhotosProduit {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+.titreProduit .listePhotosProduit i {
+    font-size: 2em;
+}
+.titreProduit .listePhotosProduit img {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 200px;
+}
+/**************************************************************************
+**************************************************************************
+* FIN Affichage 1 produit *
+**************************************************************************
+**************************************************************************/
 
 @media screen and (max-width: 800px) {
     ul.listeProduits {
@@ -230,6 +388,9 @@ ul.listeProduits figure .prix {
     ul.listeProduits li {
         width: 70%;
     }
+    ul.listeProduits figure {
+        text-align: center;
+    }    
 }
 
 @media screen and (max-width: 500px) {
@@ -237,6 +398,21 @@ ul.listeProduits figure .prix {
         flex-direction: column;
         justify-content: center;
         align-content: center;
+    }
+
+    ul.listeProduits .panierClickFooter {
+        display: inline;
+        position: absolute;
+        left: calc(100% / 6);
+        transition: all 0.1s ease-in;
+    }
+
+    ul.listeProduits .panierClick {
+        display: none;
+    }
+
+    ul.listeProduits figure {
+        text-align: center;
     }
 }
 /**************************************************************************

@@ -67,6 +67,10 @@
 
 <section class="container">
     <section class="containerProduits">
+        <aside class="panier">
+            <a href="#"><i class="fas fa-shopping-basket"></i> Mon panier <span class="nbProdPanier">(0)</span></a>
+        </aside>
+
         <h1>Liste de nos produits</h1>
         <aside>
 			<ul>
@@ -110,7 +114,13 @@
                             </p>
                         {% endif %}
 
-                        <p class="prix">{{ produit.prixVente }} €</p>    
+                        <p class="prix">{{ produit.prixVente }} €</p> 
+
+                        <p class="panierClickFooter">
+                            <a href="#"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+                            <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a>
+                        </p>
+                    </p>
                     </figcaption>
                 </figure>
             </li>
