@@ -88,8 +88,31 @@ class SecurityControllerAuthenticator extends AbstractFormLoginAuthenticator imp
         return $credentials['password'];
     }
 
+
+        ///////////////////////////////MODIF JEJ START///////////////////////////////////////////////////////
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+
+        // SI LA PERSONNE EST CONNECTEE AVEC UN ROLE_ADMIN
+        // ALORS ON VA REDIRIGER VERS LA ROUTE admin
+        $userConnecte = $token->getUser();
+        $roleUser = $userConnecte->getRoles();
+        if (in_array("ROLE_ADMIN", $roleUser)){
+            // urlGenerator EST FOURNIE PAR LE CONSTRUCTEUR
+            // ET JE M'EN SERS POUR CREER L'URL DE LA ROUTE
+            $urlRoute = $this->urlGenerator->generate('admin');
+            // https://symfony.com/doc/current/controller.html#redirecting
+            return new RedirectResponse($urlRoute);
+        }
+        else {
+            // urlGenerator EST FOURNIE PAR LE CONSTRUCTEUR
+            // ET JE M'EN SERS POUR CREER L'URL DE LA ROUTE
+            $urlRoute = $this->urlGenerator->generate('public');
+            // https://symfony.com/doc/current/controller.html#redirecting
+            return new RedirectResponse($urlRoute);
+        }
+        // SINON ON REDIRIGE VERS LA PAGE D'ACCUEIL index
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
@@ -97,7 +120,7 @@ class SecurityControllerAuthenticator extends AbstractFormLoginAuthenticator imp
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
-
+        ///////////////////////////////MODIF JEJ END///////////////////////////////////////////////////////
     protected function getLoginUrl()
     {
         return $this->urlGenerator->generate('app_login');
