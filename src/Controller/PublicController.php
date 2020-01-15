@@ -196,4 +196,23 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+    
+                                    /**
+     * @Route("/tournoi-mixte-3x3", name="tournoi-mixte-3x3")
+     */
+    public function tournoimixte3x3()
+    {
+        return $this->render('public/tournoi-mixte-3x3.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
+                                    /**
+     * @Route("/faireundon", name="faireundon")
+     */
+    public function faireundon()
+    {
+        return $this->render('public/faireundon.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
