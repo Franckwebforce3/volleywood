@@ -1239,7 +1239,8 @@ input:required {
   position: relative;
   z-index: 1;
   padding-bottom: 20px;
-  border-bottom: 1px solid #ebebeb; }
+  /* border-bottom: 1px solid #ebebeb;  */
+}
   .comment_area .single_comment_area {
     position: relative;
     z-index: 1; }
