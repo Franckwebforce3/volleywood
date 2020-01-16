@@ -1,52 +1,140 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseBoutique.html.twig' %}
 
 {% block title %}VolleyWood | Boutique{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" media="screen" href="{{ asset('assets//css/boutique.css') }}"/>
+<link rel="stylesheet" href="{{ asset('assets/css/boutique.css') }}"/>
 {% endblock %}
 
 {% block body %}
-<main class="container">
-    <section class="containerProduits">
-        <h1>Liste de nos produits</h1>
-        <aside>
-			<ul>
-				<li><a href="#">Par catégorie</a></li>
-				<li class="active"><a href="#">Voir tout</a></li>
-			</ul>	        
-        </aside>
-        <ul class="listeProduits">
-            {# {% for produit in produits %} #}
-            <li>
-                <figure>
-                    {# <a href="{{ path('produitId', {'id': produit.id}) }}">
-                        <img src="{{ asset('assets/img/produits/'~produit.nom) }}" alt="{{ produit.descriptionPhoto }}" />
-                    </a> #}
-                    <figcaption>
-                        <a href="#">Ajouter au panier</a>
-                        <h2>{{ produit.titre }}</h2>
 
-                        {# {% for photo in produit.photos %} 
-                        <h2>{{ photo.nom }}</h2>
-                        {% endfor %} #}
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
 
-                        {% for photo in photos %} 
-                            <img src="{{ asset('assets/img/produits/'~photo.nom) }}" alt="{{ photo.description }}" />
-                        {% endfor %}
+    <!-- Top Search Form Area -->
+    <div class="top-search-area">
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Close -->
+                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
+                        <!-- Form -->
+                        <form action="{{ path('public') }}" method="post">
+                            <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        <p>{{ nBPhotos }}</P>
+    <!-- Header Area Start -->
+    <header class="header-area">
 
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
 
-                        <p>{{ produit.description }}</p>    
-
-                        {# <p>{{ produit.prix_vente }} €</p>     #}
-
-                    </figcaption>
-                </figure>
-            </li>
-            {# {% endfor %} #}
-        </ul>
+    <!-- Breadcrumb Area Start -->
+    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(../assets/img/bg-img/38.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="page-title">La boutique</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ path('public') }}"><i class="icon_house_alt"></i> Accueil</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Boutique</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-</main>
+    <!-- Breadcrumb Area End -->
+
+<section class="containerBoutique">
+    <section class="containerUnProduit">
+        <aside class="retour">
+            <a href="{{ path('nosProduits') }}">Retour</a>
+        </aside>
+        <aside class="panier">
+            <a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">(0)</span></a>
+        </aside>
+
+        <article class="titreProduit">
+            <figure>
+                <img class="imgPrincipale" src="{{ asset('assets/img/produits/'~photos[0].nom) }}" alt="{{ photos[0].description }}" />
+
+                {# <div class="panierClick">
+                    <p>{{ produit.description }}</p>
+                    <p>{{ produit.prixVente }} €</p>
+                </div> #}
+            </figure>   
+            {% if nBPhotos >= 2 %}   
+                <div class="listePhotosProduit">  
+                {% for photo in photos %} 
+                    <img class="imgSecondaire" src="{{ asset('assets/img/produits/'~photo.nom) }}" alt="{{ photo.description }}" />
+                {% endfor %}
+                </div>
+            {% endif %}
+        </article>
+
+        <article class="infoProduit">
+            <p>{{ produit.description }}</p>
+            <p>{{ produit.prixVente }} €</p>
+
+            {# Gestion du stock : #}
+            {% if produit.magasin.quantite == 0 %} 
+                <p class="stockZero"><i class="fas fa-exclamation-triangle"></i> Produit indisponible</p>
+            {% else %}
+                <p class="stockOk"><i class="fas fa-cart-arrow-down"></i> Produit en stock</p>
+            {% endif %}
+
+            <div class="zoneAddCart">
+                {% if produit.taille %}
+                    <label for="taille-select">Taille disponible :</label>
+                    {% set tailleDispoTAB = produit.taille|split(';') %}
+                    <select name="tailles" id="taille-select">
+                    <option value="">--Choix d'une taille--</option>
+                        {% for tailleDispo in tailleDispoTAB %}
+                        <option value="{{ tailleDispo }}">{{ tailleDispo }}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+
+                {# Gestion du stock : #}
+                {% if produit.magasin.quantite == 0 %} 
+                    <label for="nbProduit">Quantité (max: 5):</label>
+                    <input type="number" id="nbProduit" name="nbProduit" min="1" max="5" value="1" disabled="true" />
+                    <span class="validity"></span>
+
+                    <button class="button button-mat btn--8 addCart interdit" disabled="true"><span class="psuedo-text">Ajouter au panier</span></button>
+                {% else %}
+                    <label for="nbProduit">Quantité (max: 5):</label>
+                    <input type="number" id="nbProduit" name="nbProduit" min="1" max="5" value="1" />
+                    <span class="validity"></span>
+
+                    <button class="button button-mat btn--8 addCart" onclick="window.location.href ='{{ path('cart_add', {'id': produit.id}) }}';" disabled="false"><span class="psuedo-text">Ajouter au panier</span></button>
+                {% endif %}
+            <div>
+        </article>
+    </section>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://kit.fontawesome.com/a6c47b94c8.js" crossorigin="anonymous"></script>
+<script src="{{ asset('assets/js/maBoutiqueScript.js') }}"></script>
 {% endblock %}
