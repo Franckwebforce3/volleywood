@@ -39,13 +39,35 @@ class RegistrationController extends AbstractController
             // BRICOLAGE POUR RATTRAPER LE PROBLEME SUR roles
             $user->setRoles(["ROLE_USER"]);
 
-                // encode the plain password
-                $user->setPassword(
-                    $passwordEncoder->encodePassword(
-                        $user,
-                        $form->get('password')->getData()
-                    )
-                );
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            // IL FAUT GERER LE FICHIER UPLOADE AVEC photo
+            // https://symfony.com/doc/current/controller/upload_file.html
+            $avatar = $form['avatar']->getData();
+            if ($avatar)
+            {
+                // ON A UN FICHIER UPLOADE
+                // https://www.php.net/manual/fr/transliterator.transliterate.php
+                $originalFilename = pathinfo($avatar->getClientOriginalName(), PATHINFO_FILENAME);
+                //$safeFilename = \Transliterator::transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                $safeFilename =  $originalFilename;
+                $fileName = $safeFilename . '-' . uniqid() . '.' . $avatar->guessExtension();
+
+                // ON VA STOCKER CE NOM EN BASE DE DONNEES
+                $user->setAvatar($fileName);
+
+                // ON VA STOCKER LE FICHIER
+                $projectDir = $this->getParameter("kernel.project_dir");
+                $cheminDossier = "$projectDir/public/assets/upload";
+                dump($projectDir);
+
+                $avatar->move($cheminDossier, $fileName);
+            }
             // HASHAGE DU MOT DE PASSE
             // $passwordNonHashe = $user->getPassword();
             // $passwordHashe    = password_hash($passwordNonHashe, PASSWORD_BCRYPT);

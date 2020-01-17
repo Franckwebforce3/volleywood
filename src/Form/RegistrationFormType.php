@@ -80,12 +80,13 @@ class RegistrationFormType extends AbstractType
             ->add('cp', TextType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                    // new Length([
-                    //     'min' => 5,
-                    //     'minMessage' => 'Ton code postal doit comporter {{ limit }} chiffres',
-                    //     // max length allowed by Symfony for security reasons
-                    //     'max' => 4096,
-                    // ]),
+                // ça fait planter la page et je sais pas pourquoi
+            //         new Length([
+            //             'min' => 5,
+            //             'minMessage' => 'Ton code postal doit comporter {{ limit }} chiffres',
+            //             // max length allowed by Symfony for security reasons
+            //             'max' => 4096,
+            //         ]),
             ])
 
             ->add('ville', TextType::class, [
