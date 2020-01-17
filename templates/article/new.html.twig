@@ -3,9 +3,26 @@
 {% block title %}New Article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
+    <div class="comment-area section-padding-80">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <!-- Comments Area -->
+                    <div class="comment_area clearfix">
+                        <h4 class="mb-30"></h4>
+                        <ol>
+                            <!-- Leave A Reply -->
 
-    {{ include('article/_form.html.twig') }}
+                        <div class="alime-contact-form mt-50">
+                            <h4 class="mb-30">Créer un article</h4>
+                            {{ include('article/_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
     <a href="{{ path('article_index') }}">back to list</a>
 {% endblock %}

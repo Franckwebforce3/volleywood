@@ -144,7 +144,7 @@ class RegistrationController extends AbstractController
                 // https://symfony.com/doc/current/form/without_class.htmlion_user");
                 $tabInfo = $form->getData();
                 extract($tabInfo);
-                dd($tabInfo);
+                // dd($tabInfo);
 
                 
                 // ON PASSE PAR $form
@@ -152,7 +152,7 @@ class RegistrationController extends AbstractController
                 // $cleActivation = $form->get("cleActivation")->getData();
 
                 // REQUETE READ SUR ENTITE User
-                $userTrouve = $userRepository->findOneBy([ "email" => $email, "cleActivation" => $cleActivation]);
+                $userTrouve = $userRepository->findOneBy([ "email" => $email, "cle_activation" => $cleActivation]);
                 if ($userTrouve != null)
                 {
                     // OK ON A TROUVE
@@ -160,14 +160,16 @@ class RegistrationController extends AbstractController
                     
                     // IL FAUT ACTIVER LE User
                     // ET IL FAUT EFFACER LA cleActivation
-                    $$userTrouve->setRoles(["ROLE_TOTO", "ROLE_MEMBRE"]);
-                    $$userTrouve->setCleActivation(uniqid());
+                    $userTrouve->setRoles(["ROLE_TOTO", "ROLE_MEMBRE"]);
+                    $userTrouve->setCleActivation(uniqid());
                     // ON N'A PAS BESOIN DE FAIRE persist
                     // => ON A RECUPERE $userTrouve AVEC $userRepository
                     // ET DONC SYMFONY SE SOUVIENT DU LIEN ENTRE L'ENTITE ET LA LIGNE SQL
 
                     // SYNCHRONISER AVEC LA TABLE SQL
-                    $userRepository->flush();
+                    // $userRepository->flush();
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->flush();
                 }
                 else
                 {

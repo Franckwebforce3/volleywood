@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/article")
+ * @Route("/admin/article")
  */
 class ArticleController extends AbstractController
 {
@@ -35,6 +35,48 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $photos = [];
+            $photo = $form['photo']->getData();
+            $photo2 = $form['photo2']->getData();
+            $photo3 = $form['photo3']->getData();
+            $photo4 = $form['photo4']->getData();
+
+            $photos["setPhoto"] = $photo;
+            $photos["setPhoto2"] = $photo2;
+            $photos["setPhoto3"] = $photo3;
+            $photos["setPhoto4"] = $photo4;
+
+            // var_dump($photos);
+            // die;
+            // // JE DOIS LE FAIRE SUR 4 CHAMPS
+            foreach($photos as $nomMethode => $photo){
+            // // IL FAUT GERER LE FICHIER UPLOADE AVEC photo
+            // // https://symfony.com/doc/current/controller/upload_file.html
+            
+                if ($photo)
+                {
+                    // ON A UN FICHIER UPLOADE
+                    // https://www.php.net/manual/fr/transliterator.transliterate.php
+                    $originalFilename = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+                    //$safeFilename = \Transliterator::transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $safeFilename =  $originalFilename;
+                    $fileName = $safeFilename . '-' . uniqid() . '.' . $photo->guessExtension();
+                    // ON VA STOCKER CE NOM EN BASE DE DONNEES
+                    // $article->setPhoto($fileName);
+                    $article->$nomMethode($fileName);
+
+                    // ON VA STOCKER LE FICHIER
+                    $projectDir = $this->getParameter("kernel.project_dir");
+                    $cheminDossier = "$projectDir/public/assets/upload";
+                    dump($projectDir);
+
+                    $photo->move($cheminDossier, $fileName);
+                }
+            }
+
+            $article->setDatePublication(new \DateTime);
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();
