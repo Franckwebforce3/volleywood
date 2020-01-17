@@ -24,8 +24,9 @@ use Symfony\Component\Mailer\Transport\Smtp\Auth\PlainAuthenticator;
  */
 class RegistrationController extends AbstractController
 {
+
     /**
-     * @Route("/", name="register")
+     * @Route("/inscription", name="inscription")
      */
     public function register(Request $request, MailerInterface $mailer, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -38,24 +39,17 @@ class RegistrationController extends AbstractController
             // BRICOLAGE POUR RATTRAPER LE PROBLEME SUR roles
             $user->setRoles(["ROLE_USER"]);
 
-            // // GESTION DU MOT DE PASSE VIA TERMINAL REGISTER
-            // $user->setActive(true);
-            // $user->setOrganization(NULL);
-            // $user->setLangId("fr");
-
-            // // encode the plain password
-            // $user->setPassword(
-            //     $passwordEncoder->encodePassword(
-            //         $user,
-            //         $form->get("plainPassword")->getData()
-            //     )
-            // );
-
-
+                // encode the plain password
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
             // HASHAGE DU MOT DE PASSE
-            $passwordNonHashe = $user->getPassword();
-            $passwordHashe    = password_hash($passwordNonHashe, PASSWORD_BCRYPT);
-            $user->setPassword($passwordHashe);
+            // $passwordNonHashe = $user->getPassword();
+            // $passwordHashe    = password_hash($passwordNonHashe, PASSWORD_BCRYPT);
+            // $user->setPassword($passwordHashe);
             
             // JE CREE UNE CLE D'ACTIVATION ALEATOIRE
             $cleActivation = md5(password_hash(uniqid(), PASSWORD_DEFAULT));
@@ -113,11 +107,11 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(ActivationUserType::class);
         // ON TRANSMET LES INFOS DE LA REQUETE AU FORMULAIRE $form
         $form->handleRequest($request);
-
+        
         // TRAITEMENT DU FORMULAIRE
         if ($form->isSubmitted())
         {
-           // DEBUG
+            // DEBUG
             dump("FORMULAIRE SOUMIS A TRAITER");
             if($form->isValid()) 
             {
@@ -128,6 +122,7 @@ class RegistrationController extends AbstractController
                 // https://symfony.com/doc/current/form/without_class.htmlion_user");
                 $tabInfo = $form->getData();
                 extract($tabInfo);
+                dd($tabInfo);
 
                 
                 // ON PASSE PAR $form
@@ -165,8 +160,9 @@ class RegistrationController extends AbstractController
 
         // AFFICHAGE DE LA PAGE
         return $this->render('public/activation.html.twig', [
+            'controller_name' => 'RegistrationController',
             // CLES => VARIABLES TWIG
-            "form"  => $form->createView(),
+            "form"      => $form->createView(),
             "message"   => $message ?? "",
         ]);
 

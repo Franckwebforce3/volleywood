@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      message="DESOLE CHANGE D'EMAIL STP..."
  * )
  * @UniqueEntity(
- *      fields={"username"}, 
+ *      fields={"pseudo"}, 
  *      message="DESOLE change ton pseudo STP..."
  * )
  */

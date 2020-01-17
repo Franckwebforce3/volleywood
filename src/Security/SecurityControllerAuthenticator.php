@@ -60,13 +60,14 @@ class SecurityControllerAuthenticator extends AbstractFormLoginAuthenticator imp
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+        // dd($credentials['csrf_token']); RENVOIE UN AUTENTICATHOR RANDOM
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
-
+        // dd($credentials['email']); RENVOIE L EMAIL
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
@@ -77,7 +78,11 @@ class SecurityControllerAuthenticator extends AbstractFormLoginAuthenticator imp
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        dump( $credentials['password']); //renvoi le MDP
+        dump($user);
+        // $2y$10$9neCC4XAUjJqv9vH287O..slb4EXTKbxESVK.vgY7/9Udfly.w/MO
+        $res = $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        return $res;
     }
 
     /**

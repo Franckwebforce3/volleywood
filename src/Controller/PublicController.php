@@ -171,6 +171,7 @@ class PublicController extends AbstractController
         ]);
     }
     
+
     /**
      * @Route("/faireundon", name="faireundon")
      */
