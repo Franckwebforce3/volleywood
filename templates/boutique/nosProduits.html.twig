@@ -65,10 +65,10 @@
     </section>
     <!-- Breadcrumb Area End -->
 
-<section class="container">
+<section class="containerBoutique">
     <section class="containerProduits">
         <aside class="panier">
-            <a href="#"><i class="fas fa-shopping-basket"></i> Mon panier <span class="nbProdPanier">(0)</span></a>
+            <a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Mon panier <span class="nbProdPanier">(0)</span></a>
         </aside>
 
         <h1>Liste de nos produits</h1>
@@ -86,13 +86,25 @@
                     <img src="{{ asset('assets/img/produits/'~produit.photos[0].nom) }}" alt="{{ produit.photos[0].description }}" />
                     </a>
                     <p class="panierClick">
-                        <a href="#"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+                        {# Gestion du stock : #}
+                        {% if produit.magasin.quantite == 0 %} 
+                            <i class="fas fa-shopping-basket"></i> Mettre au panier
+                        {% else %}
+                            <a href="{{ path('cart_add', {'id': produit.id}) }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+                            {# <button class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</button> #}
+                        {% endif %}                        
                         <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a>
                     </p>
                     <figcaption>
                         <h3>{{ produit.categorie }}</h3>
                         <h2>{{ produit.titre }}</h2>
-
+                        
+                        {# Gestion du stock : #}
+                        {% if produit.magasin.quantite == 0 %} 
+                            <p class="stockZero"><i class="fas fa-exclamation-triangle"></i> Produit indisponible</p>
+                        {% else %}
+                            <p class="stockOk"><i class="fas fa-cart-arrow-down"></i> Produit en stock</p>
+                        {% endif %}
 
                         {% if produit.taille %}
                             <p>Taille disponible :</p>
@@ -117,7 +129,7 @@
                         <p class="prix">{{ produit.prixVente }} €</p> 
 
                         <p class="panierClickFooter">
-                            <a href="#"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+                            <a href="{{ path('cart_add', {'id': produit.id}) }}"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
                             <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a>
                         </p>
                     </p>
@@ -128,9 +140,9 @@
         </ul>
     </section>
 </section>
-
 {% endblock %}
 
 {% block javascripts %}
 <script src="https://kit.fontawesome.com/a6c47b94c8.js" crossorigin="anonymous"></script>
+<script src="{{ asset('assets/js/maBoutiqueScript.js') }}"></script>
 {% endblock %}

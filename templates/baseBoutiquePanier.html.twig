@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Volleywood{% endblock %}</title>
+        <link rel="icon" href="../assets/img/core-img/favicon.png"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/resetcss.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/animate.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/classy-nav.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/magnific-popup.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themify-icons.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/site.css') }}">{# en.twig cette forme du href est conseillé ATTENTION site.css = style.css de l'ancien projet#}
+        
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/page-admin.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+    
+<!-- Top Search Form Area -->
+    <div class="top-search-area">
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Close -->
+                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
+                        <!-- Form -->
+                        <form action="index.html" method="post">
+                            <input type="search" name="top-search-bar" class="form-control" placeholder="Que recherchez-vous ?">
+                            <button type="submit">rechercher</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <!-- Main Header Start -->
+        <div class="main-header-area">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alimeNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="{{ path('public') }}"><img src="../assets/img/core-img/favicon.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="active"><a href="{{ path('public') }}">Accueil</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            
+                                            <li><a href="{{ path('single-blog') }}">Blog section VIP</a></li>
+
+                                            <li><a href="{{ path('applivolleywood') }}">Appli-Volleywood</a></li>
+
+                                            <li><a href="{{ path('contact') }}">Contact</a></li>
+
+                                            <li><a href="{{ path('faireundon') }}">Faire un don</a></li>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ path('nosProduits') }}">Boutique</a></li>
+                                    <li><a href="{{ path('galerie') }}">Galerie</a></li>
+                                    <li><a href="{{ path('blog') }}">Blog</a></li>
+                                    <li><a href="{{ path('inscription') }}">S'inscrire</a></li>
+                                    <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                                </ul>
+
+                                <!-- Search Icon -->
+                                <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+        {% block body %}
+        {% endblock %}  
+
+    <!-- Footer Area Start -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-content d-flex align-items-center justify-content-between">
+                        <!-- Copywrite Text -->
+                        <div class="copywrite-text">
+                            <p>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> WF3 by <a href="https://www.facebook.com/VolleywoodMarseille/" target="_blank">Volleywood version 01/2020</a>
+</p>
+                        
+                        <!-- Social Info -->
+                        <div class="social-info">
+                            <a target="_blank" href="https://www.facebook.com/VolleywoodMarseille/"><i class="ti-facebook" aria-hidden="true"></i></a target="_blank">
+                            <a target="_blank" href="https://www.facebook.com/VolleywoodMarseille/"><i class="ti-twitter-alt" aria-hidden="true"></i></a>
+                            <a target="_blank" href="https://www.facebook.com/VolleywoodMarseille/"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                            <a target="_blank" href="https://www.facebook.com/VolleywoodMarseille/"><i class="ti-pinterest" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+
+        <script src="https://kit.fontawesome.com/2861c240a8.js" crossorigin="anonymous"></script>
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/alime.bundle.js') }}"></script>
+        <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+        <script src="{{ asset('assets/js/avoid.console.error.js') }}"></script>
+        <script src="{{ asset('assets/js/classy-nav.js') }}"></script>
+        <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
+        <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jarallax-video.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jarallax.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.scrollup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+        <script src="{{ asset('assets/js/active.js') }}"></script>
+
+        {% block javascripts %}
+            <!-- Bootstrap -->
+        
+        {% endblock %}
+    </body>
+</html>

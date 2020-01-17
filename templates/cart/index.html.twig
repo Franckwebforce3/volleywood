@@ -1,0 +1,54 @@
+{% extends 'baseBoutiquePanier.html.twig' %}
+
+{% block title %}volleyWood | Panier{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/boutique.css') }}"/>
+{% endblock %}
+
+{% block body %}
+<section class="containerBoutique">
+    <div class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </div>
+
+    {% if items | length > 0 %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.produit.titre }}</td>
+                        <td>{{ item.produit.prixVente }}  €</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.produit.prixVente * item.quantity }}  €</td>
+                        <td>
+                            <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total :</td>
+                    <td>{{ total }} €</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    {% else %}
+        <p>Surprise, c'est vide !</p>
+    {% endif %}   
+</section>    
+{% endblock %}

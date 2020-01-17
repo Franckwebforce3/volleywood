@@ -46,9 +46,10 @@ h1, h2, h3 {
 * Fin GLOBAL *
 **************************************************************************
 **************************************************************************/
-.container {
+.containerBoutique {
     width: 100%;
 	max-width: 1200px;
+    /* margin: 5% auto 0% auto; */
     margin: 0 auto;
     padding-bottom: 2rem;
 }
@@ -98,7 +99,6 @@ ul.listeProduits li {
     min-width: 250px;
     margin-right: 20px;
     margin-bottom: 1%;
-    /* background-color: white; */
 }
 ul.listeProduits figure {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
@@ -122,7 +122,7 @@ ul.listeProduits figure:hover .panierClick {
     opacity: 1;
 }
 ul.listeProduits figure:hover img {
-    transform: scale(1.2) rotate(15deg);
+    transform: scale(1.2) rotate(10deg);
 }
 
 /*************************************
@@ -158,12 +158,14 @@ ul.listeProduits .panierClick a:last-of-type{
 }
 ul.listeProduits .panierClick a:first-of-type:hover {
     background-color: var(--bgnav-color);
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     color: black;
 }
 ul.listeProduits .panierClick a:last-of-type:hover {
     background-color: var(--bgnav-color);
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     color: black;
 }
 
@@ -195,12 +197,14 @@ ul.listeProduits .panierClickFooter a:last-of-type {
 }
 ul.listeProduits .panierClickFooter a:first-of-type:hover {
     background-color: var(--bgnav-color);
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     color: black;
 }
 ul.listeProduits .panierClickFooter a:last-of-type:hover {
     background-color: var(--bgnav-color);
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     color: black;
 }
 /*************************
@@ -211,6 +215,19 @@ ul.listeProduits figure figcaption {
     /* background-color: #ffffff;  */
     background-color: #fdf8df;
     min-height: 200px;
+} 
+
+ul.listeProduits figure figcaption .stockZero,
+.containerUnProduit .infoProduit .stockZero {
+    font-size: 0.8em;
+    background-color: red;
+    color: white;
+    padding: 5px 5px;
+} 
+ul.listeProduits figure figcaption .stockOk,
+.containerUnProduit .infoProduit .stockOk {
+    font-size: 0.8em;
+    color: green;
 } 
 
 ul.listeProduits figure h2, 
@@ -252,32 +269,20 @@ ul.listeProduits figure p {
 }
 
 ul.listeProduits figure .prix {
-	font-size: 1.1rem;
-    line-height: 1rem;
-    color: white;
-    font-style: italic;
-    /* text-align: left; */
-    padding: 2% 2%;
-
-    position: relative;
-    left: 30px;
-    z-index: 1000;
-}
-ul.listeProduits figure .prix::before {
-    content: '';
-    position: absolute;
-    display: block;
-    height: 4rem;
-    width: 7rem;
-    top: 2px;
-    left: -15px;
     background: url(../img/image.png) no-repeat;
     background-size: contain;
-    /* z-index: 450; */
+    text-indent : 7px;
+
+    font-size: 1rem;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
     color: white;
-    font-size: 1.5rem;
-    padding-top: 0.3rem;
-    padding-right: 0.4rem;
+    font-style: italic;
+    padding: 5% 1%;
+    margin: 5% auto 0% auto;    
+    
+    width: 45%;
 }
 
 /* Affichage des tailles et des couleurs */
@@ -287,7 +292,8 @@ ul.listeProduits figure .prix::before {
     padding: 4px 11px;
     margin-right: 5px;
     /* margin-bottom: 30px; */
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: 4px solid white;
     background-color: #f2c506;
     color: black;
 }
@@ -302,13 +308,17 @@ ul.listeProduits figure .prix::before {
     margin: 0 auto;
     padding-bottom: 2rem;
     margin-left: 45px;
-    /* border: 1px solid black; */
+    
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .containerUnProduit .retour {
     position: absolute; 
-    top: 3%;
-    left: 0.5%;
+    top: 22%;
+    left: 0.2%;
     transform: rotate(-90deg);
     transition: all 0.4s ease-in-out;
 }
@@ -318,10 +328,11 @@ ul.listeProduits figure .prix::before {
 .containerUnProduit .retour a {
     text-decoration: none;
     font-size: 1.1em;
+    font-weight: bold;
 }
 aside.panier {
     position: absolute; 
-    top: 1%;
+    top: 22%;
     right: 3%;
 }
 
@@ -341,10 +352,41 @@ aside.panier {
 .containerUnProduit .infoProduit {
     display: inline-block;
     width: 35%;
+    min-width: 400px;
     margin-top: 50px;
     margin-left: 15px;
-
     vertical-align: top;
+}
+
+.containerUnProduit .infoProduit p:nth-of-type(1), 
+.containerUnProduit .infoProduit p:nth-of-type(2) {
+    font-weight: bold;
+    font-style: italic;
+}
+.containerUnProduit .infoProduit p:nth-of-type(1) {
+    font-size: 1em;
+} 
+.containerUnProduit .infoProduit p:nth-of-type(2) {
+    font-size: 1.3em;
+}
+
+.containerUnProduit .infoProduit .zoneAddCart {
+    width: 50%;
+    background-color: var(--bgnav-color);
+    margin-top: 4%;
+    padding: 2% 2%;
+    color: black;
+}
+.containerUnProduit .infoProduit .zoneAddCart input[type="number"] {
+	border: 0;
+	border-bottom: 1px solid #4e5056;
+	background-color: white;
+    padding: 10px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 40%;
+    text-align: center;
+    font-weight: bold;
 }
 
 .containerUnProduit .titreProduit figure img {
@@ -368,11 +410,115 @@ aside.panier {
 .titreProduit .listePhotosProduit i {
     font-size: 2em;
 }
-.titreProduit .listePhotosProduit img {
+.titreProduit .listePhotosProduit .imgSecondaire {
     display: inline-block;
     max-width: 100%;
     max-height: 200px;
+    cursor: pointer;
 }
+.titreProduit .listePhotosProduit .imgSecondaire:hover {
+    border: 1px dashed black;
+    background-color: #fdf8df;
+}
+/* 
+.titreProduit .listePhotosProduit img.cadreNoir {
+    border: 1px solid black;
+} */
+
+/************
+* Quantite : Validation
+************/
+input:invalid+span:after {
+    content: '✖';
+    padding-left: 5px;
+  }
+  
+  input:valid+span:after {
+    content: '✓';
+    padding-left: 5px;
+  }
+
+
+/************
+* Bouton animée : AddCart
+************/
+.interdit {
+    cursor: not-allowed;
+}
+
+button {
+    width: 100%;
+    border: none;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.95);
+    cursor: pointer;
+    margin-top: 15px;
+}
+.psuedo-text {
+    color: #571be5;
+    position: relative;
+    top: 0;
+        /* height: 100%; */
+        /* width: 100%; */
+    display: inline;
+    font-size: 1em;
+    /* font-size: 700; */
+    transition: 0.25s ease-in;
+    transition-delay: 0.1s;
+}
+.button {
+    padding: 10px;
+    background: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 1em;
+    /* text-transform: uppercase; */
+    letter-spacing: 1px;
+    font-weight: 700;
+    position: relative;
+    will-change: transform;
+}
+.button-mat {
+    color: #571be5;
+    border: 0px transparent;
+    border-radius: 0.3rem;
+    transition: 0.3s ease-in-out;
+    transition-delay: 0.35s;
+    overflow: hidden;
+}
+.button-mat:before {
+    content: "";
+    display: block;
+    background: #320bd6;
+    position: absolute;
+    width: 200%;
+    height: 500%;
+    border-radius: 100%;
+    transition: 0.36s cubic-bezier(0.4, 0, 1, 1);
+}
+.button-mat:hover .psuedo-text {
+    color: white;
+}
+.button-mat:hover {
+    color: transparent;
+}
+.btn--8 {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.btn--8:before {
+    transform: translate(30%, 10%) translateZ(0);
+}
+.btn--8:hover:before {
+    transform: translate(-45%, -34%) translateZ(0);
+}  
+
+
+.table-responsive {
+	width: 50%;
+    margin: 0 auto 25px;
+    background: white;
+}
+
 /**************************************************************************
 **************************************************************************
 * FIN Affichage 1 produit *
