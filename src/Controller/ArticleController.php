@@ -37,7 +37,7 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $photos = [];
-            $photo = $form['photo']->getData();
+            $photo  = $form['photo']->getData();
             $photo2 = $form['photo2']->getData();
             $photo3 = $form['photo3']->getData();
             $photo4 = $form['photo4']->getData();
