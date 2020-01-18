@@ -7,8 +7,10 @@ display: block;
 .textarea{
     display: block;
 }
-table{
-    width: 100%;
+.table{
+    width: calc(100% / 10 - 8px);
+    padding: 4px;
+    text-align: center;
 }
 caption{
     caption-side: top;
