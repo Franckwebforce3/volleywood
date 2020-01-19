@@ -31,7 +31,7 @@ class Commentaire
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $idReponse;
+    private $idParent;
 
     /**
      * @ORM\Column(type="datetime")
@@ -83,14 +83,14 @@ class Commentaire
         return $this;
     }
 
-    public function getIdReponse(): ?int
+    public function getIdParent(): ?int
     {
-        return $this->idReponse;
+        return $this->idParent;
     }
 
-    public function setIdReponse(?int $idReponse): self
+    public function setIdParent(?int $idParent): self
     {
-        $this->idReponse = $idReponse;
+        $this->idParent = $idParent;
 
         return $this;
     }

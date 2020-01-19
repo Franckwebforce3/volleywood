@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Commentaire;
+use App\Entity\User;
 use App\Form\CommentaireType;
 use App\Repository\CommentaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +33,16 @@ class CommentaireController extends AbstractController
     {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
+        // manque quelque chose là dessous me faut les infos user contenu dans session
+        $user = $this->getUser();
+
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $users_id = $repository->findOneBy(['id' => $user->getId()]);
+        // FIN DE MODIF DE MERDE
+        
         $form->handleRequest($request);
+
+
 
         if ($form->isSubmitted() && $form->isValid()) {
 

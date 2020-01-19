@@ -14,10 +14,10 @@ class CommentaireType extends AbstractType
         $builder
             // ->add('poceBleu')
             ->add('message')
-            // ->add('idReponse')
+            ->add('idParent')
             // ->add('datePublication')
             ->add('users')
-            ->add('articles')
+            // ->add('articles')
         ;
     }
 
