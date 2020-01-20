@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Form;
-
+use App\Entity\User;
 use App\Entity\Commentaire;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
+use function PHPSTORM_META\type;
 
 class CommentaireType extends AbstractType
 {
@@ -14,9 +18,12 @@ class CommentaireType extends AbstractType
         $builder
             // ->add('poceBleu')
             ->add('message')
-            ->add('idParent')
+            ->add('idParent', HiddenType::class,)
             // ->add('datePublication')
-            ->add('users')
+            ->add('users', EntityType::class,  [
+                'class' => User::class, // ON VA FAIRE UNE RELATION AVEC User
+                'choice_label' => 'id',   // QUELLE PROPRIETE SERA AFFICHEE DANS LE FORMULAIRE
+            ])
             // ->add('articles')
         ;
     }

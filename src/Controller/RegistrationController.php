@@ -64,7 +64,7 @@ class RegistrationController extends AbstractController
                 // ON VA STOCKER LE FICHIER
                 $projectDir = $this->getParameter("kernel.project_dir");
                 $cheminDossier = "$projectDir/public/assets/upload";
-                dump($projectDir);
+                // dump($projectDir);
 
                 $avatar->move($cheminDossier, $fileName);
             }
@@ -156,7 +156,7 @@ class RegistrationController extends AbstractController
                 if ($userTrouve != null)
                 {
                     // OK ON A TROUVE
-                    dump($userTrouve);
+                    // dump($userTrouve);
                     
                     // IL FAUT ACTIVER LE User
                     // ET IL FAUT EFFACER LA cleActivation
