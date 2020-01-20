@@ -8,8 +8,6 @@ display: block;
     display: block;
 }
 .table{
-    width: calc(100% / 10 - 8px);
-    padding: 4px;
     text-align: center;
 }
 caption{
