@@ -181,4 +181,14 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+
+    /**
+     * @Route("/jeuxvideo", name="jeuxvideo")
+     */
+    public function jeuxvideo()
+    {
+        return $this->render('public/jeuxvideo.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
