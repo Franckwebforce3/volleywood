@@ -11,22 +11,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/article")
+ * @Route("/article")
  */
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/", name="article_index", methods={"GET"})
+     * @Route("/admin", name="article_index", methods={"GET"})
      */
     public function index(ArticleRepository $articleRepository): Response
-    {
+    {   
+        $articles = $articleRepository->findAll();
+        // $commentaires = $articles->getCommentaires();
+
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articles,
         ]);
     }
 
     /**
-     * @Route("/new", name="article_new", methods={"GET","POST"})
+     * @Route("/admin/new", name="article_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -68,7 +71,7 @@ class ArticleController extends AbstractController
 
                     // ON VA STOCKER LE FICHIER
                     $projectDir = $this->getParameter("kernel.project_dir");
-                    $cheminDossier = "$projectDir/public/assets/upload";
+                    $cheminDossier = "$projectDir/public/assets/img/article";
                     dump($projectDir);
 
                     $photo->move($cheminDossier, $fileName);
