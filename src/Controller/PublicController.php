@@ -191,4 +191,14 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+
+        /**
+     * @Route("/erreur404", name="erreur404")
+     */
+    public function erreur404()
+    {
+        return $this->render('public/erreur404.html.twig', [
+            'controller_name' => 'PublicController',
+        ]);
+    }
 }
