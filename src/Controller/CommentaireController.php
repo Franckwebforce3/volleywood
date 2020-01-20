@@ -35,10 +35,7 @@ class CommentaireController extends AbstractController
         $form = $this->createForm(CommentaireType::class, $commentaire);
         // manque quelque chose là dessous me faut les infos user contenu dans session
         $user = $this->getUser();
-
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $users_id = $repository->findOneBy(['id' => $user->getId()]);
-        // FIN DE MODIF DE MERDE
+        $userId =$user->getId(); 
         
         $form->handleRequest($request);
 
@@ -56,6 +53,7 @@ class CommentaireController extends AbstractController
         }
 
         return $this->render('commentaire/new.html.twig', [
+            'users'       => $userId,
             'commentaire' => $commentaire,
             'form' => $form->createView(),
         ]);

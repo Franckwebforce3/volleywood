@@ -27,10 +27,10 @@
                 <td>{{ article.titre }}</td>
                 <td>{{ article.categorie }}</td>
                 <td>{{ article.description }}</td>
-                <td><img src="{{ asset('assets/upload/{{ article.photo }}') }}" alt="image d'article"></td>
-                <td>{{ article.photo2 }}</td>
-                <td>{{ article.photo3 }}</td>
-                <td>{{ article.photo4 }}</td>
+                <td><img src="{{ asset('assets/upload/'~article.photo) }}" alt="image d'article"></td>
+                <td><img src="{{ asset('assets/upload/'~article.photo2) }}" alt="image d'article"></td>
+                <td><img src="{{ asset('assets/upload/'~article.photo3) }}" alt="image d'article"></td>
+                <td><img src="{{ asset('assets/upload/'~article.photo4) }}" alt="image d'article"></td>
                 <td>{{ article.datePublication ? article.datePublication|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">Afficher</a>
