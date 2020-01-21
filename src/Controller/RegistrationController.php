@@ -83,7 +83,7 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('public');
+            return $this->redirectToRoute('app_login');
 
             // OK ON A CREE UN NOUVEL User
             $message = "COOL BIENVENUE TON COMPTE EST CREE";

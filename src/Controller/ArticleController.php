@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
 use App\Repository\ArticleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/article")
@@ -98,8 +100,13 @@ class ArticleController extends AbstractController
      */
     public function show(Article $article): Response
     {
+        // AJOUT JEJE a partir d'ici avec les use correspondant
+        $commentaire = New Commentaire();
+        $commentForm = $this->createForm(CommentaireType::class, $commentaire);
+        // FIN
         return $this->render('article/show.html.twig', [
             'article' => $article,
+            'commentForm' => $commentForm->createView() // ajout de cette ligne
         ]);
     }
 
