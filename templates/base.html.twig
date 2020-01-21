@@ -23,25 +23,6 @@
     </head>
     <body>
     
-<!-- Top Search Form Area -->
-    <div class="top-search-area">
-        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <!-- Close -->
-                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
-                        <!-- Form -->
-                        <form action="index.html" method="post">
-                            <input type="search" name="top-search-bar" class="form-control" placeholder="Que recherchez-vous ?">
-                            <button type="submit">rechercher</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Header Area Start -->
     <header class="header-area">
         <!-- Main Header Start -->
@@ -91,9 +72,6 @@
                                     <li><a href="{{ path('app_login') }}">Se connecter</a></li>
                                 </ul>
 
-                                <!-- Search Icon -->
-                                <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
-                            </div>
                             <!-- Nav End -->
                         </div>
                     </nav>
@@ -210,7 +188,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> par F
         </div>
     </footer>
     <!-- Footer Area End -->
-
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script src="https://kit.fontawesome.com/2861c240a8.js" crossorigin="anonymous"></script>
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/popper.min.js') }}"></script>
@@ -234,7 +212,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> par F
 
         {% block javascripts %}
             <!-- Bootstrap -->
-        
+            
         {% endblock %}
     </body>
 </html>
