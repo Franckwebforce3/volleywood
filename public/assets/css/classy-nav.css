@@ -6,6 +6,16 @@
 :: Created: May 16, 2018
 :: Last Updated: Jan 28, 2019
 ---------------------------------------------------------- */
+
+/* LI USER NAV */
+.liUser{
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 0 20px;
+}
+
 .classy-nav-container {
   position: relative;
   z-index: 1;

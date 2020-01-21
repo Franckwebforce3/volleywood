@@ -35,6 +35,7 @@ class RegistrationFormType extends AbstractType
             ->add('password', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => 'Mot de passe',
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -48,22 +49,12 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('password2', PasswordType::class, [
+            ->add('confirm_password', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 // 'attr' => ['class' => 'form-control mb-30'],
+                'label' => 'Confirmer mot de passe',
                 'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Confirmez votre mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Ton mot de passe doit avoir au moins {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
             ])
             ->add('avatar', FileType::class, [
                 'constraints' => [

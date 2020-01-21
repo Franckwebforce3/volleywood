@@ -15,11 +15,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(
  *      fields={"email"}, 
- *      message="DESOLE CHANGE D'EMAIL STP..."
+ *      message="Désolé l'email est déjà utilisé..."
  * )
  * @UniqueEntity(
  *      fields={"pseudo"}, 
- *      message="DESOLE change ton pseudo STP..."
+ *      message="Désolé ce pseudo est déjà utilisé..."
  * )
  */
 class User implements UserInterface
@@ -47,9 +47,14 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\EqualTo(propertyPath="confirm_password", message="Vous n'avez pas tappé le même mot de passe")
      */
     private $password;
-
+    
+    /**
+     * @Assert\EqualTo(propertyPath="password")
+     */
+    private $confirm_password;
     /**
      * @ORM\Column(type="string", length=160, nullable=true)
      */
@@ -150,7 +155,18 @@ class User implements UserInterface
 
         return $this;
     }
+    // AJOUT DE GETTER SETTER CONFIRM_PASSWORD
+    public function getConfirm_password(): string
+    {
+        return (string) $this->confirm_password;
+    }
 
+    public function setConfirm_password(string $confirm_password): self
+    {
+        $this->confirm_password = $confirm_password;
+
+        return $this;
+    }
     /**
      * @see UserInterface
      */
