@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\ActivationUserType;
+use App\Repository\UserRepository;
 use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PublicController extends AbstractController
 {
@@ -19,7 +22,75 @@ class PublicController extends AbstractController
             'controller_name' => 'PublicController',
         ]);
     }
+    //////////////////////////////////// AJOUT DE LA FONCTION ACTIVATION ////////////////////////////////////////////
+    /**
+     * @Route("/activation", name="activation")
+     */
+    public function activation(Request $request, UserRepository $userRepository)
+    {
+        // ON VA CREER UN FORMULAIRE A PARTIR DE LA CLASSE ActivationUserType
+        $form = $this->createForm(ActivationUserType::class);
+        // ON TRANSMET LES INFOS DE LA REQUETE AU FORMULAIRE $form
+        $form->handleRequest($request);
 
+        // TRAITEMENT DU FORMULAIRE
+        if ($form->isSubmitted())
+        {
+           // DEBUG
+            dump("FORMULAIRE SOUMIS A TRAITER");
+            if($form->isValid()) 
+            {
+               // DEBUG
+                dump("FORMULAIRE VALIDE A TRAITER");
+                // RECUPERER LES INFOS DU FORMULAIRE
+                // $tabInfo = $request->get("activation_user);
+                // https://symfony.com/doc/current/form/without_class.htmlion_user");
+                $tabInfo = $form->getData();
+                extract($tabInfo);
+
+                
+                // ON PASSE PAR $form
+                // $email = $form->get("email")->getData();
+                // $cleActivation = $form->get("cleActivation")->getData();
+
+                // REQUETE READ SUR ENTITE User
+                $userTrouve = $userRepository->findOneBy([ "email" => $email, "cleActivation" => $cleActivation]);
+                if ($userTrouve != null)
+                {
+                    // OK ON A TROUVE
+                    dump($userTrouve);
+                    
+                    // IL FAUT ACTIVER LE User
+                    // ET IL FAUT EFFACER LA cleActivation
+                    $userTrouve->setRoles(["ROLE_MEMBRE"]);
+                    $userTrouve->setCleActivation(uniqid());
+                    // ON N'A PAS BESOIN DE FAIRE persist
+                    // => ON A RECUPERE $userTrouve AVEC $userRepository
+                    // ET DONC SYMFONY SE SOUVIENT DU LIEN ENTRE L'ENTITE ET LA LIGNE SQL
+
+                    // SYNCHRONISER AVEC LA TABLE SQL
+                    $userRepository->flush();
+                }
+                else
+                {
+                    // ERREUR
+                    dump("USER NON TROUVE");     
+                }
+
+                // DEBUG
+                dump("INFOS RECUPEREES $email/$cleActivation");
+            }
+        }
+
+        // AFFICHAGE DE LA PAGE
+        return $this->render('public/activation.html.twig', [
+            // CLES => VARIABLES TWIG
+            "form"      => $form->createView(),
+            "message"   => $message ?? "",
+        ]);
+
+    }
+/////////////////////////////////////////FIN DE LA FONCTION ACTIVATION/////////////////////////////////////////
     /**
      * @Route("/galerie", name="galerie")
      */
