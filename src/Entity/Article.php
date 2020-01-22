@@ -63,6 +63,11 @@ class Article
      */
     private $photo4;
 
+    /**
+     * @ORM\Column(type="string", length=160)
+     */
+    private $apercu;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
@@ -193,6 +198,18 @@ class Article
     public function setPhoto4(?string $photo4): self
     {
         $this->photo4 = $photo4;
+
+        return $this;
+    }
+
+    public function getApercu(): ?string
+    {
+        return $this->apercu;
+    }
+
+    public function setApercu(string $apercu): self
+    {
+        $this->apercu = $apercu;
 
         return $this;
     }

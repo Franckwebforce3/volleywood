@@ -20,6 +20,17 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class)
+            ->add('apercu', FileType::class, [
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => "Merci d'envoyer une image valide",
+                    ]),
+                ],
+            ])
             ->add('description')
             ->add('categorie')
             // ->add('datePublication')

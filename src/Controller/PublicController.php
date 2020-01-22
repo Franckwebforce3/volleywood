@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Form\ActivationUserType;
 use App\Repository\UserRepository;
+use App\Repository\ArticleRepository;
+use App\Repository\CommentaireRepository;
 use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -114,10 +116,14 @@ class PublicController extends AbstractController
     /**
      * @Route("/blog", name="blog")
      */
-    public function blog()
+    public function blog(ArticleRepository $articleRepository, CommentaireRepository $commentaireRepository)
     {
+        // $commentaires = $commentaireRepository->findAll();
+        $articles = $articleRepository->findAll();
         return $this->render('public/blog.html.twig', [
             'controller_name' => 'PublicController',
+            'articles' => $articles,
+            // 'commentaires' => $commentaires,
         ]);
     }
 
