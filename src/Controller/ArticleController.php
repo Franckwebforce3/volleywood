@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
+use App\Repository\UserRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,13 +21,17 @@ class ArticleController extends AbstractController
     /**
      * @Route("/admin", name="article_index", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, UserRepository $userRepository, CommentaireRepository $commentaireRepository): Response
     {   
         $articles = $articleRepository->findAll();
+        $users = $userRepository->findAll();
+        $commentaires = $commentaireRepository->findAll();
         // $commentaires = $articles->getCommentaires();
 
         return $this->render('article/index.html.twig', [
             'articles' => $articles,
+            'users'    => $users,
+            'commentaires' => $commentaires,
         ]);
     }
 
@@ -101,8 +106,11 @@ class ArticleController extends AbstractController
     public function show(Article $article): Response
     {
         // AJOUT JEJE a partir d'ici avec les use correspondant
+        
         $commentaire = New Commentaire();
+        $commentaire->setDatePublication(new \DateTime);
         $commentForm = $this->createForm(CommentaireType::class, $commentaire);
+        
         // FIN
         return $this->render('article/show.html.twig', [
             'article' => $article,

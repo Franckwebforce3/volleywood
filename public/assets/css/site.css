@@ -4,3 +4,14 @@ html{
 .hidden-row{
     display:none;
 }
+/* TABLEAUX VUE INDEX.HTML.TWIG DU DOSSIER ARTICLE */
+.imgUser{
+    width: 20%;
+}
+h2{
+    text-align: center;
+    margin-top: 20px;
+}
+#newAdminArticle{
+    margin: 20px 0 20px 45.2%;
+}
