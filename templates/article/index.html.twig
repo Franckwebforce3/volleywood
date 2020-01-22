@@ -68,13 +68,14 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Image d'aperçu</th>
                 <th>Titre</th>
-                <th>Categorie</th>
                 <th>Description</th>
                 <th>Photo</th>
                 <th>Photo2</th>
                 <th>Photo3</th>
                 <th>Photo4</th>
+                <th>Categorie</th>
                 <th>DatePublication</th>
                 <th>actions</th>
             </tr>
@@ -83,13 +84,14 @@
         {% for article in articles %}
             <tr>
                 <td>{{ article.id }}</td>
+                <td><img src="{{ asset('assets/img/article/'~article.apercu) }}" alt="image d'aperçu de l'article"></td>
                 <td>{{ article.titre }}</td>
-                <td>{{ article.categorie }}</td>
                 <td>{{ article.description }}</td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo) }}" alt="image d'article"></td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo2) }}" alt="image d'article"></td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo3) }}" alt="image d'article"></td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo4) }}" alt="image d'article"></td>
+                <td>{{ article.categorie }}</td>
                 <td>{{ article.datePublication ? article.datePublication|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">Afficher</a>

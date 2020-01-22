@@ -51,12 +51,13 @@ class ArticleController extends AbstractController
             $photo2 = $form['photo2']->getData();
             $photo3 = $form['photo3']->getData();
             $photo4 = $form['photo4']->getData();
+            $apercu = $form['apercu']->getData();
 
             $photos["setPhoto"] = $photo;
             $photos["setPhoto2"] = $photo2;
             $photos["setPhoto3"] = $photo3;
             $photos["setPhoto4"] = $photo4;
-
+            $photos["setApercu"] = $apercu;
             // var_dump($photos);
             // die;
             // // JE DOIS LE FAIRE SUR 4 CHAMPS
