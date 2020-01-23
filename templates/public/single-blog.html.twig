@@ -110,8 +110,8 @@ Le Beachvolleyball 2x2 - 3x3 à Marseille pour tous 100% gratuit ! C'est Nous ! 
                 <div class="col-6">
                     <div class="previous bg-img" style="background-image: url(assets/img/bg-img/5.jpg);">
                         <div class="overlay-content d-flex align-items-center justify-content-center">
-                            <a href="#" class="post-title">Tournoi avec les habitués</a>
-                            <a href="https://www.facebook.com/VolleywoodMarseille/" class="previous-link"><i class="arrow_left"></i></a>
+                            <a href="{{ path('blog') }}" class="post-title">Tournoi avec les habitués</a>
+                            <a target="_blank" href="https://www.facebook.com/VolleywoodMarseille/" class="previous-link"><i class="arrow_left"></i></a>
                         </div>
                     </div>
                 </div>
@@ -119,8 +119,8 @@ Le Beachvolleyball 2x2 - 3x3 à Marseille pour tous 100% gratuit ! C'est Nous ! 
                 <div class="col-6">
                     <div class="next bg-img" style="background-image: url(assets/img/bg-img/49.jpg);">
                         <div class="overlay-content d-flex align-items-center justify-content-center">
-                            <a href="#" class="post-title">et bien plus encore...</a>
-                            <a href="https://www.facebook.com/VolleywoodMarseille/" class="next-link"><i class="arrow_right"></i></a>
+                            <a href="{{ path('blog') }}" class="post-title">et bien plus encore...</a>
+                            <a target="_blank" href="https://www.facebook.com/VolleywoodMarseille/" class="next-link"><i class="arrow_right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -129,207 +129,6 @@ Le Beachvolleyball 2x2 - 3x3 à Marseille pour tous 100% gratuit ! C'est Nous ! 
     </div>
     <!-- Pager Area End -->
 
-    <!-- Related News Area Start -->
-    <div class="related-news-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading">
-                        <h2>Recommandé pour vous</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- Single Blog Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-post-area">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('volleywood-summer') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/52.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('volleywood-summer') }}" class="btn post-catagory">Nos Tournois</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">27 Avril 2017</a>
-                                <a href="#">16 Commentaires</a>
-                            </div>
-                            <a href="{{ path('volleywood-summer') }}" class="post-title">Volleywood Summer #1</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-post-area">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('beachvolleymarathon') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/53.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('beachvolleymarathon') }}" class="btn post-catagory">Stages</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">26 Mai 2018</a>
-                                <a href="#">30 Commentaires</a>
-                            </div>
-                            <a href="{{ path('beachvolleymarathon') }}" class="post-title">BeachvolleyMarathon en Italie</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-post-area">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('athletes-internationaux') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/54.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('athletes-internationaux') }}" class="btn post-catagory">rencontres</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">22 juillet 2018</a>
-                                <a href="#">15 Commentaires</a>
-                            </div>
-                            <a href="{{ path('athletes-internationaux') }}" class="post-title">Athlètes internationaux</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-post-area">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('evenement-a-venir') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/55.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('evenement-a-venir') }}" class="btn post-catagory">à venir...</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">1 Janvier 2020</a>
-                                <a href="#">3 Commentaires</a>
-                            </div>
-                            <a href="{{ path('evenement-a-venir') }}" class="post-title">Événements à venir</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-top mt-5"></div>
-        </div>
-    </div>
-    <!-- Related News Area End -->
-
-    <!-- Comment Area Start -->
-    <div class="comment-area section-padding-80">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-9">
-                    <!-- Comments Area -->
-                    <div class="comment_area clearfix">
-                        <h4 class="mb-30">Commentaires</h4>
-                        <ol>
-                            <!-- Single Comment Area -->
-                            <li class="single_comment_area">
-                                <!-- Comment Content -->
-                                <div class="comment-content d-flex">
-                                    <!-- Comment Author -->
-                                    <div class="comment-author">
-                                        <img src="assets/img/bg-img/32.jpg" alt="author">
-                                    </div>
-                                    <!-- Comment Meta -->
-                                    <div class="comment-meta">
-                                        <a href="#" class="post-date">27 déc 2019</a>
-                                        <h5>Jérome N.</h5>
-                                        <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.</p>
-                                        <a href="#" class="like">Like</a>
-                                        <a href="#" class="reply">Reply</a>
-                                    </div>
-                                </div>
-
-                                <ol class="children">
-                                    <li class="single_comment_area">
-                                        <!-- Comment Content -->
-                                        <div class="comment-content d-flex">
-                                            <!-- Comment Author -->
-                                            <div class="comment-author">
-                                                <img src="assets/img/bg-img/33.jpg" alt="author">
-                                            </div>
-                                            <!-- Comment Meta -->
-                                            <div class="comment-meta">
-                                                <a href="#" class="post-date">27 déc 2019</a>
-                                                <h5>Arnaud V.</h5>
-                                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetu adipisci velit, sed quia non numquam eius modi</p>
-                                                <a href="#" class="like">Like</a>
-                                                <a href="#" class="reply">Reply</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </li>
-
-                            <!-- Single Comment Area -->
-                            <li class="single_comment_area">
-                                <!-- Comment Content -->
-                                <div class="comment-content d-flex">
-                                    <!-- Comment Author -->
-                                    <div class="comment-author">
-                                        <img src="assets/img/bg-img/34.jpg" alt="author">
-                                    </div>
-                                    <!-- Comment Meta -->
-                                    <div class="comment-meta">
-                                        <a href="#" class="post-date">27 déc 2019</a>
-                                        <h5>Pascal J.</h5>
-                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetu adipisci velit, sed quia non numquam eius modi</p>
-                                        <a href="#" class="like">Like</a>
-                                        <a href="#" class="reply">Reply</a>
-                                    </div>
-                                </div>
-                                
-                                <ol class="children">
-                                    <li class="single_comment_area">
-                                        <!-- Comment Content -->
-                                        <div class="comment-content d-flex">
-                                            <!-- Comment Author -->
-                                            <div class="comment-author">
-                                                <img src="assets/img/bg-img/33.jpg" alt="author">
-                                            </div>
-                                            <!-- Comment Meta -->
-                                            <div class="comment-meta">
-                                                <a href="#" class="post-date">28 déc 2019</a>
-                                                <h5>Arnaud V.</h5>
-                                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetu adipisci velit, sed quia non numquam eius modi</p>
-                                                <a href="#" class="like">Like</a>
-                                                <a href="#" class="reply">Reply</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <!-- Leave A Reply -->
-                    <div class="alime-contact-form mt-50">
-                        <h4 class="mb-30">Laissez un commentaire</h4>
-
-                        <!-- Form -->
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <input type="text" name="message-name" class="form-control mb-30" placeholder="Votre Nom">
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <input type="email" name="message-email" class="form-control mb-30" placeholder="Votre Email">
-                                </div>
-                                <div class="col-12">
-                                    <textarea name="message" class="form-control mb-30" placeholder="Message"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn alime-btn btn-2 mt-15">Envoyer</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
 
                 </div>
             </div>
