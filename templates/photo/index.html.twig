@@ -1,8 +1,9 @@
 {% extends 'baseBoutiquePanier.html.twig' %}
 
-{% block title %}Commande{% endblock %}
+{% block title %}Photo index{% endblock %}
 
 {% block stylesheets %}
+{# <link rel="stylesheet" href="{{ asset('assets/css/resetcss.css') }}"/> #}
 <link rel="stylesheet" href="{{ asset('assets/css/boutique.css') }}"/>
 {% endblock %}
 
@@ -64,54 +65,47 @@
     </section>
     <!-- Breadcrumb Area End -->
 
-    <h1>Commande de {{ commande.user.email }} </h1>
+    <h1>Photo : page d'accueil</h1>
 
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Réf com.</th>
-                <th scope="col">Etat de la commande</th>
-                <th scope="col">Date de livraison</th>
-                <th scope="col">Quantité</th>
-                <th scope="col">Nom produit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ commande.id }}</td>
-                <td>{{ commande.refcommande }}</td>
-                <td>
-                    {% if commande.etat == 1 %}
-                        New
-                    {% else %}
-                        Préparée
-                    {% endif %}
-                </td>
-                <td>{{ commande.dateLivraison ? commande.dateLivraison|date('d-m-Y') : '' }}</td>
-                <td>
-                    {% for produit in commande.commandeProduits %}
-                        {% if produit.taille %}
-                            <p> {{ produit.quantite }} - Taille: {{ produit.taille }} <img class="adminPhoto" src="{{ asset('assets/img/produits/'~produit.produits.photos[0].nom) }}" alt="" /> </p>
-                        {% else %}
-                            <p> {{ produit.quantite }} <img class="adminPhoto" src="{{ asset('assets/img/produits/'~produit.produits.photos[0].nom) }}" alt="" /> </p>
-                        {% endif %}
-                    {% endfor %}
-                </td>            
-                <td>
-                    {% for produit in commande.commandeProduits %}
-                        <p> <img class="adminPhoto" src="{{ asset('assets/img/produits/'~produit.produits.photos[0].nom) }}" alt="" /> {{ produit.produits.titre }}</p>
-                    {% endfor %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="adminActions">
+        <a class="see" href="{{ path('produit_index') }}"><i class="fas fa-eye"></i> Voir produits</a>
+        <a class="add" href="{{ path('photo_new') }}"><i class="fas fa-plus"></i> Créer une nouvelle photo</a>
+        <a class="see" href="{{ path('magasin_index') }}"><i class="fas fa-eye"></i> Voir Magasin</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for photo in photos %}
+                <tr>
+                    <td>{{ photo.id }}</td>
+                    <td>
+                        {{ photo.nom }}
+                        <img class="adminPhoto" src="{{ asset('assets/img/produits/'~photo.nom) }}" alt="{{ photo.nom }}" />
+                    </td>
+                    <td>{{ photo.description }}</td>
+                    <td>
+                        {# <a href="{{ path('photo_show', {'id': photo.id}) }}"><i class="fas fa-eye"></i></a> #}
+                        <a href="{{ path('photo_edit', {'id': photo.id}) }}"><i class="fas fa-edit"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucune photo trouvée !</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('commande_index') }}"><i class="fas fa-undo"></i> Retour à la liste</a>
-
-    <a href="{{ path('commande_edit', {'id': commande.id}) }}"><i class="fas fa-edit"></i> Editer</a>
-
-    {{ include('commande/_delete_form.html.twig') }}
+    {# <a href="{{ path('photo_new') }}"><i class="fas fa-plus"></i> Créer une nouvelle photo</a> #}
 {% endblock %}
 
 {% block javascripts %}

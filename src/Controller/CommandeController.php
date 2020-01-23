@@ -3,12 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use App\Entity\Produit;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
+use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+// POUR ENVOYER UN EMAIL :
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 /**
  * @Route("/commande")
@@ -51,7 +57,7 @@ class CommandeController extends AbstractController
     /**
      * @Route("/{id}", name="commande_show", methods={"GET"})
      */
-    public function show(Commande $commande): Response
+    public function show(Commande $commande, ProduitRepository $produit, Request $request): Response
     {
         return $this->render('commande/show.html.twig', [
             'commande' => $commande,
@@ -76,6 +82,36 @@ class CommandeController extends AbstractController
             'commande' => $commande,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/sendmail", name="commande_sendmail", methods={"GET","POST"})
+     */
+    public function sendmail(Request $request, Commande $commande, MailerInterface $mailer)
+    {
+        // Récupérer l'email du client :
+        $mailClient = $commande->getUser()->getEmail();
+
+        // IL FAUT ENVOYER UN EMAIL A L'ADMIN
+        $email = (new Email())
+            ->from('volley.wood13@gmail.com')
+            ->to($mailClient)
+            ->subject("VolleyWood : Statut de ma commande")
+            ->text("Bonjour, votre commande est prête chez VolleyWood. Cordialement")
+            ->html("<p>Bonjour,</p><p>Votre commande est prête chez VolleyWood.</p><p>Cordialement</p>");
+            // ON PEUT UTILISER DES TEMPLATES TWIG POUR CREER LE HTML DES EMAILS
+            // https://symfony.com/doc/current/mailer.html#twig-html-css
+
+            /* @var Symfony\Component\Mailer\SentMessage $sentEmail */
+            $sentEmail = $mailer->send($email);
+
+        return $this->redirectToRoute('commande_index');
+
+        /* return $this->render('commande/edit.html.twig', [
+            'commande' => $commande,
+            'form' => $form->createView(),
+        ]);
+        */
     }
 
     /**

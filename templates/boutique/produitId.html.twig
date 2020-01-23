@@ -3,77 +3,22 @@
 {% block title %}VolleyWood | Boutique{% endblock %}
 
 {% block stylesheets %}
+{# <link rel="stylesheet" href="{{ asset('assets/css/resetcss.css') }}"/> #}
 <link rel="stylesheet" href="{{ asset('assets/css/boutique.css') }}"/>
 {% endblock %}
 
 {% block body %}
-
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-    <!-- /Preloader -->
-
-    <!-- Top Search Form Area -->
-    <div class="top-search-area">
-        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <!-- Close -->
-                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
-                        <!-- Form -->
-                        <form action="{{ path('public') }}" method="post">
-                            <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
-                            <button type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header Area Start -->
-    <header class="header-area">
-
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Header Area End -->
-
-    <!-- Breadcrumb Area Start -->
-    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(../assets/img/bg-img/38.jpg);">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="breadcrumb-content text-center">
-                        <h2 class="page-title">La boutique</h2>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="{{ path('public') }}"><i class="icon_house_alt"></i> Accueil</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Boutique</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Area End -->
-
-<section class="containerBoutique">
+<main class="container">
     <section class="containerUnProduit">
-        <aside class="retour">
+        {# <aside class="retour">
             <a href="{{ path('nosProduits') }}">Retour</a>
-        </aside>
+        </aside> #}
         <aside class="panier">
-            <a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">(0)</span></a>
+            <a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a>
         </aside>
 
         <article class="titreProduit">
+            <p class="retour"><a href="{{ path('nosProduits') }}"><i class="fas fa-cart-arrow-down"></i> Retour aux produits</a></p>
             <figure>
                 <img class="imgPrincipale" src="{{ asset('assets/img/produits/'~photos[0].nom) }}" alt="{{ photos[0].description }}" />
 
@@ -103,35 +48,61 @@
             {% endif %}
 
             <div class="zoneAddCart">
-                {% if produit.taille %}
+                {# {% if produit.taille %}
                     <label for="taille-select">Taille disponible :</label>
                     {% set tailleDispoTAB = produit.taille|split(';') %}
-                    <select name="tailles" id="taille-select">
-                    <option value="">--Choix d'une taille--</option>
+
+                    {% if produit.magasin.quantite == 0 %} 
+                        <select name="tailles" id="taille-select" disabled="true">
+                    {% else %}
+                        <select name="tailles" id="taille-select">
+                    {% endif %}
+                    <option value="choix">--Choix d'une taille--</option>
                         {% for tailleDispo in tailleDispoTAB %}
                         <option value="{{ tailleDispo }}">{{ tailleDispo }}</option>
                         {% endfor %}
                     </select>
-                {% endif %}
+                {% endif %} #}
+
+                {# {% if produit.taille %}
+                    {% set tailleDispoTAB = produit.taille|split(';') %}
+                    {% for tailleDispo in tailleDispoTAB %} #}
+
+                        {# {% for item in items %}
+                            {% if item.produit.id == produit.id %}
+                                {{ item.produit[produit.id].taille }}
+                            {% endif %}
+                        {% endfor %} #}
+
+
+                        {# {% if item.taille == tailleDispo %}
+                            <a class="taille" href="{{ path('cart_tailleChangeProduct', {'id': produit.id, 'taille': tailleDispo}) }}">{{ tailleDispo }}</a>
+                        {% else %} #}
+                            {# <a class="taille" href="{{ path('cart_tailleChangeProduct', {'id': produit.id, 'taille': tailleDispo}) }}">{{ tailleDispo }}</a> #}
+                        {# {% endif %} #}
+                    {# {% endfor %}
+                {% endif %}  #}
 
                 {# Gestion du stock : #}
                 {% if produit.magasin.quantite == 0 %} 
-                    <label for="nbProduit">Quantité (max: 5):</label>
+                    {# <label for="nbProduit">Quantité (max: 5):</label>
                     <input type="number" id="nbProduit" name="nbProduit" min="1" max="5" value="1" disabled="true" />
-                    <span class="validity"></span>
+                    <span class="validity"></span> #}
 
-                    <button class="button button-mat btn--8 addCart interdit" disabled="true"><span class="psuedo-text">Ajouter au panier</span></button>
+                    <button class="button button-mat btn--8 addCart interdit" disabled="true"><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button>
                 {% else %}
-                    <label for="nbProduit">Quantité (max: 5):</label>
+                    {# <label for="nbProduit">Quantité (max: 5):</label>
                     <input type="number" id="nbProduit" name="nbProduit" min="1" max="5" value="1" />
-                    <span class="validity"></span>
+                    <span class="validity"></span> #}
 
-                    <button class="button button-mat btn--8 addCart" onclick="window.location.href ='{{ path('cart_add', {'id': produit.id}) }}';" disabled="false"><span class="psuedo-text">Ajouter au panier</span></button>
+                    <button class="button button-mat btn--8 addCart" data-id="{{ produit.id }}" onclick="window.location.href = '{{ path('cart_add', {'id': produit.id}) }}';"><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button>
+                    {# <button class="button button-mat btn--8 addCart" data-id="{{ produit.id }}" data-url="{{ path('cart_add', {'id': produit.id}) }}"><span class="psuedo-text">Ajouter au panier</span></button> #}
                 {% endif %}
-            <div>
+            </div>
+            <p class="retour"><a href="{{ path('nosProduits') }}"><i class="fas fa-cart-arrow-down"></i> Retour aux produits</a></p>
         </article>
     </section>
-</section>
+</main>
 {% endblock %}
 
 {% block javascripts %}

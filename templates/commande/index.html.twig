@@ -1,37 +1,128 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseBoutiquePanier.html.twig' %}
 
 {% block title %}Commande index{% endblock %}
 
-{% block body %}
-    <h1>Commande index</h1>
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/boutique.css') }}"/>
+{% endblock %}
 
+{% block body %}
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Top Search Form Area -->
+    <div class="top-search-area">
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Close -->
+                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
+                        <!-- Form -->
+                        <form action="{{ path('public') }}" method="post">
+                            <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Area Start -->
+    <header class="header-area">
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Breadcrumb Area Start -->
+    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({{ asset('assets/img/bg-img/38.jpg') }});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="page-title">Le Blog</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ path('public') }}"><i class="icon_house_alt"></i> Accueil</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Boutique</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+
+    <h1>Liste des commandes</h1>
+
+    <div class="adminActions">
+        <a class="see" href="{{ path('produit_index') }}"><i class="fas fa-eye"></i> Voir Produit</a>
+    </div>
     <table class="table">
-        <thead>
+        <thead class="thead-dark">
             <tr>
-                <th>Id</th>
-                <th>Etat</th>
-                <th>DateLivraison</th>
-                <th>actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Réf com.</th>
+                <th scope="col">Etat de la commande</th>
+                <th scope="col">Produit(s)</th>
+                <th scope="col">Date de livraison</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for commande in commandes %}
             <tr>
                 <td>{{ commande.id }}</td>
-                <td>{{ commande.etat }}</td>
-                <td>{{ commande.dateLivraison ? commande.dateLivraison|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.refcommande }}</td>
+                
+                    {% if commande.etat == 1 %}
+                    <td style="background: tomato;">
+                        <i class="fas fa-cart-plus"></i> New
+                    </td>
+                    {% else %}
+                    <td style="background: lightgreen;">
+                        <i class="fas fa-thumbs-up"></i> Préparée
+                    </td>
+                    {% endif %}
                 <td>
-                    <a href="{{ path('commande_show', {'id': commande.id}) }}">show</a>
-                    <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
+                    {% for MesProduit in commande.commandeProduits %}
+                        {# <p> <img class="adminPhoto" src="{{ asset('assets/img/produits/'~MesProduit.photos[0].nom) }}" alt="" /> {{ MesProduit.titre }}</p> #}
+                        <p> <img class="adminPhoto" src="{{ asset('assets/img/produits/'~MesProduit.produits.photos[0].nom) }}" alt="" /> {{ MesProduit.produits.titre }}</p>
+                    {% endfor %}
+                </td>                
+                <td>{{ commande.dateLivraison ? commande.dateLivraison|date('d-m-Y') : '' }}</td>
+                <td>
+                    <div class="adminActions">
+                        <a class="see" href="{{ path('commande_show', {'id': commande.id}) }}"><i class="fas fa-eye"></i></a>
+                        <a class="edit" href="{{ path('commande_edit', {'id': commande.id}) }}"><i class="fas fa-edit"></i></a>
+                        {% if commande.etat == 2 %}
+                            <a class="envelope" href="{{ path('commande_sendmail', {'id': commande.id}) }}"><i class="far fa-envelope"></i> Commande prête ? Prévenir le client</a>
+                        {% endif %}
+                    </div>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucune commande pour l'instant</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('commande_new') }}">Create new</a>
+    {# <a href="{{ path('commande_new') }}"><i class="fas fa-plus"></i> Créer une nouvelle commande</a> #}
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://kit.fontawesome.com/a6c47b94c8.js" crossorigin="anonymous"></script>
 {% endblock %}

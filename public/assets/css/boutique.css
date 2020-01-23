@@ -46,10 +46,9 @@ h1, h2, h3 {
 * Fin GLOBAL *
 **************************************************************************
 **************************************************************************/
-.containerBoutique {
+.container {
     width: 100%;
 	max-width: 1200px;
-    /* margin: 5% auto 0% auto; */
     margin: 0 auto;
     padding-bottom: 2rem;
 }
@@ -59,9 +58,8 @@ h1, h2, h3 {
 /*************************************/
 .containerProduits {
     width: 100%;
-	/* max-width: 1000px; */
-    margin: 0 auto;
-    /* border: 1px solid black; */
+    /* margin: 0 auto; */
+    margin: 0% auto 0% auto;
 }
 .containerProduits h1 {
     text-align: center;
@@ -70,6 +68,26 @@ h1, h2, h3 {
     text-transform: uppercase;
     margin: 2rem auto 1.5rem auto;
 }
+.containerProduits span.animPanier {
+    font-size: 1rem;
+    color: var(--p-color);
+    text-transform: uppercase;
+    padding: 5px 5px 5px 5px;
+    margin-left: 15px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: var(--bgnav-color);
+    transition: all 0.5s ease-in-out;
+}
+/* .containerProduits span.animPanier:hover {
+    color: var(--bgnav-color);
+    background-color: var(--p-color);
+} */
+/* .containerProduits h1 > span:hover { */
+/* .containerProduits h1 + span > span:hover {
+    color: var(--bgnav-color);
+    background-color: var(--p-color);
+} */
+
 .containerProduits aside {
     margin-bottom: 1.5%;
 }
@@ -146,6 +164,7 @@ ul.listeProduits .panierClick a:first-of-type{
     transition: all 0.1s ease-in;
     position: relative;
     z-index: 1000;
+    text-decoration: none;
 }
 ul.listeProduits .panierClick a:last-of-type{
     background-color: black;
@@ -185,6 +204,7 @@ ul.listeProduits .panierClickFooter a:first-of-type{
     transition: all 0.1s ease-in;
     position: relative;
     z-index: 1000;       
+    text-decoration: none;
 }
 ul.listeProduits .panierClickFooter a:last-of-type {
     background-color: black;
@@ -218,14 +238,16 @@ ul.listeProduits figure figcaption {
 } 
 
 ul.listeProduits figure figcaption .stockZero,
-.containerUnProduit .infoProduit .stockZero {
+.containerUnProduit .infoProduit .stockZero,
+.containerUnProduitModal .infoProduitModal .stockZero {
     font-size: 0.8em;
     background-color: red;
     color: white;
     padding: 5px 5px;
 } 
 ul.listeProduits figure figcaption .stockOk,
-.containerUnProduit .infoProduit .stockOk {
+.containerUnProduit .infoProduit .stockOk,
+.containerUnProduitModal .infoProduitModal .stockOk {
     font-size: 0.8em;
     color: green;
 } 
@@ -272,7 +294,6 @@ ul.listeProduits figure .prix {
     background: url(../img/image.png) no-repeat;
     background-size: contain;
     text-indent : 7px;
-
     font-size: 1rem;
     font-weight: bold;
     font-style: italic;
@@ -281,8 +302,26 @@ ul.listeProduits figure .prix {
     font-style: italic;
     padding: 5% 1%;
     margin: 5% auto 0% auto;    
-    
     width: 45%;
+}
+/**********************************************/
+/* Page Modale */
+.titreProduitModal h2 {
+    text-align: left;
+}
+.titreProduitModal h3.prix {
+    background: url(../img/image.png) no-repeat;
+    background-size: contain;
+    text-indent : 7px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    color: white;
+    font-style: italic;
+    padding: 2% 1%;
+    margin: 1% auto 0% auto;    
+    width: 20%;
 }
 
 /* Affichage des tailles et des couleurs */
@@ -314,26 +353,31 @@ ul.listeProduits figure .prix {
     flex-direction: row;
     flex-wrap: wrap;
 }
+/*****************************************/
+/* Modale */
+.containerUnProduitModal {
+    width: 100%;
+	max-width: 800px;
+    /* margin: 0 auto; */
+    /* padding-bottom: 2rem; */
+    
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
-.containerUnProduit .retour {
-    position: absolute; 
-    top: 22%;
-    left: 0.2%;
-    transform: rotate(-90deg);
-    transition: all 0.4s ease-in-out;
-}
-.containerUnProduit .retour:hover {
-    transform: rotate(-45deg);
-}
-.containerUnProduit .retour a {
+.containerUnProduit .retour a,
+.containerPanier .retour a {
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: bold;
 }
-aside.panier {
+aside.panier a {
     position: absolute; 
-    top: 22%;
+    top: 1%;
     right: 3%;
+    text-decoration: none;
 }
 
 /************
@@ -341,10 +385,20 @@ aside.panier {
 ************/
 .containerUnProduit .titreProduit {
     display: inline-block;
-    width: 50%;
+    width: 80%;
     margin-top: 10px;
     /* border: 1px solid black; */
     vertical-align: top;
+}
+/*****************************************/
+/* Modale */
+.containerUnProduitModal .titreProduitModal {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    /* border: 1px solid black; */
+    vertical-align: top;
+    text-align: center;
 }
 /************
 * Article : infoProduit
@@ -357,7 +411,6 @@ aside.panier {
     margin-left: 15px;
     vertical-align: top;
 }
-
 .containerUnProduit .infoProduit p:nth-of-type(1), 
 .containerUnProduit .infoProduit p:nth-of-type(2) {
     font-weight: bold;
@@ -369,7 +422,30 @@ aside.panier {
 .containerUnProduit .infoProduit p:nth-of-type(2) {
     font-size: 1.3em;
 }
+/*****************************************/
+/* Modale */
+.containerUnProduitModal .infoProduitModal {
+    display: inline-block;
+    width: 80%;
+    min-width: 400px;
+    margin-top: 50px;
+    margin-left: 15px;
+    vertical-align: top;
+}
+.containerUnProduitModal .infoProduitModal p:nth-of-type(1), 
+.containerUnProduitModal .infoProduitModal p:nth-of-type(2) {
+    font-weight: bold;
+    font-style: italic;
+}
+.containerUnProduitModal .infoProduitModal p:nth-of-type(1) {
+    font-size: 1em;
+} 
+.containerUnProduitModal .infoProduitModal p:nth-of-type(2) {
+    font-size: 1.3em;
+}
 
+/*************************************************************/
+/** Page 1 produit **/
 .containerUnProduit .infoProduit .zoneAddCart {
     width: 50%;
     background-color: var(--bgnav-color);
@@ -388,17 +464,46 @@ aside.panier {
     text-align: center;
     font-weight: bold;
 }
+/** Page multi produit **/
+.zoneAddCart {
+    width: 50%;
+    background-color: var(--bgnav-color);
+    margin-top: 4%;
+    padding: 2% 2%;
+    color: black;
+}
+/*****************************************/
+/* Modale */
+.zoneAddCartModal {
+    width: 100%;
+    background-color: var(--bgnav-color);
+    margin-top: 1%;
+    padding: 2% 2%;
+    color: black;
+}
+/*************************************************************/
 
+.containerUnProduit .titreProduit figure img {
+    background: var(--bgnav-color);
+}
 .containerUnProduit .titreProduit figure img {
     max-width: 100%;
     max-height: 600px;
     border: 2px solid black;
-    background-color: #fdf8df;
+    /* transform: rotate(10deg); */
 }
 .containerUnProduit .titreProduit figcaption {
     position: relative; 
     top: 5px;
     left: 30px;
+}
+/*****************************************/
+/* Modale */
+.containerUnProduitModal .titreProduitModal figure img {
+    max-width: 100%;
+    max-height: 600px;
+    /* border: 2px solid black; */
+    background: var(--bgnav-color);
 }
 
 .titreProduit .listePhotosProduit {
@@ -420,10 +525,19 @@ aside.panier {
     border: 1px dashed black;
     background-color: #fdf8df;
 }
-/* 
-.titreProduit .listePhotosProduit img.cadreNoir {
-    border: 1px solid black;
-} */
+/*****************************************/
+/* Modale */
+.titreProduitModal .listePhotosProduitModal .imgSecondaire {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 200px;
+    cursor: pointer;
+}
+.titreProduitModal .listePhotosProduitModal .imgSecondaire:hover {
+    border: 1px dashed black;
+    background-color: #fdf8df;
+}
+
 
 /************
 * Quantite : Validation
@@ -442,11 +556,7 @@ input:invalid+span:after {
 /************
 * Bouton animée : AddCart
 ************/
-.interdit {
-    cursor: not-allowed;
-}
-
-button {
+button.button {
     width: 100%;
     border: none;
     text-decoration: none;
@@ -454,8 +564,34 @@ button {
     cursor: pointer;
     margin-top: 15px;
 }
+.interdit {
+    cursor: not-allowed;
+}
+/*********************************/
+/* page modal des produits */
+button.buttonAffic {
+    display: inline-block;
+}
+button.buttonCachee {
+    display: none;
+}
+button.buttonInterdit {
+    cursor: not-allowed;
+}
+/*********************************/
+/* Bouton ajouter */
 .psuedo-text {
     color: #571be5;
+    position: relative;
+    top: 0;
+    display: inline;
+    font-size: 1em;
+    transition: 0.25s ease-in;
+    transition-delay: 0.1s;
+}
+/* Bouton valider */
+.psuedo-text-valider {
+    color: #388E3C;
     position: relative;
     top: 0;
         /* height: 100%; */
@@ -466,18 +602,30 @@ button {
     transition: 0.25s ease-in;
     transition-delay: 0.1s;
 }
+/* Bouton Connexion */
+.psuedo-text-connexion {
+    color: #f48b00;
+    position: relative;
+    top: 0;
+    display: inline;
+    font-size: 1em;
+    transition: 0.25s ease-in;
+    transition-delay: 0.1s;
+}
+
 .button {
     padding: 10px;
     background: white;
     text-align: center;
     display: inline-block;
     font-size: 1em;
-    /* text-transform: uppercase; */
     letter-spacing: 1px;
     font-weight: 700;
     position: relative;
     will-change: transform;
 }
+
+/* Bouton ajouter */
 .button-mat {
     color: #571be5;
     border: 0px transparent;
@@ -496,12 +644,67 @@ button {
     border-radius: 100%;
     transition: 0.36s cubic-bezier(0.4, 0, 1, 1);
 }
+/* Bouton valider */
+.button-mat-valider {
+    color: #388E3C;
+    border: 0px transparent;
+    border-radius: 0.3rem;
+    transition: 0.3s ease-in-out;
+    transition-delay: 0.35s;
+    overflow: hidden;
+}
+.button-mat-valider:before {
+    content: "";
+    display: block;
+    background: #4CAF50;
+    position: absolute;
+    width: 200%;
+    height: 500%;
+    border-radius: 100%;
+    transition: 0.36s cubic-bezier(0.4, 0, 1, 1);
+}
+/* Bouton connexion */
+.button-mat-connexion {
+    color: #f48b00;
+    border: 0px transparent;
+    border-radius: 0.3rem;
+    transition: 0.3s ease-in-out;
+    transition-delay: 0.35s;
+    overflow: hidden;
+}
+.button-mat-connexion:before {
+    content: "";
+    display: block;
+    background: #f48b00;
+    position: absolute;
+    width: 200%;
+    height: 500%;
+    border-radius: 100%;
+    transition: 0.36s cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* Bouton ajouter */
 .button-mat:hover .psuedo-text {
     color: white;
 }
 .button-mat:hover {
     color: transparent;
 }
+/* Bouton valider */
+.button-mat-valider:hover .psuedo-text-valider {
+    color: white;
+}
+.button-mat-valider:hover {
+    color: transparent;
+}
+/* Bouton connexion */
+.button-mat-connexion:hover .psuedo-text-connexion {
+    color: white;
+}
+.button-mat-connexion:hover {
+    color: transparent;
+}
+
 .btn--8 {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -512,16 +715,176 @@ button {
     transform: translate(-45%, -34%) translateZ(0);
 }  
 
-
-.table-responsive {
-	width: 50%;
-    margin: 0 auto 25px;
-    background: white;
+/********************************************************/
+/* Gestion du panier */
+div table.table {
+    text-align: center;
+    border: 0px;
 }
 
+table .thead-dark th:nth-of-type(1),
+table .thead-dark th:nth-of-type(2),
+table .thead-dark th:nth-of-type(3), 
+table .thead-dark th:nth-of-type(4),
+table .thead-dark th:nth-of-type(5) {
+    width: 15%;
+}
+table.table tbody img {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+}
+table.table tbody .adminPhoto {
+    width: 15%;
+    margin: 0;
+    padding: 0;
+}
+table.table tbody td {
+    vertical-align: middle;
+}
+table.table a.moinsQuantity,
+table.table a.plusQuantity {
+    border-radius: 5px 5px 5px 5px;
+    background-color: var(--bgnav-color);
+    color: black;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-decoration: none;
+}
+table.table a.moinsQuantity {
+    padding: 7px 11px;
+    margin-right: 10px; 
+}
+table.table a.plusQuantity {
+    padding: 7px 7px;
+    margin-left: 10px;
+}
+
+table.table .PanierMontantTotal {
+    color: black;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.panierTailleNonChoisi {
+    background-color: tomato;
+    color: white;
+}
 /**************************************************************************
 **************************************************************************
 * FIN Affichage 1 produit *
+**************************************************************************
+**************************************************************************/
+.containerPanier p:first-of-type {
+    margin: 1% auto 1% 1%;
+    padding: 5px 5px;
+    font-size: 1.4em;
+    font-weight: bold;
+    width: 50%;
+    background-color: lightgray;
+    border-radius: 5px 5px;
+}
+.containerPanier p:first-of-type a.retour {
+    font-size: 0.6em;
+    margin-right: 20px;
+}
+
+.containerPanier .vide {
+    margin: 2% auto 2% 2%;
+    font-size: 1.2em;
+    font-weight: normal;
+    /* width: 50%; */
+    /* background-color: lightgray; */
+    /* border-radius: 5px 5px; */
+}
+.containerPanier .vide .far {
+    font-size: 1.8em;
+    margin-left: 15px;
+}
+
+.containerPanier a.taille {
+    width: 15px;
+    /* padding: 4px 10px; */
+    margin-right: 2px;
+    margin-bottom: 10px;
+    /* border: 2px solid white; */
+    background-color: #f2c506;
+    color: black;
+}
+.containerPanier a.tailleEncadree {
+    /* border: 2px solid black; */
+    border: 1px solid var(--bgnav-color);
+    background-color: black;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.modal-open .modal {
+    background: rgba(242, 197, 6, 0.5);
+}
+/**************************************************************************
+**************************************************************************
+* FIN Affichage 1 panier *
+**************************************************************************
+**************************************************************************/
+div.adminActions a.add {
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px 5px;
+    background-color: green;
+    color: white;
+    margin: 5px 5px;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+}
+div.adminActions a.add:hover {
+    background-color: white;
+    color: green;
+}
+
+div.adminActions a.see {
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px 5px;
+    background-color: lightblue;
+    color: black;
+    margin: 5px 5px;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+}
+div.adminActions a.see:hover {
+    background-color: black;
+    color: lightblue;
+}
+
+div.adminActions a.edit {
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px 5px;
+    background-color: #0402d1;
+    color: white;
+    margin: 5px 5px;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+}
+div.adminActions a.edit:hover {
+    background-color: white;
+    color: #0402d1;
+}
+
+div.adminActions a.envelope {
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px 5px;
+    background-color: #f2c506;
+    color: black;
+    margin: 5px 5px;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+}
+div.adminActions a.envelope:hover {
+    background-color: black;
+    color: #f2c506;
+}
+/**************************************************************************
+**************************************************************************
+* FIN Gestion admin *
 **************************************************************************
 **************************************************************************/
 
