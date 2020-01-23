@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+<!DOCTYPE html>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader">
+        </div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Breadcrumb Area Start -->
+    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(assets/img/bg-img/38.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="page-title">Contact</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ path('public') }}"><i class="icon_house_alt"></i> Accueil</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+
+    <!-- Contact Area Start -->
+    <div class="contact-area section-padding-80-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <h2 class="contact-title mb-30">Ou Nous <br>Trouver ?</h2>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <!-- Contact Info -->
+                    <div class="contact-info mb-30">
+                        <p>Email</p>
+                        <a href="mailto:deniau.f@hotmail.fr">Volleywood@gmail.com</a>
+                    </div>
+                    <!-- Contact Info -->
+                    <div class="contact-info mb-30">
+                        <p>Nos horaires hivers</p>
+                        <a href="https://www.facebook.com/VolleywoodMarseille">13h30 à 17h30</a>
+                    </div>
+                    <div class="contact-info mb-30">
+                        <p>Nos horaires été</p>
+                        <a href="https://www.facebook.com/VolleywoodMarseille">17h30 à 21h30</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <!-- Contact Info -->
+                    <div class="contact-info mb-30">
+                        <p>Notre point Volleywood</p>
+                        <a href="https://www.google.com/maps?client=firefox-b-d&q=plage+du+prophete&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjv_96JmMrmAhWiQEEAHT8LD4EQ_AUoAXoECBQQAw">Plage du Prophète</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Contact Area End -->
+
+    <!-- Map Area Start -->
+    <div class="map-area section-padding-0-80">
+        <div class="container">
+            <div id="map">
+               <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1nPm4vM2TfeosTRI1T3kU5bI442p2hdVM" width="640" height="480"></iframe>
+
+            </div>
+        </div>
+    </div>
+    <!-- Map Area End -->
+
+
+{% endblock %}

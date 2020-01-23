@@ -31,7 +31,7 @@
             <div class="col-12 col-lg-10">
                 <!-- Blog Details Text -->
                 <div class="blog-details-text">
-                    <p>{{ article.categorie }}</p>
+                    <p>{{ article.description }}</p>
                     
 
                     <div class="my-5">
@@ -40,25 +40,25 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-6">
                                         <img class="mb-10" src="{{ asset('assets/img/article/'~article.photo) }}"
-                                            alt="">
+                                            alt="Photo1 de l'article">
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <img class="mb-10" src="{{ asset('assets/img/article/'~article.photo2) }}"
-                                            alt="">
+                                            alt="Photo2 de l'article">
                                     </div>
                                     <div class="col-12">
                                         <img class="mb-10" src="{{ asset('assets/img/article/'~article.photo3) }}"
-                                            alt="">
+                                            alt="Photo3 de l'article">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4">
-                                <img class="mb-10" src="{{ asset('assets/img/article/'~article.photo4) }}" alt="">
+                                <img class="mb-10" src="{{ asset('assets/img/article/'~article.photo4) }}" alt="Photo4 de l'article">
                             </div>
                         </div>
                     </div>
                 </div>
-                <p>{{ article.description }}</p>
+                <p>{{ article.categorie }}</p>
                 <!-- Post Author Area -->
                 <div class="post-author-area mt-50 d-flex align-items-center justify-content-between">
                     <ul class="popular-tags">

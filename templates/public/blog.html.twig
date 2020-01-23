@@ -64,168 +64,36 @@
     <div class="alime-blog-area section-padding-80-0 mb-70">
         <div class="container">
             <div class="row">
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-6">
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('tournoi-special-greoux') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/51.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('tournoi-special-greoux') }}" class="btn post-catagory">Tournoi 3x3</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">31 Mars 2019</a>
-                                <a href="#">13 Commentaires</a>
+                
+                {% for article in articles %}
+                        <!-- Single Blog Area -->
+                        <div class="col-12 col-lg-4">
+                            <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
+                                <!-- Post Thumbnail -->
+                                <a href="{{ path('article_show', {'id': article.id}) }}" class="post-thumbnail"><img src="{{ asset('assets/img/article/'~article.apercu) }}" alt="Image d'aperçu de l'article"></a>
+                                <!-- Post Catagory -->
+                                <a href="{{ path('article_show', {'id': article.id}) }}" class="btn post-catagory">{{ article.titre }}</a>
+                                <!-- Post Conetent -->
+                                <div class="post-content">
+                                    <div class="post-meta">
+                                        <a href="#">{{ article.datePublication ? article.datePublication|date('Y-m-d') : '' }}</a>
+                                        {% for commentaire in article.commentaires %}
+                                            <a href="#">{{ article.commentaires | length}} Commentaires</a>
+                                        {% else %}
+                                            <a>Quantité commentaires non trouvé</a>
+                                        {% endfor %}
+                                    </div>
+                                    <a href="{{ path('article_show', {'id': article.id}) }}" class="post-title">{{ article.titre }}</a>
+                                </div>
                             </div>
-                            <a href="{{ path('tournoi-special-greoux') }}" class="post-title">Tournoi special à Greoux-les-bains</a>
                         </div>
-                    </div>
-                </div>
+                {% else %}
+                    <p>Article non trouvé</p>
+                {% endfor %}
+                
 
-                <!-- Single Blog Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('volleywood-summer') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/52.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('beachvolleymarathon') }}" class="btn post-catagory">Nos Tournois</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">27 Avril 2017</a>
-                                <a href="#">16 Commentaires</a>
-                            </div>
-                            <a href="{{ path('volleywood-summer') }}" class="post-title">Volleywood Summer #1</a>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Single Blog Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="700ms">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('beachvolleymarathon') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/53.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('beachvolleymarathon') }}" class="btn post-catagory">stages</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">26 Mai 2018</a>
-                                <a href="#">30 Commentaires</a>
-                            </div>
-                            <a href="{{ path('beachvolleymarathon') }}" class="post-title">BeachvolleyMarathon en Italie</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('athletes-internationaux') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/54.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('athletes-internationaux') }}" class="btn post-catagory">Rencontres</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">22 Juillet 2018</a>
-                                <a href="#">15 Commentaires</a>
-                            </div>
-                            <a href="{{ path('athletes-internationaux') }}" class="post-title">Athlètes internationaux</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('evenement-a-venir') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/55.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('evenement-a-venir') }}" class="btn post-catagory">à venir</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">1 Janvier 2020</a>
-                                <a href="#">3 Commentaires</a>
-                            </div>
-                            <a href="{{ path('evenement-a-venir') }}" class="post-title">Événements à venir</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-6">
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="700ms">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('tournoi-6x6-telethon') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/56.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('tournoi-6x6-telethon') }}" class="btn post-catagory">Tournoi 6x6</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">26 Octobre, 2017</a>
-                                <a href="#">36 Commentaires</a>
-                            </div>
-                            <a href="{{ path('tournoi-6x6-telethon') }}" class="post-title">Tournoi 6x6</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-3">
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('shooting') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/57.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('shooting') }}" class="btn post-catagory">Collection HF</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">30 Mai, 2017</a>
-                                <a href="#">15 Commentaires</a>
-                            </div>
-                            <a href="{{ path('shooting') }}" class="post-title">Shooting pour la collection Volleywood</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-6">
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('tournoi-pentecote') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/58.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('tournoi-pentecote') }}" class="btn post-catagory">Voyages</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">21 Mai 2018</a>
-                                <a href="#">300 Commentaires</a>
-                            </div>
-                            <a href="{{ path('tournoi-pentecote') }}" class="post-title">La Tournée Volleywood</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-3">
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="700ms">
-                        <!-- Post Thumbnail -->
-                        <a href="{{ path('tournoi-mixte-3x3') }}" class="post-thumbnail"><img src="{{ asset('assets/img/bg-img/59.jpg') }}" alt=""></a>
-                        <!-- Post Catagory -->
-                        <a href="{{ path('tournoi-mixte-3x3') }}" class="btn post-catagory">Tournoi 3x3</a>
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <a href="#">31 Mars 2019</a>
-                                <a href="#">300 Commentaires</a>
-                            </div>
-                            <a href="{{ path('tournoi-mixte-3x3') }}" class="post-title">Tournoi mixte 3x3</a>
-                        </div>
-                    </div>
-                </div>
+                
 
             </div>
         </div>

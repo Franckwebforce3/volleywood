@@ -36,9 +36,16 @@ class RegistrationController extends AbstractController
 
         $message = "";
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // OK ON A CREE UN NOUVEL User saluons-le
+            /////////////////////////////NE FONCTIONNE PAS////////////////////////////////////////
+            $this->addFlash(
+                'success',
+                'COOL BIENVENUE TON COMPTE EST CREE'
+                );
+            /////////////////////////////////////////////////////////////////////
             // BRICOLAGE POUR RATTRAPER LE PROBLEME SUR roles
             $user->setRoles(["ROLE_USER"]);
-
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -83,12 +90,11 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
+            // OK ON A CREE UN NOUVEL User
+            // $message = "COOL BIENVENUE TON COMPTE EST CREE";
+            
             return $this->redirectToRoute('app_login');
 
-            // OK ON A CREE UN NOUVEL User
-            $message = "COOL BIENVENUE TON COMPTE EST CREE";
-
-            
             // IL FAUT ENVOYER UN EMAIL A L'ADMIN
             $email = (new Email())
                 ->from('contact@monsite.fr')
@@ -115,7 +121,7 @@ class RegistrationController extends AbstractController
             'controller_name' => 'RegistrationController',
 
             // CLES => VARIABLES TWIG
-            'message'                => $message,
+            // 'message'                => $message,
             'registrationForm'       => $form->createView(),
         ]);
     }
