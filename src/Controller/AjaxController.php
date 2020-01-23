@@ -2,32 +2,31 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-
-// POUR POUVOIR RENVOYER DU JSON
-use Symfony\Component\HttpFoundation\JsonResponse;
-// POUR FAIRE DES REQUETES DBAL
+use App\Service\Cart\CartService;
 use Doctrine\DBAL\Driver\Connection;
 
-// POUR RECUPERER LES INFOS DE FORMDATA
+// POUR POUVOIR RENVOYER DU JSON
 use Symfony\Component\HttpFoundation\Request;
+// POUR FAIRE DES REQUETES DBAL
+use Symfony\Component\Routing\Annotation\Route;
+
+// POUR RECUPERER LES INFOS DE FORMDATA
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AjaxController extends AbstractController
 {
     /**
      * @Route("/ajax", name="ajaxAfficherProduitId")
      */
-    public function index(Connection $connection, Request $request)
+    public function ajaxAfficherProduitId(Connection $connection, Request $request)
     {
         // RECUPERER L'INFO nomTable ENVOYEE DANS FormData
         $idProduit = $request->get("idProduit");
-        // dump($idProduit);
 
         // ON VEUT RENVOYER DU JSON
         // https://symfony.com/doc/current/components/http_foundation.html#creating-a-json-response
         $tabAsso = [];
-        // $tabAsso["info1"]   = "coucou";
 
 $req =
 <<<CODESQL
@@ -61,5 +60,23 @@ CODESQL;
             'controller_name' => 'AjaxController',
         ]);
         */
+    }
+
+    /**
+     * @Route("/ajax/add", name="ajaxAjouterProduitId")
+     */
+    public function ajaxAjouterProduitId(Request $request, CartService $cartService)
+    {
+        // RECUPERER L'INFO nomTable ENVOYEE DANS FormData
+        $idProduit = $request->get("idProduit");
+        
+        $cartService->add($idProduit);
+        $totalNbItems = $cartService->getTotalItemCart();
+
+        $tabAsso                    = [];
+        $tabAsso["totalNbItems"]   = $totalNbItems;
+        $response                   = new JsonResponse($tabAsso);
+
+        return $response;
     }
 }

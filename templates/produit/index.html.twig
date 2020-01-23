@@ -51,7 +51,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcrumb-content text-center">
-                        <h2 class="page-title">Le Blog</h2>
+                        <h2 class="page-title">ADMIN : Produits</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="{{ path('public') }}"><i class="icon_house_alt"></i> Accueil</a></li>
@@ -98,8 +98,10 @@
                     <td>{{ produit.couleur }}</td>
                     <td>{{ produit.prixVente }} €</td>
                     <td>
-                        <a href="{{ path('produit_show', {'id': produit.id}) }}"><i class="fas fa-eye"></i></a>
-                        <a href="{{ path('produit_edit', {'id': produit.id}) }}"><i class="fas fa-edit"></i></a>
+                        <div class="adminActions">
+                            <a class="see" href="{{ path('produit_show', {'id': produit.id}) }}"><i class="fas fa-eye"></i></a>
+                            <a class="edit" href="{{ path('produit_edit', {'id': produit.id}) }}"><i class="fas fa-edit"></i></a>
+                        </div>
                     </td>
                 </tr>
             {% else %}

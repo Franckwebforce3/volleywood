@@ -17,7 +17,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
 /**
- * @Route("/commande")
+ * @Route("/admin/commande")
  */
 class CommandeController extends AbstractController
 {
