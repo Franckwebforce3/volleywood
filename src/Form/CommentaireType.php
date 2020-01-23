@@ -19,7 +19,7 @@ class CommentaireType extends AbstractType
         $builder
             // ->add('poceBleu')
             ->add('message')
-            ->add('idParent', HiddenType::class,)
+            ->add('idParent', HiddenType::class)
             // ->add('datePublication')
             ->add('users', EntityType::class,  [
                 'class' => User::class, // ON VA FAIRE UNE RELATION AVEC User

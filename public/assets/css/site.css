@@ -8,10 +8,13 @@ html{
 .imgUser{
     width: 20%;
 }
-h2{
+h5{
     text-align: center;
-    margin-top: 20px;
+    margin: 20px 0 20px 0;
 }
 #newAdminArticle{
     margin: 20px 0 20px 45.2%;
+}
+table td a{
+    display: block;
 }

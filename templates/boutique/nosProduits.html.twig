@@ -46,12 +46,12 @@
     <!-- Header Area End -->
 
     <!-- Breadcrumb Area Start -->
-    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url(../assets/img/bg-img/38.jpg);">
+    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({{ asset('assets/img/bg-img/38.jpg') }});">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcrumb-content text-center">
-                        <h2 class="page-title">La boutique</h2>
+                        <h2 class="page-title">Le Blog</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="{{ path('public') }}"><i class="icon_house_alt"></i> Accueil</a></li>
@@ -65,24 +65,23 @@
     </section>
     <!-- Breadcrumb Area End -->
 
-<section class="containerBoutique">
+<section class="container">
     <section class="containerProduits">
-        <aside class="panier">
-            <a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Mon panier <span class="nbProdPanier">(0)</span></a>
-        </aside>
+        {# <aside class="panier">
+            <a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a>
+        </aside> #}
 
-        <h1>Liste de nos produits</h1>
-        <aside>
-			<ul>
-				<li><a href="#">Par catégorie</a></li>
-				<li class="active"><a href="#">Voir tout</a></li>
-			</ul>	        
-        </aside>
+        <h1>Liste de nos produits <span class="animPanier"><a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a></span></h1>
+        {# <h1>Liste de nos produits</h1>
+<span class="animPanier"><a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier ({{ totalNbItems }})</a></span> #}
+
         <ul class="listeProduits">
             {% for produit in produits %}
             <li>
                 <figure>
-                    <a href="{{ path('produitId', {'id': produit.id}) }}">
+                    {# <a href="{{ path('produitId', {'id': produit.id}) }}"> #}
+                    <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg">
+
                     <img src="{{ asset('assets/img/produits/'~produit.photos[0].nom) }}" alt="{{ produit.photos[0].description }}" />
                     </a>
                     <p class="panierClick">
@@ -92,19 +91,20 @@
                         {% else %}
                             <a href="{{ path('cart_add', {'id': produit.id}) }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
                             {# <button class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</button> #}
-                        {% endif %}                        
-                        <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a>
+                        {% endif %}      
+                                          
+                        {# <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a> #}
+                        <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="far fa-eye"></i></a>
                     </p>
                     <figcaption>
-                        <h3>{{ produit.categorie }}</h3>
-                        <h2>{{ produit.titre }}</h2>
-                        
                         {# Gestion du stock : #}
                         {% if produit.magasin.quantite == 0 %} 
                             <p class="stockZero"><i class="fas fa-exclamation-triangle"></i> Produit indisponible</p>
                         {% else %}
                             <p class="stockOk"><i class="fas fa-cart-arrow-down"></i> Produit en stock</p>
                         {% endif %}
+
+                        <h2>{{ produit.titre }}</h2>
 
                         {% if produit.taille %}
                             <p>Taille disponible :</p>
@@ -130,7 +130,8 @@
 
                         <p class="panierClickFooter">
                             <a href="{{ path('cart_add', {'id': produit.id}) }}"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
-                            <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a>
+                            {# <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a> #}
+                            <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="far fa-eye"></i></a>
                         </p>
                     </p>
                     </figcaption>
@@ -140,9 +141,143 @@
         </ul>
     </section>
 </section>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="listeAnnonceAjax">
+        </div>
+
+        {# Affichage des boutons 'Panier' #}
+        <div class="zoneAddCartModal">
+            {% for produit in produits %}
+                {% if produit.magasin.quantite == 0 %} 
+                    <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee" disabled="true"><span class="psuedo-text"><i class="fas fa-ban"></i> Stock indisponible</span></button>
+                {% else %}
+                    <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee" data-id="{{ produit.id }}" onclick="window.location.href = '{{ path('cart_add', {'id': produit.id}) }}';"><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+/*
+ * Gestion de l'ajax pour afficher 1 produit :
+ */
+var btnchargerProduit = document.querySelectorAll(".chargerProduit");
+if (btnchargerProduit.length != 0)
+{
+    btnchargerProduit.forEach(function(btnchargerProduitAll) {
+        btnchargerProduitAll.addEventListener("click", function(){
+            var id = btnchargerProduitAll.getAttribute("data-id");
+            console.log("tu as cliqué : "+ id);
+
+            var formData = new FormData();
+            // ON PEUT REMPLIR LE FORM DATA EN JS
+            formData.append("idProduit", id);
+
+            // ON VA ENVOYER UNE REQUETE AJAX AVEC fetch
+            var urlAjax = "{{ path('ajaxAfficherProduitId') }}"; 
+            fetch(urlAjax, {
+                method: 'POST',
+                body: formData
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function(objetResponse){
+                //console.log(objetResponse);
+                if (objetResponse.produitPhotos) {
+                    var baliseListeProduit = document.querySelector(".listeAnnonceAjax");
+                    // reset de la liste :
+                    baliseListeProduit.innerHTML = '';
+
+                    var imgPrincipale    = true;
+                    var imgDivSecondaire = true;
+                    var contenu          = true;
+
+                    var nombreElement    = objetResponse.produitPhotos.length;
+
+                    var htmlArticle = `
+                        <section class="containerUnProduitModal">
+                            <article class="titreProduitModal">
+                                <h2>${objetResponse.produitPhotos[0].titre}</h2>
+                                <h3 class="prix">${objetResponse.produitPhotos[0].prix_vente} €</h3> 
+                    `;
+
+                    // *** Gestion des photos ***
+                    for(produit of objetResponse.produitPhotos)
+                    {
+                        // Affichage de l'img principale :                        
+                        if (imgPrincipale == true) {
+                            htmlArticle += `
+                                <figure>
+                                    <img class="imgPrincipale" src="{{ asset('assets/img/produits/${produit.nom}') }}" alt="${produit.nom}" />
+                                </figure>   
+                            `;
+                            imgPrincipale = false;
+                        }
+
+                        // affichage des images secondaires :
+                        if (nombreElement > 1) {
+                            if (imgDivSecondaire == true) {
+                                htmlArticle += `<div class="listePhotosProduitModal">`;  
+                                imgDivSecondaire = false;
+                            }
+
+                            htmlArticle += `
+                                <img class="imgSecondaire" src="{{ asset('assets/img/produits/${produit.nom}') }}" alt="${produit.nom}" />
+                            `;                       
+                        }
+                    }
+
+                    htmlArticle += `</div>`; 
+
+                    // *** Gestion du contenu ***
+                    for(produit of objetResponse.produitPhotos)
+                    {                     
+                        if (contenu == true) {
+                            htmlArticle += `
+                                <aside class="infoProduitModal">
+                                    <p>${produit.description}</p>
+                                    
+                            `;
+
+                            if (produit.quantite == 0) {
+                                htmlArticle += `<p class="stockZero"><i class="fas fa-exclamation-triangle"></i> Produit indisponible</p>`;
+                            } else {
+                                htmlArticle += `<p class="stockOk"><i class="fas fa-cart-arrow-down"></i> Produit en stock</p>`;
+                            }
+
+                            htmlArticle += `</aside>`;
+
+                            contenu = false;
+                        }
+                    }
+
+                    // affichage des images secondaires :
+                    htmlArticle += `
+                            </article>
+                        </section>
+                    `;
+
+                    baliseListeProduit.innerHTML += (htmlArticle);
+                }
+            });    
+        });
+    });
+}
+</script>
 {% endblock %}
 
 {% block javascripts %}
-<script src="https://kit.fontawesome.com/a6c47b94c8.js" crossorigin="anonymous"></script>
+{# <script src="https://kit.fontawesome.com/a6c47b94c8.js" crossorigin="anonymous"></script> #}
 <script src="{{ asset('assets/js/maBoutiqueScript.js') }}"></script>
 {% endblock %}

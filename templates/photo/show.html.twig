@@ -1,0 +1,96 @@
+{% extends 'baseBoutiquePanier.html.twig' %}
+
+{% block title %}Photo{% endblock %}
+
+{% block stylesheets %}
+{# <link rel="stylesheet" href="{{ asset('assets/css/resetcss.css') }}"/> #}
+<link rel="stylesheet" href="{{ asset('assets/css/boutique.css') }}"/>
+{% endblock %}
+
+{% block body %}
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Top Search Form Area -->
+    <div class="top-search-area">
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Close -->
+                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
+                        <!-- Form -->
+                        <form action="{{ path('public') }}" method="post">
+                            <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Area Start -->
+    <header class="header-area">
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Breadcrumb Area Start -->
+    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({{ asset('assets/img/bg-img/38.jpg') }});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="page-title">Le Blog</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ path('public') }}"><i class="icon_house_alt"></i> Accueil</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Boutique</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+
+    <h1>Photo</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ photo.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ photo.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ photo.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('photo_index') }}"><i class="fas fa-undo"></i> Retour à la liste</a>
+
+    <a href="{{ path('photo_edit', {'id': photo.id}) }}"><i class="fas fa-edit"></i> Editer</a>
+
+    {{ include('photo/_delete_form.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://kit.fontawesome.com/a6c47b94c8.js" crossorigin="anonymous"></script>
+{% endblock %}

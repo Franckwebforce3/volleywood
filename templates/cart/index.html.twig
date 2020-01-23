@@ -3,52 +3,171 @@
 {% block title %}volleyWood | Panier{% endblock %}
 
 {% block stylesheets %}
+{# <link rel="stylesheet" href="{{ asset('assets/css/resetcss.css') }}"/> #}
 <link rel="stylesheet" href="{{ asset('assets/css/boutique.css') }}"/>
 {% endblock %}
 
 {% block body %}
-<section class="containerBoutique">
-    <div class="bg-light p-3">
-        <h1>Votre panier</h1>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Top Search Form Area -->
+    <div class="top-search-area">
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Close -->
+                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
+                        <!-- Form -->
+                        <form action="{{ path('public') }}" method="post">
+                            <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    {% if items | length > 0 %}
-    <div class="table-responsive">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Produit</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Quantité</th>
-                    <th scope="col">Total</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                    <tr>
-                        <td>{{ item.produit.titre }}</td>
-                        <td>{{ item.produit.prixVente }}  €</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.produit.prixVente * item.quantity }}  €</td>
-                        <td>
-                            <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3" class="text-right">Total :</td>
-                    <td>{{ total }} €</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-    {% else %}
-        <p>Surprise, c'est vide !</p>
-    {% endif %}   
+    <!-- Header Area Start -->
+    <header class="header-area">
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Breadcrumb Area Start -->
+    <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({{ asset('assets/img/bg-img/38.jpg') }});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content text-center">
+                        <h2 class="page-title">Le Blog</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ path('public') }}"><i class="icon_house_alt"></i> Accueil</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Boutique</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+
+
+<section class="container">
+    <section class="containerPanier">
+        {# <aside class="retour">
+            <a href="{{ path('nosProduits') }}">Retour</a>
+        </aside> #}
+
+        <p><a href="{{ path('nosProduits') }}" class="retour">Retour</a> Votre panier</p>
+
+        {% if items | length > 0 %}
+
+            {% if not app.user %}
+                <button class="button button-mat-connexion btn--8 addCart" onclick="window.location.href = '{{ path('app_login') }}';"><span class="psuedo-text-connexion"><i class="fas fa-user-lock"></i> Se connecter pour réserver le panier</span></button>
+            {% else %}
+                <button class="button button-mat-valider btn--8 addCart" onclick="window.location.href = '{{ path('cart_reserve') }}';"><span class="psuedo-text-valider">Valider et réserver mon panier <i class="fas fa-shopping-basket"></i></span></button>
+            {% endif %}
+            
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Produit</th>
+                            <th>Photo</th>
+                            <th>Prix</th>
+                            <th>Taille</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>{{ item.produit.titre }}</td>
+                                <td><img class="imgPrincipale" src="{{ asset('assets/img/produits/'~item.produit.photos[0].nom) }}" alt="test" /></td>
+                                <td>{{ item.produit.prixVente }}  €</td>
+
+                                {% if item.produit.taille %}
+                                    {% if item.taille == "" %}
+                                        <td class="panierTailleNonChoisi">
+                                    {% else %}
+                                        <td>
+                                    {% endif %}
+                                {% else %}
+                                    <td>
+                                {% endif %}
+
+                                    {% if item.produit.taille %}
+
+                                        <label for="taille-select">Quelle taille ?</label>
+                                        {% set tailleDispoTAB = item.produit.taille|split(';') %}
+
+                                        {# <select name="tailles" id="taille-select" onchange="window.location.href = '{{ path('cart_tailleChange', {'id': item.produit.id, 'taille': '+this.value+'}) }}';">
+                                        <option value="choix">--Choix d'une taille--</option>
+                                            {% for tailleDispo in tailleDispoTAB %}
+                                            <option value="{{ tailleDispo }}">{{ tailleDispo }}</option>
+                                            {% endfor %}
+                                        </select> #}
+
+                                        {% for tailleDispo in tailleDispoTAB %}
+                                            {% if item.taille == tailleDispo %}
+                                                <a class="taille tailleEncadree" href="{{ path('cart_tailleChange', {'id': item.produit.id, 'taille': tailleDispo}) }}">{{ tailleDispo }}</a>
+                                            {% else %}
+                                                <a class="taille" href="{{ path('cart_tailleChange', {'id': item.produit.id, 'taille': tailleDispo}) }}">{{ tailleDispo }}</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                </td>
+
+                                <td> <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
+                                    {{ item.quantity }}
+                                <a href="{{ path('cart_increment', {'id': item.produit.id}) }}" class="plusQuantity">+</a></td>
+                                <td>{{ item.produit.prixVente * item.quantity }}  €</td>
+                                <td>
+                                    <a href="{{ path('cart_delete', {'id': item.produit.id}) }}" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr class="PanierMontantTotal">
+                            <td colspan="5" class="text-right">Total :</td>
+                            <td>{{ total }} €</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            {% if not app.user %}
+                <button class="button button-mat-connexion btn--8 addCart" onclick="window.location.href = '{{ path('app_login') }}';"><span class="psuedo-text-connexion"><i class="fas fa-user-lock"></i> Se connecter pour réserver le panier</span></button>
+            {% else %}
+                <button class="button button-mat-valider btn--8 addCart" onclick="window.location.href = '{{ path('cart_reserve') }}';"><span class="psuedo-text-valider">Valider et réserver mon panier <i class="fas fa-shopping-basket"></i></span></button>
+            {% endif %}
+        {% else %}
+            <p class="vide">Votre panier est VIDE <i class="far fa-sad-cry"></i></p>
+        {% endif %}   
+    </section>  
 </section>    
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://kit.fontawesome.com/a6c47b94c8.js" crossorigin="anonymous"></script>
 {% endblock %}
