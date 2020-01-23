@@ -29,19 +29,30 @@ class Commande
     private $dateLivraison;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="commande", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commande", cascade={"persist", "remove"})
      */
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Produit", inversedBy="commandes")
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeProduit", mappedBy="commandes")
      */
-    private $produits;
+    private $commandeProduits;
+
+    /**
+     * @ORM\Column(type="string", length=160)
+     */
+    private $refcommande;
+
+    // /**
+    //  * @ORM\ManyToMany(targetEntity="App\Entity\Produit", inversedBy="commandes")
+    //  */
+    // private $produits;
 
     public function __construct()
     {
         $this->commande_id = new ArrayCollection();
         $this->produits = new ArrayCollection();
+        $this->commandeProduits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,28 +97,71 @@ class Commande
     }
 
     /**
-     * @return Collection|Produit[]
+     * @return Collection|CommandeProduit[]
      */
-    public function getProduits(): Collection
+    public function getCommandeProduits(): Collection
     {
-        return $this->produits;
+        return $this->commandeProduits;
     }
 
-    public function addProduit(Produit $produit): self
+    public function addCommandeProduit(CommandeProduit $commandeProduit): self
     {
-        if (!$this->produits->contains($produit)) {
-            $this->produits[] = $produit;
+        if (!$this->commandeProduits->contains($commandeProduit)) {
+            $this->commandeProduits[] = $commandeProduit;
+            $commandeProduit->setCommandes($this);
         }
 
         return $this;
     }
 
-    public function removeProduit(Produit $produit): self
+    public function removeCommandeProduit(CommandeProduit $commandeProduit): self
     {
-        if ($this->produits->contains($produit)) {
-            $this->produits->removeElement($produit);
+        if ($this->commandeProduits->contains($commandeProduit)) {
+            $this->commandeProduits->removeElement($commandeProduit);
+            // set the owning side to null (unless already changed)
+            if ($commandeProduit->getCommandes() === $this) {
+                $commandeProduit->setCommandes(null);
+            }
         }
 
         return $this;
     }
+
+    public function getRefcommande(): ?string
+    {
+        return $this->refcommande;
+    }
+
+    public function setRefcommande(string $refcommande): self
+    {
+        $this->refcommande = $refcommande;
+
+        return $this;
+    }
+
+    // /**
+    //  * @return Collection|Produit[]
+    //  */
+    // public function getProduits(): Collection
+    // {
+    //     return $this->produits;
+    // }
+
+    // public function addProduit(Produit $produit): self
+    // {
+    //     if (!$this->produits->contains($produit)) {
+    //         $this->produits[] = $produit;
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeProduit(Produit $produit): self
+    // {
+    //     if ($this->produits->contains($produit)) {
+    //         $this->produits->removeElement($produit);
+    //     }
+
+    //     return $this;
+    // }
 }

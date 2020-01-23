@@ -53,21 +53,27 @@ class Produit
      */
     private $photos;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Commande", mappedBy="produits")
-     */
-    private $commandes;
+    // /**
+    //  * @ORM\ManyToMany(targetEntity="App\Entity\Commande", mappedBy="produits")
+    //  */
+    // private $commandes;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Magasin", mappedBy="produits", cascade={"persist", "remove"})
      */
     private $magasin;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeProduit", mappedBy="produits")
+     */
+    private $commandeProduits;
+
     public function __construct()
     {
         $this->produit_id = new ArrayCollection();
         $this->photos = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->commandeProduits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,33 +184,33 @@ class Produit
         return $this;
     }
 
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
+    // /**
+    //  * @return Collection|Commande[]
+    //  */
+    // public function getCommandes(): Collection
+    // {
+    //     return $this->commandes;
+    // }
 
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->addProduit($this);
-        }
+    // public function addCommande(Commande $commande): self
+    // {
+    //     if (!$this->commandes->contains($commande)) {
+    //         $this->commandes[] = $commande;
+    //         $commande->addProduit($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->contains($commande)) {
-            $this->commandes->removeElement($commande);
-            $commande->removeProduit($this);
-        }
+    // public function removeCommande(Commande $commande): self
+    // {
+    //     if ($this->commandes->contains($commande)) {
+    //         $this->commandes->removeElement($commande);
+    //         $commande->removeProduit($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getMagasin(): ?Magasin
     {
@@ -219,6 +225,37 @@ class Produit
         $newProduits = null === $magasin ? null : $this;
         if ($magasin->getProduits() !== $newProduits) {
             $magasin->setProduits($newProduits);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommandeProduit[]
+     */
+    public function getCommandeProduits(): Collection
+    {
+        return $this->commandeProduits;
+    }
+
+    public function addCommandeProduit(CommandeProduit $commandeProduit): self
+    {
+        if (!$this->commandeProduits->contains($commandeProduit)) {
+            $this->commandeProduits[] = $commandeProduit;
+            $commandeProduit->setProduits($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandeProduit(CommandeProduit $commandeProduit): self
+    {
+        if ($this->commandeProduits->contains($commandeProduit)) {
+            $this->commandeProduits->removeElement($commandeProduit);
+            // set the owning side to null (unless already changed)
+            if ($commandeProduit->getProduits() === $this) {
+                $commandeProduit->setProduits(null);
+            }
         }
 
         return $this;
