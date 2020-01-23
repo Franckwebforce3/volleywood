@@ -17,9 +17,9 @@ caption{
     font-weight: bold;
 }
 table, tr, td{
-    border: 1px solid black;
+    border: 1px solid #E0E0E0;
     border-collapse: collapse;
-}
+} 
 .photo{
     width: 150px;
 }

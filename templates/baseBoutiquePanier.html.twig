@@ -2,8 +2,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
         <title>{% block title %}Volleywood{% endblock %}</title>
-        <link rel="icon" href="../assets/img/core-img/favicon.png"/>
+        <link rel="icon" href="{{ asset('assets/img/core-img/favicon.png') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/resetcss.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/animate.css') }}">
@@ -84,8 +86,16 @@
                                     <li><a href="{{ path('nosProduits') }}">Boutique</a></li>
                                     <li><a href="{{ path('galerie') }}">Galerie</a></li>
                                     <li><a href="{{ path('blog') }}">Blog</a></li>
-                                    <li><a href="{{ path('inscription') }}">S'inscrire</a></li>
-                                    <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                                    {% if not app.user %}
+                                        <li><a href="{{ path('inscription') }}">S'inscrire</a></li>
+                                    {% else %}
+                                        <li class="liUser"> <span>Bonjour</span> {{ app.user.pseudo }}</li>
+                                    {% endif %}
+                                    {% if not app.user %}
+                                        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                                    {% else %}
+                                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                                    {% endif %}
                                 </ul>
 
                                 <!-- Search Icon -->
