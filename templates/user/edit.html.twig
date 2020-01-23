@@ -25,11 +25,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
                 <th>Pseudo</th>
-                <th>Avatar</th>
                 <th>Ville</th>
                 <th>Cp</th>
                 <th>Adresse</th>
@@ -38,14 +36,39 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ user.id }}</td>
+            {{ form_start(form) }}
+                    <div class="row">
+                        <td>
+                            {{ form_row(form.email) }}
+                        </td>
+                        <td>
+                            {{ form_row(form.roles) }} 
+                        </td>
+                        <td>
+                            {{ form_widget(form.pseudo)}}
+                        </td>
+                        <td>
+                            {{ form_widget(form.ville)}}
+                        </td>
+                        <td>
+                            {{ form_widget(form.cp)}}
+                        </td>
+                        <td>
+                            {{ form_widget(form.adresse)}}
+                        </td>
+                    </div>
+            {{ form_end(form) }}
+                {# <td>
+                    {{ include('user/_form.html.twig') }}
+                </td> #}
+                {# <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.pseudo }}</td>
                 <td>{{ user.avatar }}</td>
                 <td>{{ user.ville }}</td>
                 <td>{{ user.cp }}</td>
-                <td>{{ user.adresse }}</td>
+                <td>{{ user.adresse }}</td> #}
                 <td>
                 {# {{ include('user/_form.html.twig', {'button_label': 'Update'}) }} #}
                     <a href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>

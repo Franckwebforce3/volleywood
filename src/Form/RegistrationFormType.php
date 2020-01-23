@@ -36,25 +36,18 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'label' => 'Mot de passe',
-                'mapped' => false,
+                //'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrez votre mot de passe',
                     ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Ton mot de passe doit avoir au moins {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
                 ],
             ])
-            ->add('confirm_password', PasswordType::class, [
+            ->add('confirmPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                // 'attr' => ['class' => 'form-control mb-30'],
                 'label' => 'Confirmer mot de passe',
-                'mapped' => false,
+                //'mapped' => false,
             ])
             ->add('avatar', FileType::class, [
                 'constraints' => [
@@ -66,18 +59,10 @@ class RegistrationFormType extends AbstractType
                         'mimeTypesMessage' => "Merci d'envoyer une image valide",
                     ]),
                 ],
-                'empty_data' => 'avatarParDefaut',//// METTRE UN AVATAR PAR DEFAUT
             ])
             ->add('cp', TextType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                // ça fait planter la page et je sais pas pourquoi
-                    // new Length([
-                    //     'min' => 5,
-                    //     'minMessage' => 'Ton code postal doit comporter {{ limit }} chiffres',
-                    //     // max length allowed by Symfony for security reasons
-                    //     'max' => 4096,
-                    // ]),
             ])
 
             ->add('ville', TextType::class, [

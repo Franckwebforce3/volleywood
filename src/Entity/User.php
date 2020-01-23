@@ -45,16 +45,17 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\EqualTo(propertyPath="confirm_password", message="Vous n'avez pas tappé le même mot de passe")
+     * @var string The hashed password
+     * @Assert\EqualTo(propertyPath="confirmPassword", message="Vous n'avez pas tappé le même mot de passe")
      */
     private $password;
     
     /**
-     * @Assert\EqualTo(propertyPath="password")
+     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tappé le même mot de passe")
      */
-    private $confirm_password;
+    private $confirmPassword;
+
     /**
      * @ORM\Column(type="string", length=160, nullable=true)
      */
@@ -72,7 +73,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=5, nullable=true)
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      minMessage = "Ton mot de passe doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "Ton mot de passe doit avoir au moins {{ limit }} caractères",
+     * )
      */
+
     private $cp;
 
     /**
@@ -156,14 +164,14 @@ class User implements UserInterface
         return $this;
     }
     // AJOUT DE GETTER SETTER CONFIRM_PASSWORD
-    public function getConfirm_password(): string
+    public function getConfirmPassword(): string
     {
-        return (string) $this->confirm_password;
+        return (string) $this->confirmPassword;
     }
 
-    public function setConfirm_password(string $confirm_password): self
+    public function setConfirmPassword(string $confirmPassword): self
     {
-        $this->confirm_password = $confirm_password;
+        $this->confirmPassword = $confirmPassword;
 
         return $this;
     }
