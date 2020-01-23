@@ -18,22 +18,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class ArticleController extends AbstractController
 {
-    /**
-     * @Route("/admin", name="article_index", methods={"GET"})
-     */
-    public function index(ArticleRepository $articleRepository, UserRepository $userRepository, CommentaireRepository $commentaireRepository): Response
-    {   
-        $articles = $articleRepository->findAll();
-        $users = $userRepository->findAll();
-        $commentaires = $commentaireRepository->findAll();
-        // $commentaires = $articles->getCommentaires();
+    // /**
+    //  * @Route("/admin", name="article_index", methods={"GET"})
+    //  */
+    // public function index(ArticleRepository $articleRepository, UserRepository $userRepository, CommentaireRepository $commentaireRepository): Response
+    // {   
+    //     $articles = $articleRepository->findAll();
+    //     $users = $userRepository->findAll();
+    //     $commentaires = $commentaireRepository->findAll();
 
-        return $this->render('article/index.html.twig', [
-            'articles' => $articles,
-            'users'    => $users,
-            'commentaires' => $commentaires,
-        ]);
-    }
+    //     return $this->render('article/index.html.twig', [
+    //         'articles' => $articles,
+    //         'users'    => $users,
+    //         'commentaires' => $commentaires,
+    //     ]);
+    // }
 
     /**
      * @Route("/admin/new", name="article_new", methods={"GET","POST"})
@@ -104,17 +103,33 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}", name="article_show", methods={"GET","POST"})
      */
-    public function show(Article $article): Response
+    public function show(Article $article, Request $request): Response
     {
         // AJOUT JEJE a partir d'ici avec les use correspondant
         
         $commentaire = New Commentaire();
-        $commentaire->setDatePublication(new \DateTime);
         $commentForm = $this->createForm(CommentaireType::class, $commentaire);
         
+        $user = $this->getUser();
+        
+        
+        $commentForm->handleRequest($request);
+
+
+
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+
+            $commentaire->setDatePublication(new \DateTime);
+            $commentaire->setUsers($user);
+            $commentaire->addArticle($article);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($commentaire);
+            $entityManager->flush();
+        }
         // FIN
         return $this->render('article/show.html.twig', [
             'article' => $article,
+
             'commentForm' => $commentForm->createView() // ajout de cette ligne
         ]);
     }
