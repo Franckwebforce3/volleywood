@@ -86,12 +86,12 @@
                 <td>{{ article.id }}</td>
                 <td><img src="{{ asset('assets/img/article/'~article.apercu) }}" alt="image d'aperçu de l'article"></td>
                 <td>{{ article.titre }}</td>
-                <td>{{ article.description | slice(0, 500) }}...</td>
+                <td>{{ article.description | slice(0, 300) }}...</td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo) }}" alt="image d'article"></td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo2) }}" alt="image d'article"></td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo3) }}" alt="image d'article"></td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo4) }}" alt="image d'article"></td>
-                <td>{{ article.categorie }}</td>
+                <td>{{ article.categorie | slice(0, 300) }}...</td>
                 <td>{{ article.datePublication ? article.datePublication|date('Y-m-d') : '' }}</td>
                 <td>
                     <a class="adminIndex" href="{{ path('article_show', {'id': article.id}) }}">Afficher</a>
