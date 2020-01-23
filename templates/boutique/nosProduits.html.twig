@@ -51,7 +51,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcrumb-content text-center">
-                        <h2 class="page-title">Le Blog</h2>
+                        <h2 class="page-title">La boutique</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="{{ path('public') }}"><i class="icon_house_alt"></i> Accueil</a></li>
@@ -71,9 +71,19 @@
             <a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a>
         </aside> #}
 
-        <h1>Liste de nos produits <span class="animPanier"><a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a></span></h1>
-        {# <h1>Liste de nos produits</h1>
-<span class="animPanier"><a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier ({{ totalNbItems }})</a></span> #}
+        {# L'admin est connecté ? #}
+        {% if app.user %}
+            {% if 'ROLE_ADMIN' in app.user.roles %}
+                <h1>
+                    <span class="adminPanier"><a href="{{ path('commande_index') }}" title="Gérer les commandes et la boutique"><i class="fas fa-tools"></i></a></span>
+                    Liste de nos produits <span class="animPanier"><a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a></span>
+                </h1>
+            {% else %}
+                <h1>Liste de nos produits <span class="animPanier"><a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a></span></h1>
+            {% endif %}
+        {% else %}
+            <h1>Liste de nos produits <span class="animPanier"><a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a></span></h1>
+        {% endif %}
 
         <ul class="listeProduits">
             {% for produit in produits %}
@@ -90,12 +100,23 @@
                             <i class="fas fa-shopping-basket"></i> Mettre au panier
                         {% else %}
                             <a href="{{ path('cart_add', {'id': produit.id}) }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
-                            {# <button class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</button> #}
+                            
+                            {# <a href="#" data-id="{{ produit.id }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a> #}
                         {% endif %}      
                                           
-                        {# <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a> #}
                         <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="far fa-eye"></i></a>
                     </p>
+
+                    {# <p class="panierClick2">
+                        {% if produit.magasin.quantite == 0 %} 
+                            <i class="fas fa-shopping-basket"></i> Mettre au panier
+                        {% else %}
+                            <a href="{{ path('cart_add', {'id': produit.id}) }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+                        {% endif %}      
+                                          
+                        <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="far fa-eye"></i></a>
+                    </p> #}
+
                     <figcaption>
                         {# Gestion du stock : #}
                         {% if produit.magasin.quantite == 0 %} 
@@ -167,6 +188,37 @@
 
 
 <script>
+/*
+ * Gestion de l'ajax pour afficher 1 produit :
+ */
+/* var btnaddProduit = document.querySelectorAll(".addCartAll");
+if (btnaddProduit.length != 0)
+{
+    btnaddProduit.forEach(function(btnaddProduitAll) {
+        btnaddProduitAll.addEventListener("click", function(){
+            var id = btnaddProduitAll.getAttribute("data-id");
+            console.log("tu as cliqué fdsf : "+ id);
+
+            var formData = new FormData();
+            // ON PEUT REMPLIR LE FORM DATA EN JS
+            formData.append("idProduit", id);
+
+            // ON VA ENVOYER UNE REQUETE AJAX AVEC fetch
+            var urlAjax = "{{ path('ajaxAjouterProduitId') }}"; 
+            fetch(urlAjax, {
+                method: 'POST',
+                body: formData
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function(objetResponse){
+
+                //objetResponse.totalNbItems
+            });
+        });
+    });
+} */
 
 /*
  * Gestion de l'ajax pour afficher 1 produit :

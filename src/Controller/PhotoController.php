@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @Route("/photo")
+ * @Route("/admin/photo")
  */
 class PhotoController extends AbstractController
 {
