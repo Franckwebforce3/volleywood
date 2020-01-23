@@ -75,7 +75,7 @@
         {% if app.user %}
             {% if 'ROLE_ADMIN' in app.user.roles %}
                 <h1>
-                    <span class="adminPanier"><a href="{{ path('commande_index') }}" title="Gérer les commandes et boutique"><i class="fas fa-tools"></i></a></span>
+                    <span class="adminPanier"><a href="{{ path('commande_index') }}" title="Gérer les commandes et la boutique"><i class="fas fa-tools"></i></a></span>
                     Liste de nos produits <span class="animPanier"><a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a></span>
                 </h1>
             {% else %}
@@ -106,6 +106,17 @@
                                           
                         <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="far fa-eye"></i></a>
                     </p>
+
+                    {# <p class="panierClick2">
+                        {% if produit.magasin.quantite == 0 %} 
+                            <i class="fas fa-shopping-basket"></i> Mettre au panier
+                        {% else %}
+                            <a href="{{ path('cart_add', {'id': produit.id}) }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+                        {% endif %}      
+                                          
+                        <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="far fa-eye"></i></a>
+                    </p> #}
+
                     <figcaption>
                         {# Gestion du stock : #}
                         {% if produit.magasin.quantite == 0 %} 

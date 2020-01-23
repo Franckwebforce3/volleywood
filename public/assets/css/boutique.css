@@ -136,6 +136,8 @@ ul.listeProduits figure {
     background: radial-gradient(ellipse at center,  #ffffff 0%,#e5e5e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
+    text-align: center; /* PJ */
+
     position: relative; 
 
     transition: all 0.7s ease-in;
@@ -159,7 +161,7 @@ ul.listeProduits figure:hover img {
 ul.listeProduits .panierClick {
     position: absolute; 
     /* top: calc(100% / 1.6);  */
-    top: 270px;
+    top: 200px; /* PJ */
     left: calc(100% / 6);
     /* left: 10px; */
 
@@ -197,6 +199,37 @@ ul.listeProduits .panierClick a:last-of-type:hover {
     border-bottom: 1px solid black;
     color: black;
 }
+
+/*************************************/
+ul.listeProduits .panierClick2 {
+    display: none;
+    position: absolute; 
+    top: 200px; /* PJ */
+    left: calc(100% / 6);
+
+    opacity: 0;
+    transition: all 0.1s ease-in;
+}
+ul.listeProduits .panierClick2 a:first-of-type{
+    background-color: black;
+    color: white;
+    font-size: 1.1em;
+    padding: 5px 5px;
+    transition: all 0.1s ease-in;
+    position: relative;
+    z-index: 1000;
+    text-decoration: none;
+}
+ul.listeProduits .panierClick2 a:last-of-type{
+    background-color: black;
+    color: white;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    transition: all 0.1s ease-in;
+    position: relative;
+    z-index: 1000;    
+}
+/*************************************/
 
 /*************************
 * Panier en mode mobile *
@@ -286,11 +319,16 @@ ul.listeProduits figure h3
 }
 
 ul.listeProduits figure img {
-    /* border-bottom: 1px solid var(--p-color); */
-    max-width: 100%;
+/* Avant */
+/*    max-width: 100%;
     max-height: 250px;
     margin-top: 10px;
     margin-bottom: 70px;
+/* Apres */
+max-width: 70%;
+max-height: 250px;
+margin-top: 10px;
+margin-bottom: 70px;
 
     z-index: 99;
 
@@ -461,6 +499,7 @@ aside.panier a {
 } */
 /** Après **/
 .containerUnProduitModal .infoProduitModal p:nth-of-type(1) {
+    width: 100%;
     font-weight: bold;
     font-style: italic;
     font-size: 1em;
@@ -945,6 +984,11 @@ div.adminActions a.envelope:hover {
     ul.listeProduits .panierClick {
         display: none;
     }
+    /* ul.listeProduits .panierClick2 {
+        display: inline;
+        position: absolute;
+        left: calc(100% / 6);        
+    } */
 
     ul.listeProduits figure {
         text-align: center;

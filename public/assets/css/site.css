@@ -18,3 +18,21 @@ h5{
 .adminIndex{
     display: block;
 }
+
+/* Pascal : Ajouter une icone à coté de Bonjour */
+.icon::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    left: -5px;
+    top: 0;    
+  }
+
+  .login::before {
+    font-family: "FontAwesome";
+    font-weight: 900; 
+    content: "\f007";
+  }
