@@ -832,6 +832,11 @@ table.table .PanierMontantTotal {
     font-weight: bold;
 }
 
+table.table .colQuantite a,
+table.table .colQuantite span {
+    display: inline-block;
+}
+
 .panierTailleNonChoisi {
     background-color: tomato;
     color: white;
@@ -992,6 +997,15 @@ div.adminActions a.envelope:hover {
 
     ul.listeProduits figure {
         text-align: center;
+    }
+
+    table.table .colQuantite a,
+    table.table .colQuantite span {
+        display: block;
+    }
+
+    table.table td.colaGauche p {
+        text-align: left;
     }
 }
 /**************************************************************************

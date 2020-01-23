@@ -89,7 +89,7 @@
                     {% endif %}
                 </td>
                 <td>{{ commande.dateLivraison ? commande.dateLivraison|date('d-m-Y') : '' }}</td>
-                <td>
+                <td class="colaGauche">
                     {% for produit in commande.commandeProduits %}
                         {% if produit.taille %}
                             <p> {{ produit.quantite }} - Taille: {{ produit.taille }} <img class="adminPhoto" src="{{ asset('assets/img/produits/'~produit.produits.photos[0].nom) }}" alt="" /> </p>
@@ -98,7 +98,7 @@
                         {% endif %}
                     {% endfor %}
                 </td>            
-                <td>
+                <td class="colaGauche">
                     {% for produit in commande.commandeProduits %}
                         <p> <img class="adminPhoto" src="{{ asset('assets/img/produits/'~produit.produits.photos[0].nom) }}" alt="" /> {{ produit.produits.titre }}</p>
                     {% endfor %}
