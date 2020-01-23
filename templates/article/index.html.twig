@@ -22,7 +22,7 @@
             </div>
         </div>
     </section>
-    {# TEST SISMIQUE ENVOIE DES USERS DANS ARTICLE #}
+    {# TEST SISMIQUE ENVOIE DES USERS DANS ARTICLE "echo substr($chaine, 0, 500).'...';"#}
     <h5>Il y a {{ users | length}} utilisateur(s)</h5>
 
     <table class="table">
@@ -86,7 +86,7 @@
                 <td>{{ article.id }}</td>
                 <td><img src="{{ asset('assets/img/article/'~article.apercu) }}" alt="image d'aperçu de l'article"></td>
                 <td>{{ article.titre }}</td>
-                <td>{{ article.description }}</td>
+                <td>{{ article.description | slice(0, 500) }}...</td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo) }}" alt="image d'article"></td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo2) }}" alt="image d'article"></td>
                 <td><img src="{{ asset('assets/img/article/'~article.photo3) }}" alt="image d'article"></td>
@@ -94,8 +94,8 @@
                 <td>{{ article.categorie }}</td>
                 <td>{{ article.datePublication ? article.datePublication|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">Afficher</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                    <a class="adminIndex" href="{{ path('article_show', {'id': article.id}) }}">Afficher</a>
+                    <a class="adminIndex" href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
                     {{ include('article/_delete_form.html.twig') }}
                 </td>
             </tr>

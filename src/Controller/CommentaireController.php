@@ -33,7 +33,6 @@ class CommentaireController extends AbstractController
     {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
-        // manque quelque chose là dessous me faut les infos user contenu dans session
         $user = $this->getUser();
         $userId =$user->getId(); 
         
