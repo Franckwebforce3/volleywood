@@ -349,8 +349,8 @@ ul.listeProduits figure .prix {
     background: url(../img/image.png) no-repeat;
     background-size: contain;
     text-indent : 7px;
-    font-size: 0.8rem;
-    font-weight: bold;
+    font-size: 1rem;
+    /* font-weight: bold; */
     font-style: italic;
     text-align: center;
     color: white;
@@ -369,8 +369,8 @@ ul.listeProduits figure .prix {
     background: url(../img/image.png) no-repeat;
     background-size: contain;
     text-indent : 7px;
-    font-size: 0.8rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    /* font-weight: bold; */
     font-style: italic;
     text-align: center;
     color: white;
@@ -501,7 +501,7 @@ aside.panier a {
 /** Après **/
 .containerUnProduitModal .infoProduitModal p:nth-of-type(1) {
     width: 100%;
-    font-weight: bold;
+    /* font-weight: bold; */
     font-style: italic;
     font-size: 1em;
 }
@@ -1008,6 +1008,25 @@ div.adminActions a.envelope:hover {
     table.table td.colaGauche p {
         text-align: left;
     }
+
+    .containerUnProduitModal .infoProduitModal {
+        margin-left: 1px;
+    }
+
+    .titreProduitModal h3.prix {
+        background: url(../img/image.png) no-repeat;
+        background-size: contain;
+        text-indent : 7px;
+        font-size: 0.8rem;
+        /* font-weight: bold; */
+        font-style: italic;
+        text-align: center;
+        color: white;
+        font-style: italic;
+        padding: 1% 1%;
+        margin: 1% auto 0.5% auto;    
+        width: 15%;
+    }    
 }
 /**************************************************************************
 **************************************************************************

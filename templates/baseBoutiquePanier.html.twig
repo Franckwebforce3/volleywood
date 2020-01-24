@@ -22,25 +22,6 @@
     </head>
     <body>
     
-<!-- Top Search Form Area -->
-    <div class="top-search-area">
-        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <!-- Close -->
-                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
-                        <!-- Form -->
-                        <form action="index.html" method="post">
-                            <input type="search" name="top-search-bar" class="form-control" placeholder="Que recherchez-vous ?">
-                            <button type="submit">rechercher</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Header Area Start -->
     <header class="header-area">
         <!-- Main Header Start -->
@@ -71,14 +52,14 @@
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             
-                                            <li><a href="{{ path('single-blog') }}">Blog section VIP</a></li>
+                                            <li><a href="{{ path('admin') }}">Section VIP</a></li>
 
                                             <li><a href="{{ path('applivolleywood') }}">Appli-Volleywood</a></li>
 
                                             <li><a href="{{ path('contact') }}">Contact</a></li>
 
                                             <li><a href="{{ path('faireundon') }}">Faire un don</a></li>
-                                                                                        
+                                            
                                             <li><a href="{{ path('jeuxvideo') }}">5 min à perdre ?</a></li>
                                         </ul>
                                     </li>
@@ -86,19 +67,17 @@
                                     <li><a href="{{ path('galerie') }}">Galerie</a></li>
                                     <li><a href="{{ path('blog') }}">Blog</a></li>
                                     {% if not app.user %}
-                                        <li><a href="{{ path('inscription') }}">S'inscrire</a></li>
+                                    <li><a href="{{ path('inscription') }}">S'inscrire</a></li>
                                     {% else %}
-                                        <li class="liUser"> <span class="icon login">Bonjour</span> {{ app.user.pseudo }}</li>
+                                    <li class="liUser"> <span class="icon login">Bonjour</span> {{ app.user.pseudo }}</li>
                                     {% endif %}
                                     {% if not app.user %}
-                                        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
                                     {% else %}
-                                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+
+                                    <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                                     {% endif %}
                                 </ul>
-
-                                <!-- Search Icon -->
-                                <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
                             </div>
                             <!-- Nav End -->
                         </div>
@@ -120,9 +99,8 @@
                     <div class="footer-content d-flex align-items-center justify-content-between">
                         <!-- Copywrite Text -->
                         <div class="copywrite-text">
-                            <p>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> par F.DENIAU, P.JUILLAN, J.NERI, A.VARESE</a>
-</p>
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> par F.DENIAU, P.JUILLAN, J.NERI, A.VARESE</p>
+                        </div>
                         
                         <!-- Social Info -->
                         <div class="social-info">
