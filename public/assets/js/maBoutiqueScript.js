@@ -5,11 +5,10 @@
 var btnAddCart              = document.querySelector(".addCart");
 var selectTaille            = document.getElementById("taille-select");
 var imgPrincipale           = document.querySelector(".imgPrincipale");
-// var imgSecondaireGlobal     = document.querySelectorAll(".imgSecondaire");
+
 // Page des produits :
 var btnAddCartGlobal        = document.querySelectorAll(".addCartAll");
 var quantiteSaisieProduit   = document.getElementById("nbProduit");
-
 
 var btnchargerProduit       = document.querySelectorAll(".chargerProduit");
 /**********************************************/
@@ -68,8 +67,8 @@ if (quantiteSaisieProduit != null)
 /*
  * Click sur le bouton addCart :
  */
-if (btnAddCart != null)
-{
+//if (btnAddCart != null)
+//{
     //console.log("ok");
     // btnAddCart.onclick = function() { 
     //     // alert('hello'); 
@@ -123,7 +122,7 @@ if (btnAddCart != null)
         //     console.log(url);
         // }
     // });
-}
+//}
 
 /*
  * Gestion du clic sur les images secondaires :
