@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/", name="article_index", methods={"GET","POST"})
+     * @Route("/", name="admin", methods={"GET","POST"})
      */
     public function index(ArticleRepository $articleRepository, UserRepository $userRepository, CommentaireRepository $commentaireRepository): Response
     {   

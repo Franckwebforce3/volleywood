@@ -23,6 +23,9 @@ table, tr, td{
 .photo{
     width: 150px;
 }
+#user_edit_roles_0, #user_edit_roles_1, #user_edit_roles_2{
+    left: 20%;
+}
 /* LIGHTBOX SUR sectionUserUpdate 
 .sectionUserUpdate, .sectionArticleUpdate{
     display: none;

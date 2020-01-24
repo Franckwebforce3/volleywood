@@ -47,12 +47,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string")
      * @var string The hashed password
-     * @Assert\EqualTo(propertyPath="confirmPassword", message="Vous n'avez pas tappé le même mot de passe")
      */
     private $password;
     
     /**
-     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tappé le même mot de passe")
      */
     private $confirmPassword;
 

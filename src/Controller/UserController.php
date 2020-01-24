@@ -68,6 +68,8 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
+
+        return $this->redirectToRoute('admin');
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
@@ -82,9 +84,10 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('user_index');
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('user/edit.html.twig', [
@@ -104,6 +107,6 @@ class UserController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('article_index');
+        return $this->redirectToRoute('admin');
     }
 }
