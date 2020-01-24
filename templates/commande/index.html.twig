@@ -95,7 +95,7 @@
                         <i class="fas fa-thumbs-up"></i> Préparée
                     </td>
                     {% endif %}
-                <td>
+                <td class="colaGauche">
                     {% for MesProduit in commande.commandeProduits %}
                         {# <p> <img class="adminPhoto" src="{{ asset('assets/img/produits/'~MesProduit.photos[0].nom) }}" alt="" /> {{ MesProduit.titre }}</p> #}
                         <p> <img class="adminPhoto" src="{{ asset('assets/img/produits/'~MesProduit.produits.photos[0].nom) }}" alt="" /> {{ MesProduit.produits.titre }}</p>

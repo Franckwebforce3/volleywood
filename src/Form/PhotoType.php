@@ -21,6 +21,7 @@ class PhotoType extends AbstractType
                 'choice_label' => 'titre',   // QUELLE PROPRIETE SERA AFFICHEE DANS LE FORMULAIRE
             ])
             ->add('nom', FileType::class, [
+                'data_class' => null,
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',

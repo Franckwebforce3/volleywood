@@ -134,8 +134,8 @@
                                     {% endif %}
                                 </td>
 
-                                <td> <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
-                                    {{ item.quantity }}
+                                <td class="colQuantite"> <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
+                                    <span>{{ item.quantity }}</span>
                                 <a href="{{ path('cart_increment', {'id': item.produit.id}) }}" class="plusQuantity">+</a></td>
                                 <td>{{ item.produit.prixVente * item.quantity }}  €</td>
                                 <td>
