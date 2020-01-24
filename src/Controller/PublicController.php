@@ -39,11 +39,11 @@ class PublicController extends AbstractController
         if ($form->isSubmitted())
         {
            // DEBUG
-            dump("FORMULAIRE SOUMIS A TRAITER");
+            //dump("FORMULAIRE SOUMIS A TRAITER");
             if($form->isValid()) 
             {
                // DEBUG
-                dump("FORMULAIRE VALIDE A TRAITER");
+                //dump("FORMULAIRE VALIDE A TRAITER");
                 // RECUPERER LES INFOS DU FORMULAIRE
                 // $tabInfo = $request->get("activation_user);
                 // https://symfony.com/doc/current/form/without_class.htmlion_user");
@@ -60,7 +60,7 @@ class PublicController extends AbstractController
                 if ($userTrouve != null)
                 {
                     // OK ON A TROUVE
-                    dump($userTrouve);
+                    //dump($userTrouve);
                     
                     // IL FAUT ACTIVER LE User
                     // ET IL FAUT EFFACER LA cleActivation
@@ -76,11 +76,11 @@ class PublicController extends AbstractController
                 else
                 {
                     // ERREUR
-                    dump("USER NON TROUVE");     
+                    //dump("USER NON TROUVE");     
                 }
 
                 // DEBUG
-                dump("INFOS RECUPEREES $email/$cleActivation");
+                //dump("INFOS RECUPEREES $email/$cleActivation");
             }
         }
 

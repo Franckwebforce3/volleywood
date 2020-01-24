@@ -140,11 +140,11 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted())
         {
             // DEBUG
-            dump("FORMULAIRE SOUMIS A TRAITER");
+            //dump("FORMULAIRE SOUMIS A TRAITER");
             if($form->isValid()) 
             {
                // DEBUG
-                dump("FORMULAIRE VALIDE A TRAITER");
+                //dump("FORMULAIRE VALIDE A TRAITER");
                 // RECUPERER LES INFOS DU FORMULAIRE
                 // $tabInfo = $request->get("activation_user);
                 // https://symfony.com/doc/current/form/without_class.htmlion_user");
@@ -180,11 +180,11 @@ class RegistrationController extends AbstractController
                 else
                 {
                     // ERREUR
-                    dump("USER NON TROUVE");     
+                    //dump("USER NON TROUVE");     
                 }
 
                 // DEBUG
-                dump("INFOS RECUPEREES $email/$cleActivation");
+                //dump("INFOS RECUPEREES $email/$cleActivation");
             }
         }
 

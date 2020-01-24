@@ -54,7 +54,7 @@ class PhotoController extends AbstractController
                 // ON VA STOCKER LE FICHIER
                 $projectDir     = $this->getParameter("kernel.project_dir");
                 $cheminDossier  = "$projectDir/public/assets/img/produits/";
-                dump($projectDir);
+                //dump($projectDir);
 
                 $photo->move($cheminDossier, $fileName);
             }

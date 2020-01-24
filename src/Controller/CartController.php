@@ -37,7 +37,7 @@ class CartController extends AbstractController
      */
     public function add($id, CartService $cartService)
     {
-        dump($id);
+        //dump($id);
         $cartService->add($id);
         
         return $this->redirectToRoute("nosProduits");

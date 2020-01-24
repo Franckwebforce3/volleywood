@@ -78,8 +78,8 @@ class SecurityControllerAuthenticator extends AbstractFormLoginAuthenticator imp
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        dump( $credentials['password']); //renvoi le MDP
-        dump($user);
+        //dump( $credentials['password']); //renvoi le MDP
+        //dump($user);
         // $2y$10$9neCC4XAUjJqv9vH287O..slb4EXTKbxESVK.vgY7/9Udfly.w/MO
         $res = $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
         return $res;

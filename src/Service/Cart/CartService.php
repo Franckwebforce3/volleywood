@@ -18,7 +18,7 @@ class CartService {
     public function add($id) 
     {
         $idtemp = intval($id);
-        dump($id);
+        //dump($id);
         $panier = $this->session->get('panier', []);
 
         if( !empty($panier[$idtemp]) ) {

@@ -60,7 +60,7 @@ class ArticleController extends AbstractController
                     // ON VA STOCKER LE FICHIER
                     $projectDir = $this->getParameter("kernel.project_dir");
                     $cheminDossier = "$projectDir/public/assets/img/article";
-                    dump($projectDir);
+                    //dump($projectDir);
 
                     $photo->move($cheminDossier, $fileName);
                 }
