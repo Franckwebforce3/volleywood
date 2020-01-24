@@ -48,8 +48,6 @@ INSERT INTO `photo` (`id`, `produit_id`, `nom`, `description`) VALUES
 (10, 8, 'portecle.png', 'Porte-clé du club'),
 (11, 9, 'tee-shirtblanc.png', 'Tee-shirt blanc'),
 (12, 10, 'tee-shirtnoir.png', 'Tee-shirt noir'),
-(13, 1, 'casquettenoir.png', 'casquette noire aussi'),
-(14, 1, 'tee-shirtnoir.png', 'casquette noire aussi 2'),
 (16, 11, 'debardeurfemmenoir.png', 'sdsdsd');
 
 -- --------------------------------------------------------
