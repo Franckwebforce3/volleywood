@@ -9,7 +9,8 @@
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `pseudo`, `avatar`, `ville`, `cp`, `adresse`, `cle_activation`) VALUES
-(1, 'pascal.juillan@gmail.com', '[\"ROLE_USER\", \"ROLE_ADMIN\"]', '$argon2id$v=19$m=65536,t=4,p=1$SFJUUTBJYWNzTDBGSWQzUg$8HFOqqh+5OPhZdZ98wHKQdrPHw2qLvLZY6RISDe6Huw', 'toto13', 'avatar.jpg', 'Châteauneuf-de-Gadagne', '84470', '174 Rue du baron le Roy', '1234');
+(1, 'pascal.juillan@gmail.com', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$SFJUUTBJYWNzTDBGSWQzUg$8HFOqqh+5OPhZdZ98wHKQdrPHw2qLvLZY6RISDe6Huw', 'Pascal', 'avatar.jpg', 'Marseille', '13012', '', '1234'),
+(2, 'volley.wood13@gmail.com', '[\"ROLE_USER\", \"ROLE_ADMIN\"]', '$argon2id$v=19$m=65536,t=4,p=1$SFJUUTBJYWNzTDBGSWQzUg$8HFOqqh+5OPhZdZ98wHKQdrPHw2qLvLZY6RISDe6Huw', 'VolleyWood', 'avatar.jpg', 'Marseille', '13012', '', '1234');
 
 -- --------------------------------------------------------
 
