@@ -5,9 +5,6 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
-use App\Repository\UserRepository;
-use App\Repository\ArticleRepository;
-use App\Repository\CommentaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,22 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class ArticleController extends AbstractController
 {
-    // /**
-    //  * @Route("/admin", name="article_index", methods={"GET"})
-    //  */
-    // public function index(ArticleRepository $articleRepository, UserRepository $userRepository, CommentaireRepository $commentaireRepository): Response
-    // {   
-    //     $articles = $articleRepository->findAll();
-    //     $users = $userRepository->findAll();
-    //     $commentaires = $commentaireRepository->findAll();
-
-    //     return $this->render('article/index.html.twig', [
-    //         'articles' => $articles,
-    //         'users'    => $users,
-    //         'commentaires' => $commentaires,
-    //     ]);
-    // }
-
     /**
      * @Route("/admin/new", name="article_new", methods={"GET","POST"})
      */

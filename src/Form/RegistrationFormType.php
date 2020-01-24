@@ -3,17 +3,12 @@
 namespace App\Form;
 
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
+
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 // POUR AVOIR UN INPUT type="file"
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -32,26 +27,12 @@ class RegistrationFormType extends AbstractType
                 ])
             ->add('email', EmailType::class, [
             ])
-            
-// ...
-
-
-            ->add('password', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'label' => 'Mot de passe',
-                //'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Entrez votre mot de passe',
-                    ]),
-                ],
-            ])
-            ->add('confirmPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'label' => 'Confirmer mot de passe',
-                //'mapped' => false,
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les champs des mots de passes doivent correspondre.',
+                'required' => true,
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmer mot de passe'],
             ])
             ->add('avatar', FileType::class, [
                 'constraints' => [
@@ -74,14 +55,6 @@ class RegistrationFormType extends AbstractType
 
             ->add('adresse', TextType::class, [
             ])
-            // ->add('agreeTerms', CheckboxType::class, [
-            //     'mapped' => false,
-            //     'constraints' => [
-            //         new IsTrue([
-            //             'message' => 'You should agree to our terms.',
-            //         ]),
-            //     ],
-            // ])
         ;
     }
 

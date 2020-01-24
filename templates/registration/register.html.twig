@@ -48,10 +48,11 @@
                                             {{ form_row(registrationForm.email) }}
                                         </div>
                                         <div class="col-12 col-md-6">
-                                            {{ form_row(registrationForm.password) }}
+                                            {{ form_row(registrationForm.password.first) }}
+                                            
                                         </div>
                                         <div class="col-12 col-md-6">
-                                            {{ form_row(registrationForm.confirmPassword) }}
+                                            {{ form_row(registrationForm.password.second) }}
                                         </div>
                                         <div class="col-12">
                                             {{ form_row(registrationForm.avatar) }}
