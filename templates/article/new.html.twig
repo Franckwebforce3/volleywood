@@ -33,13 +33,16 @@
 
                         <div class="alime-contact-form mt-50">
                             {{ include('article/_form.html.twig') }}
+                            <button class="col-6">
+                                <a href="{{ path('admin') }}">Retour à la liste</a>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+    "col-6"
 
-    <a href="{{ path('admin') }}">Retour à la liste</a>
+    
 {% endblock %}

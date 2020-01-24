@@ -47,8 +47,6 @@ class CommentaireController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($commentaire);
             $entityManager->flush();
-
-            return $this->redirectToRoute('commentaire_index');
         }
 
         return $this->render('commentaire/new.html.twig', [
@@ -78,8 +76,6 @@ class CommentaireController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('commentaire_index');
         }
 
         return $this->render('commentaire/edit.html.twig', [
@@ -99,6 +95,6 @@ class CommentaireController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('commentaire_index');
+        return $this->redirectToRoute('admin');
     }
 }

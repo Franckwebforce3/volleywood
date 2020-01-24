@@ -18,6 +18,10 @@ h5{
 .adminIndex{
     display: block;
 }
+/* article show */
+.textShow{
+    overflow-wrap: anywhere;
+}
 
 /* Pascal : Ajouter une icone à coté de Bonjour */
 .icon::before {
@@ -29,10 +33,10 @@ h5{
     position: relative;
     left: -5px;
     top: 0;    
-  }
+}
 
-  .login::before {
+.login::before {
     font-family: "FontAwesome";
     font-weight: 900; 
     content: "\f007";
-  }
+}
