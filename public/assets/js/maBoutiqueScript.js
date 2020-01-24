@@ -5,11 +5,10 @@
 var btnAddCart              = document.querySelector(".addCart");
 var selectTaille            = document.getElementById("taille-select");
 var imgPrincipale           = document.querySelector(".imgPrincipale");
-// var imgSecondaireGlobal     = document.querySelectorAll(".imgSecondaire");
+
 // Page des produits :
 var btnAddCartGlobal        = document.querySelectorAll(".addCartAll");
 var quantiteSaisieProduit   = document.getElementById("nbProduit");
-
 
 var btnchargerProduit       = document.querySelectorAll(".chargerProduit");
 /**********************************************/
@@ -21,7 +20,7 @@ if (btnAddCartGlobal.length != 0)
 {
     btnAddCartGlobal.forEach(function(btnAddCartAll) {
         btnAddCartAll.addEventListener("click", function(event) {
-            console.log("click: "+event.target);
+            //console.log("click: "+event.target);
         });
     });  
 }
@@ -68,9 +67,9 @@ if (quantiteSaisieProduit != null)
 /*
  * Click sur le bouton addCart :
  */
-if (btnAddCart != null)
-{
-    console.log("ok");
+//if (btnAddCart != null)
+//{
+    //console.log("ok");
     // btnAddCart.onclick = function() { 
     //     // alert('hello'); 
     //     // btnAddCart.setAttribute("onclick", "window.location.href = '{{ path('cart_add', {'id': produit.id}) }}';");
@@ -123,7 +122,7 @@ if (btnAddCart != null)
         //     console.log(url);
         // }
     // });
-}
+//}
 
 /*
  * Gestion du clic sur les images secondaires :
@@ -151,7 +150,7 @@ if (btnchargerProduit.length != 0)
             var nbElement = document.querySelectorAll(".buttonAffic");
             // console.log(nbElement);
             nbElement.forEach(function(nbElementAll) {
-                console.log(nbElementAll);
+                //console.log(nbElementAll);
                 nbElementAll.classList.remove("buttonAffic");
                 nbElementAll.classList.add("buttonCachee");
             });

@@ -17,7 +17,8 @@ html{
 }
 
 body {
-	font-family: verdana;
+    /* font-family: verdana; */
+    font-family: "Poppins", sans-serif;
 	margin: 0;
 	color: var(--p-color);
     line-height: 1.8;

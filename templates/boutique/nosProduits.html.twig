@@ -35,14 +35,14 @@
     </div>
 
     <!-- Header Area Start -->
-    <header class="header-area">
+    {# <header class="header-area">
 
                         </div>
                     </nav>
                 </div>
             </div>
         </div>
-    </header>
+    </header> #}
     <!-- Header Area End -->
 
     <!-- Breadcrumb Area Start -->
@@ -99,9 +99,9 @@
                         {% if produit.magasin.quantite == 0 %} 
                             <i class="fas fa-shopping-basket"></i> Mettre au panier
                         {% else %}
-                            <a href="{{ path('cart_add', {'id': produit.id}) }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+                            {# <a href="{{ path('cart_add', {'id': produit.id}) }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a> #}
                             
-                            {# <a href="#" data-id="{{ produit.id }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a> #}
+                            <a href="#" data-id="{{ produit.id }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
                         {% endif %}      
                                           
                         <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="far fa-eye"></i></a>
@@ -150,11 +150,12 @@
                         <p class="prix">{{ produit.prixVente }} €</p> 
 
                         <p class="panierClickFooter">
-                            <a href="{{ path('cart_add', {'id': produit.id}) }}"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+                            {# <a href="{{ path('cart_add', {'id': produit.id}) }}"><i class="fas fa-shopping-basket"></i> Mettre au panier</a> #}
+                            <a href="#" data-id="{{ produit.id }}" class="addCartAll"><i class="fas fa-shopping-basket"></i> Mettre au panier</a>
+
                             {# <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a> #}
                             <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="far fa-eye"></i></a>
                         </p>
-                    </p>
                     </figcaption>
                 </figure>
             </li>
@@ -178,7 +179,8 @@
                 {% if produit.magasin.quantite == 0 %} 
                     <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee" disabled="true"><span class="psuedo-text"><i class="fas fa-ban"></i> Stock indisponible</span></button>
                 {% else %}
-                    <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee" data-id="{{ produit.id }}" onclick="window.location.href = '{{ path('cart_add', {'id': produit.id}) }}';"><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button>
+                    {# <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee" data-id="{{ produit.id }}" onclick="window.location.href = '{{ path('cart_add', {'id': produit.id}) }}';"><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button> #}
+                    <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee addCartAll" data-id="{{ produit.id }}"><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button>
                 {% endif %}
             {% endfor %}
         </div>
@@ -191,13 +193,13 @@
 /*
  * Gestion de l'ajax pour afficher 1 produit :
  */
-/* var btnaddProduit = document.querySelectorAll(".addCartAll");
+var btnaddProduit = document.querySelectorAll(".addCartAll");
 if (btnaddProduit.length != 0)
 {
     btnaddProduit.forEach(function(btnaddProduitAll) {
         btnaddProduitAll.addEventListener("click", function(){
             var id = btnaddProduitAll.getAttribute("data-id");
-            console.log("tu as cliqué fdsf : "+ id);
+            //console.log("tu as cliqué fdsf : "+ id);
 
             var formData = new FormData();
             // ON PEUT REMPLIR LE FORM DATA EN JS
@@ -213,12 +215,16 @@ if (btnaddProduit.length != 0)
                 return response.json();
             })
             .then(function(objetResponse){
-
-                //objetResponse.totalNbItems
+                var nbProdPanier = document.querySelector(".nbProdPanier");
+                var boutonCartId = document.getElementById("boutonCart"+id);
+                //console.log(nbProdPanier);
+                //console.log(objetResponse.totalNbItems);
+                nbProdPanier.innerHTML = '('+ objetResponse.totalNbItems +')';
+                boutonCartId.innerHTML = '<span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouté +1</span>';
             });
         });
     });
-} */
+}
 
 /*
  * Gestion de l'ajax pour afficher 1 produit :
@@ -229,7 +235,7 @@ if (btnchargerProduit.length != 0)
     btnchargerProduit.forEach(function(btnchargerProduitAll) {
         btnchargerProduitAll.addEventListener("click", function(){
             var id = btnchargerProduitAll.getAttribute("data-id");
-            console.log("tu as cliqué : "+ id);
+            //console.log("tu as cliqué : "+ id);
 
             var formData = new FormData();
             // ON PEUT REMPLIR LE FORM DATA EN JS
@@ -248,6 +254,7 @@ if (btnchargerProduit.length != 0)
                 //console.log(objetResponse);
                 if (objetResponse.produitPhotos) {
                     var baliseListeProduit = document.querySelector(".listeAnnonceAjax");
+
                     // reset de la liste :
                     baliseListeProduit.innerHTML = '';
 
@@ -321,6 +328,10 @@ if (btnchargerProduit.length != 0)
                     `;
 
                     baliseListeProduit.innerHTML += (htmlArticle);
+
+                    /* màj du contenu du bouton */
+                    var btnEnCours = document.getElementById("boutonCart"+objetResponse.produitPhotos[0].id);
+                    btnEnCours.innerHTML = '<span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span>';
                 }
             });    
         });
