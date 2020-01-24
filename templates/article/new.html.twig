@@ -30,16 +30,17 @@
                         <h4 class="mb-30"></h4>
                         <ol>
                             <!-- Leave A Reply -->
-
                         <div class="alime-contact-form mt-50">
                             {{ include('article/_form.html.twig') }}
+                        </div>
+                        <div>
+                            <a class="btn alime-btn btn-2 mt-15" href="{{ path('admin') }}">Retour aux articles</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 
-    <a href="{{ path('admin') }}">Retour à la liste</a>
+    
 {% endblock %}
