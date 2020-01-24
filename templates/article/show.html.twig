@@ -23,17 +23,13 @@
     </div>
 </section>
 <!-- Breadcrumb Area End -->
-
-<!-- Blog Details Area Start -->
 <div class="alime--blog-area section-padding-80">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-10">
                 <!-- Blog Details Text -->
                 <div class="blog-details-text">
-                    <p>{{ article.description }}</p>
-                    
-
+                    <p class="textShow">{{ article.description }}</p>
                     <div class="my-5">
                         <div class="row">
                             <div class="col-12 col-lg-8">
@@ -53,38 +49,41 @@
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4">
-                                <img class="mb-10" src="{{ asset('assets/img/article/'~article.photo4) }}" alt="Photo4 de l'article">
+                                <img class="mb-10" src="{{ asset('assets/img/article/'~article.photo4) }}"
+                                    alt="Photo4 de l'article">
                             </div>
                         </div>
                     </div>
-                </div>
-                <p>{{ article.categorie }}</p>
-                <!-- Post Author Area -->
-                <div class="post-author-area mt-50 d-flex align-items-center justify-content-between">
-                    <ul class="popular-tags">
-                        <li><a class="badges-btn">BEACH-VOLLEY</a></li>
-                        <li><a class="badges-btn">MARSEILLE</a></li>
-                        <li><a class="badges-btn">VOLLEYBALL</a></li>
-                    </ul>
 
-                    <!-- Share Info -->
-                    <div class="post-social-info d-flex align-items-center">
-                        <p>Nous suivre :</p>
-                        <a target="_blank" href="https://www.facebook.com/VolleywoodMarseille/"><i class="ti-facebook"
-                                aria-hidden="true"></i></a>
-                        <a target="_blank" href="https://twitter.com/goukinou2"><i class="ti-twitter-alt"
-                                aria-hidden="true"></i></a>
-                        <a target="_blank" href="https://www.youtube.com/user/goukinou2"><i class="fab fa-youtube"
-                                aria-hidden="true"></i></a>
-                        <a target="_blank" href="https://www.instagram.com/frankgouki/"><i class="fab fa-instagram"
-                                aria-hidden="true"></i></a>
+                    <p class="textShow">{{ article.categorie }}</p>
+
+
+                    <!-- Post Author Area -->
+                    <div class="post-author-area mt-50 d-flex align-items-center justify-content-between">
+                        <ul class="popular-tags">
+                            <li><a class="badges-btn">BEACH-VOLLEY</a></li>
+                            <li><a class="badges-btn">MARSEILLE</a></li>
+                            <li><a class="badges-btn">VOLLEYBALL</a></li>
+                        </ul>
+
+                        <!-- Share Info -->
+                        <div class="post-social-info d-flex align-items-center">
+                            <p>Nous suivre :</p>
+                            <a target="_blank" href="https://www.facebook.com/VolleywoodMarseille/"><i
+                                    class="ti-facebook" aria-hidden="true"></i></a>
+                            <a target="_blank" href="https://twitter.com/goukinou2"><i class="ti-twitter-alt"
+                                    aria-hidden="true"></i></a>
+                            <a target="_blank" href="https://www.youtube.com/user/goukinou2"><i class="fab fa-youtube"
+                                    aria-hidden="true"></i></a>
+                            <a target="_blank" href="https://www.instagram.com/frankgouki/"><i class="fab fa-instagram"
+                                    aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Blog Details Area End -->
+    <!-- Blog Details Area End -->
     <div class="comment-area section-padding-80">
         <div class="container">
             <div class="row justify-content-center">
@@ -100,11 +99,13 @@
                                 <div class="comment-content d-flex">
                                     <!-- Comment Author -->
                                     <div class="comment-author">
-                                        <img src="{{ asset('assets/upload/'~ commentaire.users.avatar) }}" alt="image d'article" alt="auteur">
+                                        <img src="{{ asset('assets/upload/'~ commentaire.users.avatar) }}"
+                                            alt="image d'article">
                                     </div>
                                     <!-- Comment Meta -->
                                     <div class="w-50 comment-meta">
-                                        <a href="#" class="post-date">{{commentaire.datePublication | date('Y-m-d')}}</a>
+                                        <a href="#"
+                                            class="post-date">{{commentaire.datePublication | date('Y-m-d')}}</a>
                                         <h5>{{ commentaire.users.pseudo }}</h5>
                                         <p>{{ commentaire.message }}</p>
                                         <a href="#" class="like">J'aime</a>
@@ -114,47 +115,49 @@
                             </li>
                         </ol>
                         {% else %}
-                            <tr>
-                                <td colspan="6">no records found</td>
-                            </tr>
+                        <tr>
+                            <td colspan="6">Aucun commentaire</td>
+                        </tr>
                         {% endfor %}
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
-    
-<!-- Comment Area Start -->
 
-<div class="comment-area section-padding">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-9">
-                <!-- Comments Area -->
-                <div class="comment_area clearfix">
-                    <h4 class="mb-30"></h4>
-                    <ol>
-                        <!-- Leave A Reply -->
-                        <div class="alime-contact-form mt-50">
-                            <h4 class="mb-30">Rédigez votre commentaire</h4>
-                            {{ form_start(commentForm) }}
-                            <div class="row">
-                                <div class="col-12 ">
-                                    {{ form_row(commentForm.message) }}
+    <!-- Comment Area Start -->
+
+    <div class="comment-area section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <!-- Comments Area -->
+                    <div class="comment_area clearfix">
+                        <h4 class="mb-30"></h4>
+                        <ol>
+                            <!-- Leave A Reply -->
+                            <div class="alime-contact-form mt-50">
+                                <h4 class="mb-30">Rédigez votre commentaire</h4>
+                                {{ form_start(commentForm) }}
+                                <div class="row">
+                                    <div class="col-12 ">
+                                        {{ form_row(commentForm.message) }}
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        {{ form_row(commentForm.idParent) }}
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        {{ form_widget(commentForm.users, { 'attr': {'class': 'hidden-row'} }) }}
+                                    </div>
+                                    <div class="col-12">
+                                        <button
+                                            class="btn alime-btn btn-2 mt-15">{{ button_label|default("Envoyer") }}</button>
+                                    </div>
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    {{ form_row(commentForm.idParent) }}
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    {{ form_widget(commentForm.users, { 'attr': {'class': 'hidden-row'} }) }}
-                                </div>
-                                <div class="col-12">
-                                    <button
-                                        class="btn alime-btn btn-2 mt-15">{{ button_label|default("Envoyer") }}</button>
-                                </div>
+                                {{ form_end(commentForm) }}
                             </div>
-                            {{ form_end(commentForm) }}
-                        </div>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>

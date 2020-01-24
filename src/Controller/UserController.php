@@ -53,7 +53,7 @@ class UserController extends AbstractController
 
             // IL FAUT ENVOYER UN EMAIL
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('public');
         }
 
         return $this->render('user/new.html.twig', [
