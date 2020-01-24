@@ -35,14 +35,14 @@
     </div>
 
     <!-- Header Area Start -->
-    <header class="header-area">
+    {# <header class="header-area">
 
                         </div>
                     </nav>
                 </div>
             </div>
         </div>
-    </header>
+    </header> #}
     <!-- Header Area End -->
 
     <!-- Breadcrumb Area Start -->
@@ -154,7 +154,6 @@
                             {# <a href="{{ path('produitId', {'id': produit.id}) }}"><i class="far fa-eye"></i></a> #}
                             <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="far fa-eye"></i></a>
                         </p>
-                    </p>
                     </figcaption>
                 </figure>
             </li>
@@ -229,7 +228,7 @@ if (btnchargerProduit.length != 0)
     btnchargerProduit.forEach(function(btnchargerProduitAll) {
         btnchargerProduitAll.addEventListener("click", function(){
             var id = btnchargerProduitAll.getAttribute("data-id");
-            console.log("tu as cliqué : "+ id);
+            //console.log("tu as cliqué : "+ id);
 
             var formData = new FormData();
             // ON PEUT REMPLIR LE FORM DATA EN JS

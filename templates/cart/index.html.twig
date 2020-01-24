@@ -16,7 +16,7 @@
     <!-- /Preloader -->
 
     <!-- Top Search Form Area -->
-    <div class="top-search-area">
+    {# <div class="top-search-area">
         <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -32,17 +32,17 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> #}
 
     <!-- Header Area Start -->
-    <header class="header-area">
+    {# <header class="header-area">
 
                         </div>
                     </nav>
                 </div>
             </div>
         </div>
-    </header>
+    </header> #}
     <!-- Header Area End -->
 
     <!-- Breadcrumb Area Start -->
@@ -134,9 +134,11 @@
                                     {% endif %}
                                 </td>
 
-                                <td class="colQuantite"> <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
+                                <td class="colQuantite"> 
+                                    <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
                                     <span>{{ item.quantity }}</span>
-                                <a href="{{ path('cart_increment', {'id': item.produit.id}) }}" class="plusQuantity">+</a></td>
+                                    <a href="{{ path('cart_increment', {'id': item.produit.id}) }}" class="plusQuantity">+</a>
+                                </td>
                                 <td>{{ item.produit.prixVente * item.quantity }}  €</td>
                                 <td>
                                     <a href="{{ path('cart_delete', {'id': item.produit.id}) }}" class="btn btn-danger">
@@ -144,7 +146,6 @@
                                     </a>
                                 </td>
                             </tr>
-                        </tr>
                         {% endfor %}
                     </tbody>
                     <tfoot>

@@ -21,7 +21,7 @@ if (btnAddCartGlobal.length != 0)
 {
     btnAddCartGlobal.forEach(function(btnAddCartAll) {
         btnAddCartAll.addEventListener("click", function(event) {
-            console.log("click: "+event.target);
+            //console.log("click: "+event.target);
         });
     });  
 }
@@ -70,7 +70,7 @@ if (quantiteSaisieProduit != null)
  */
 if (btnAddCart != null)
 {
-    console.log("ok");
+    //console.log("ok");
     // btnAddCart.onclick = function() { 
     //     // alert('hello'); 
     //     // btnAddCart.setAttribute("onclick", "window.location.href = '{{ path('cart_add', {'id': produit.id}) }}';");
@@ -151,7 +151,7 @@ if (btnchargerProduit.length != 0)
             var nbElement = document.querySelectorAll(".buttonAffic");
             // console.log(nbElement);
             nbElement.forEach(function(nbElementAll) {
-                console.log(nbElementAll);
+                //console.log(nbElementAll);
                 nbElementAll.classList.remove("buttonAffic");
                 nbElementAll.classList.add("buttonCachee");
             });
