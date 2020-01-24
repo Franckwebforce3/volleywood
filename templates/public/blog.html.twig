@@ -80,7 +80,7 @@
                                         {% for commentaire in article.commentaires %}
                                             <a href="#">{{ article.commentaires | length}} Commentaires</a>
                                         {% else %}
-                                            <a>Quantité commentaires non trouvé</a>
+                                            <a>Aucun commentaire</a>
                                         {% endfor %}
                                     </div>
                                     <a href="{{ path('article_show', {'id': article.id}) }}" class="post-title">{{ article.titre }}</a>
