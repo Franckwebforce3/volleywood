@@ -12,8 +12,11 @@ h5{
     text-align: center;
     margin: 20px 0 20px 0;
 }
+
 #newAdminArticle{
-    margin: 20px 0 20px 45.2%;
+    display:block;
+    width:200px;
+    margin:0 auto;
 }
 .adminIndex{
     display: block;
