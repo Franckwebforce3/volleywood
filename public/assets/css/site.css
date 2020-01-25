@@ -12,16 +12,16 @@ h5{
     text-align: center;
     margin: 20px 0 20px 0;
 }
-
+/* bouton ajout d'article */
 #newAdminArticle{
     display:block;
-    width:200px;
+    width:21%;
     margin:0 auto;
 }
 .adminIndex{
     display: block;
 }
-/* article show */
+/*p admin index articles texte cut */
 .textShow{
     overflow-wrap: anywhere;
 }
