@@ -356,7 +356,7 @@ ul.listeProduits figure .prix {
 /**********************************************/
 /* Page Modale */
 .titreProduitModal h2 {
-    text-align: left;
+    text-align: center;
     font-size: 1.4em;
 }
 .titreProduitModal h3.prix {
@@ -1005,10 +1005,22 @@ div.adminActions a.envelope:hover {
 }
 
 
-.containerProduits div.sticky {
+.containerProduits div.stickyMobile {
     display: none;
-  }
+}
 
+.containerProduits div.stickyLG {
+    display: inline;
+    position: fixed;
+    top: 150px;
+    z-index: 1100;
+    right: 5px;
+}
+
+.close {
+    text-align: right;
+    margin-right: 5px;;
+}
 /**************************************************************************
 **************************************************************************
 * FIN Gestion admin *
@@ -1095,12 +1107,24 @@ div.adminActions a.envelope:hover {
     .containerProduits span.animPanier {
         display: none;
     }
-    .containerProduits div.sticky {
+    .containerProduits div.stickyMobile {
         display: inline;
-        position: -webkit-sticky;
-        position: sticky;
-        text-align: right;
+        position: fixed;
         top: 150px;
+        z-index: 1100;
+        right: 5px;
+    }
+
+    .containerProduits div.stickyLG {
+        display: none;
+    }
+
+    .fixed-top {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1100;
     }
 }
 /**************************************************************************

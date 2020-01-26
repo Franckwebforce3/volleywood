@@ -57,15 +57,20 @@
 <section class="container">
     <section class="containerProduits">
 
-        <div class="sticky">
+        <div class="stickyMobile">
             <p><span class="animPanierMobile">
             <a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> <span class="nbProdPanier">({{ totalNbItems }})</span></a>
             </span></p>
         </div>
 
+        <div class="stickyLG">
+            <p><span class="animPanierMobile">
+            <a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a>
+            </span></p>
+        </div>
 
         {# L'admin est connecté ? #}
-        {% if app.user %}
+        {# {% if app.user %}
             {% if 'ROLE_ADMIN' in app.user.roles %}
                 <h1>
                     <span class="adminPanier"><a href="{{ path('commande_index') }}" title="Gérer les commandes et la boutique"><i class="fas fa-tools"></i></a></span>
@@ -76,6 +81,19 @@
             {% endif %}
         {% else %}
             <h1>Nos produits <span class="animPanier"><a href="{{ path('cart_index') }}"><i class="fas fa-shopping-basket"></i> Panier <span class="nbProdPanier">({{ totalNbItems }})</span></a></span></h1>
+        {% endif %} #}
+
+        {% if app.user %}
+            {% if 'ROLE_ADMIN' in app.user.roles %}
+                <h1>
+                    <span class="adminPanier"><a href="{{ path('commande_index') }}" title="Gérer les commandes et la boutique"><i class="fas fa-tools"></i></a></span>
+                    Nos produits
+                </h1>
+            {% else %}
+                <h1>Nos produits</h1>
+            {% endif %}
+        {% else %}
+            <h1>Nos produits</h1>
         {% endif %}
 
         <ul class="listeProduits">
@@ -183,7 +201,7 @@
                     {% if produit.taille %}
                         <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee tailleView" data-id="{{ produit.id }}" data-toggle="modal" data-target="#idLargeModal_Taille"><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button>
                     {% else %}  
-                        <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee addCartAll" data-id="{{ produit.id }}"><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button>
+                        <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee addCartAll" data-id="{{ produit.id }}" data-taille=""><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button>
                     {% endif %}  
                 
                 {% endif %}
@@ -205,7 +223,7 @@
             {% for produit in produits %}
                 {% if produit.taille %}
                     <div id="modalTailleIdProduit{{ produit.id }}" class="TailleInfo TailleInfoCachee">
-                        <p>Taille disponible :</p>
+                        <p>Choisissez la taille à ajouter au panier</p>
                         {% set tailleDispoTAB = produit.taille|split(';') %}
                         <p>
                         {% for tailleDispo in tailleDispoTAB %}
@@ -285,6 +303,8 @@ if (btnaddProduit.length != 0)
                     nbProdPanierAll.innerHTML = '('+ objetResponse.totalNbItems +')';
                 });
                 boutonCartId.innerHTML = '<span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouté +1</span>';
+
+                $('#idLargeModal_Taille').modal('hide');
             });
         });
     });
