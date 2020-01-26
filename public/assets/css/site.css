@@ -12,13 +12,16 @@ h5{
     text-align: center;
     margin: 20px 0 20px 0;
 }
+/* bouton ajout d'article */
 #newAdminArticle{
-    margin: 20px 0 20px 45.2%;
+    display:block;
+    width:21%;
+    margin:0 auto;
 }
 .adminIndex{
     display: block;
 }
-/* article show */
+/*p admin index articles texte cut */
 .textShow{
     overflow-wrap: anywhere;
 }
@@ -39,4 +42,12 @@ h5{
     font-family: "FontAwesome";
     font-weight: 900; 
     content: "\f007";
+}
+
+.btn.ti-close{
+    width: 5%;
+    color: black;
+}
+.commentDelete{
+    text-align: right;
 }

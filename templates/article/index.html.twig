@@ -106,10 +106,9 @@
         {% endfor %}
         </tbody>
     </table>
-    <button id="newAdminArticle" class="btn alime-btn btn-2 mt-15">
-        <a href="{{ path('article_new') }}">Nouvel article</a>
-    </button>
-    <h5>Il y a {{ commentaires | length}} Commentaire(s)</h5>
+    <a id="newAdminArticle" class="adminIndex btn alime-btn btn-2 mt-15" href="{{ path('article_new') }}">Nouvel article</a>
+
+    <h5>Il y a {{ commentaires | length }} Commentaire(s)</h5>
     <table class="table">
         <thead>
             <tr>

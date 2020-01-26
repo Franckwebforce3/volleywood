@@ -7,7 +7,6 @@ Template Author URL: http://colorlib.com
 Version: 1.0.0
 Last Update: Feb 22, 2019
 
-
 [Tables of CSS Content]
 
 + body
@@ -1279,7 +1278,10 @@ input:required {
           max-width: 40px;
           margin-right: 20px; } }
       .comment_area .comment-content .comment-author img {
-        border-radius: 50%; }
+        border-radius: 50%; 
+        object-fit: cover;
+        object-position: 50% 50%;
+      }
     .comment_area .comment-content .comment-meta .post-date {
       font-size: 12px;
       text-transform: uppercase;
@@ -1651,7 +1653,6 @@ input:required {
     border-radius: 10px; }
 
 /*# sourceMappingURL=style.css.map */
-
 
 @font-face {
 	font-family: 'ElegantIcons';
@@ -2774,7 +2775,6 @@ you can use the generic selector below, but it's slower:
 	content: "\e0e6";
 }
 
-
 	.glyph {
 		float: left;
 		text-align: center;
@@ -2810,5 +2810,3 @@ text-shadow: none;
 	.glyph .fs1 {
 		font-size: 2em;
 	}
-
-	
