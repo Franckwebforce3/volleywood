@@ -68,13 +68,15 @@ CODESQL;
     public function ajaxAjouterProduitId(Request $request, CartService $cartService)
     {
         // RECUPERER L'INFO nomTable ENVOYEE DANS FormData
-        $idProduit = $request->get("idProduit");
+        $idProduit  = $request->get("idProduit");
+        $taille     = $request->get("taille");
         
-        $cartService->add($idProduit);
+        //$cartService->add($idProduit);
+        $cartService->addWithTaille($idProduit, $taille);
         $totalNbItems = $cartService->getTotalItemCart();
 
         $tabAsso                    = [];
-        $tabAsso["totalNbItems"]   = $totalNbItems;
+        $tabAsso["totalNbItems"]    = $totalNbItems;
         $response                   = new JsonResponse($tabAsso);
 
         return $response;
