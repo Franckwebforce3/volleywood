@@ -105,6 +105,7 @@
                                     <!-- Comment Meta -->
                                     <div class="w-50 comment-meta">
                                         <a href="#" class="post-date">{{commentaire.datePublication | date('Y-m-d')}}</a>
+                                        {{ include('commentaire/_delete_form.html.twig') }}
                                         <h5>{{ commentaire.users.pseudo }}</h5>
                                         <p>{{ commentaire.message }}</p>
                                         <a href="#" class="like">J'aime</a>
