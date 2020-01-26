@@ -41,7 +41,7 @@
         <p class="titrePanier">
             <a href="{{ path('nosProduits') }}" class="retour"><i class="fas fa-undo"></i> Retour</a> 
             Votre panier
-            <span class="montantTotal"><span class="textepetit">Total :</span> {{ total }} €</span>
+            <span class="montantTotal"><span class="textepetit">Sous-total :</span> {{ total }} €</span>
         </p>
 
         {# {% dump(items) %} #}
@@ -176,7 +176,7 @@
                             {% endif %}
 
                                 {% if item.produit.taille %}
-                                    <label for="taille-select">Taille choisie :</label>
+                                    <label for="taille-select"></label>
                                     {% set tailleDispoTAB = item.produit.taille|split(';') %}
 
                                     {% for tailleDispo in tailleDispoTAB %}
@@ -222,7 +222,7 @@
             <p class="titrePanier">
                 <a href="{{ path('nosProduits') }}" class="retour"><i class="fas fa-undo"></i> Retour</a> 
                 Votre panier
-                <span class="montantTotal"><span class="textepetit">Total :</span> {{ total }} €</span>
+                <span class="montantTotal"><span class="textepetit">Sous-total :</span> {{ total }} €</span>
             </p>
 
             {% if not app.user %}
