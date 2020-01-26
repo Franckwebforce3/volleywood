@@ -255,11 +255,13 @@ class CartService {
     }
 
     public function getTotalItemCart() : int {
-        $panier = $this->session->get('panier', []);
-        $taillePanier = $this->session->get('taille', []);
+        $panier         = $this->session->get('panier', []);
+
+        //$taillePanier   = $this->session->get('taille', []);
         $nbr = 0;
 
-        foreach($panier as $id => $quantity) {
+        /* Avant */
+/*        foreach($panier as $id => $quantity) {
             $trouve = false;
 
             // Rechercher l'id dans les tailles sauvegardées :
@@ -279,6 +281,12 @@ class CartService {
             if ($trouve == false) {
                 $nbr++;
             }
+        }
+*/
+
+        /* Apres */
+        foreach($panier as $id => $quantity) {
+            $nbr += intval($quantity);
         }
 
         return $nbr;
