@@ -95,6 +95,6 @@ class CommentaireController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('admin');
+        return $this->redirectToRoute('public');
     }
 }
