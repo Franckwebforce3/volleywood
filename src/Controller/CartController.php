@@ -37,7 +37,6 @@ class CartController extends AbstractController
      */
     public function add($id, CartService $cartService)
     {
-        //dump($id);
         $cartService->add($id);
         
         return $this->redirectToRoute("nosProduits");
@@ -204,6 +203,8 @@ class CartController extends AbstractController
 
         $sentEmail = $mailer->send($email);
         
+        $statut = $cartService->panierReservee();
+
         return $this->redirectToRoute("nosProduits");
     }   
 }

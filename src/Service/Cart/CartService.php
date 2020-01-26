@@ -17,8 +17,9 @@ class CartService {
 
     public function add($id) 
     {
-        $idtemp = intval($id);
-        $panier = $this->session->get('panier', []);
+        $idtemp         = intval($id);
+        $panier         = $this->session->get('panier', []);
+        $panierReservee = $this->session->get('panierReservee', []);
 
         if( !empty($panier[$idtemp]) ) {
             $panier[$idtemp]++;
@@ -27,6 +28,9 @@ class CartService {
             $panier[$idtemp] = 1;
         }
         
+        $panierReservee[0] = '';
+
+        $this->session->set('panierReservee', $panierReservee);
         $this->session->set('panier', $panier);
     }
 
@@ -35,6 +39,7 @@ class CartService {
         $idtemp         = intval($id);
         $panier         = $this->session->get('panier', []);
         $panierTaille   = $this->session->get('taille', []);
+        $panierReservee = $this->session->get('panierReservee', []);
 
         if( !empty($panier[$idtemp]) ) {
             $panier[$idtemp]++;
@@ -56,8 +61,11 @@ class CartService {
             }
         }
         
+        $panierReservee[0] = '';
+
         $this->session->set('panier', $panier);
         $this->session->set('taille', $panierTaille);
+        $this->session->set('panierReservee', $panierReservee);
     }
 
     public function tailleChange($id,  $taille) 
@@ -290,5 +298,24 @@ class CartService {
         }
 
         return $nbr;
+    }
+
+    public function panierReservee() {
+        $panierReservee = $this->session->get('panierReservee', []);
+
+        $panierReservee[0]= 'ok';
+
+        $this->session->set('panierReservee', $panierReservee);
+    }
+
+    public function panierReserveeAfficher() : string {
+        $panierReservee = $this->session->get('panierReservee', []);
+
+        if ( !empty($panierReservee[0]) ) {
+            return $panierReservee[0];
+        }
+        else {
+            return '';
+        }
     }
 }

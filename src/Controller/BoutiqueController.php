@@ -31,6 +31,7 @@ class BoutiqueController extends AbstractController
             'controller_name'   => 'BoutiqueController',
             'produits'          => $produits,
             'totalNbItems'      => $cartService->getTotalItemCart(),
+            'statut'            => $cartService->panierReserveeAfficher() ?? "",
         ]);
     }
 
