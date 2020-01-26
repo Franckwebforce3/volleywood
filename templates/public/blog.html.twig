@@ -77,11 +77,11 @@
                                 <div class="post-content">
                                     <div class="post-meta">
                                         <a href="#">{{ article.datePublication ? article.datePublication|date('Y-m-d') : '' }}</a>
-                                        {% for commentaire in article.commentaires %}
-                                            <a href="#">{{ article.commentaires | length}} Commentaires</a>
+                                        {% if article.commentaires %}
+                                            <a href="#">{{ article.commentaires | length}} Commentaire(s)</a>
                                         {% else %}
                                             <a>Aucun commentaire</a>
-                                        {% endfor %}
+                                        {% endif %}
                                     </div>
                                     <a href="{{ path('article_show', {'id': article.id}) }}" class="post-title">{{ article.titre }}</a>
                                 </div>
