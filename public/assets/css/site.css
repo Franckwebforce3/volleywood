@@ -43,3 +43,11 @@ h5{
     font-weight: 900; 
     content: "\f007";
 }
+
+.btn.ti-close{
+    width: 5%;
+    color: black;
+}
+.commentDelete{
+    text-align: right;
+}
