@@ -18,7 +18,6 @@ class CartService {
     public function add($id) 
     {
         $idtemp = intval($id);
-        //dump($id);
         $panier = $this->session->get('panier', []);
 
         if( !empty($panier[$idtemp]) ) {
@@ -29,6 +28,36 @@ class CartService {
         }
         
         $this->session->set('panier', $panier);
+    }
+
+    public function addWithTaille($id, $taille) 
+    {
+        $idtemp         = intval($id);
+        $panier         = $this->session->get('panier', []);
+        $panierTaille   = $this->session->get('taille', []);
+
+        if( !empty($panier[$idtemp]) ) {
+            $panier[$idtemp]++;
+
+            if ($taille != "") {
+                if( !empty($panierTaille[$idtemp."-".$taille]) ) {
+                    $panierTaille[$idtemp."-".$taille]++;
+                }
+                else {
+                    $panierTaille[$idtemp."-".$taille] = 1;
+                }
+            }
+        }
+        else {
+            $panier[$idtemp] = 1;
+
+            if ($taille != "") {
+                $panierTaille[$idtemp."-".$taille]  = 1;
+            }
+        }
+        
+        $this->session->set('panier', $panier);
+        $this->session->set('taille', $panierTaille);
     }
 
     public function tailleChange($id,  $taille) 
@@ -50,6 +79,17 @@ class CartService {
         
         $this->session->set('panier', $panier);
     }
+    public function incrementWithTaille($id, $taille) 
+    {
+        $panier         = $this->session->get('panier', []);
+        $panierTaille   = $this->session->get('taille', []);
+
+        $panierTaille[$id."-".$taille]++;
+        $panier[$id]++;
+        
+        $this->session->set('taille', $panierTaille);
+        $this->session->set('panier', $panier);
+    }
 
     public function remove($id) 
     {
@@ -66,10 +106,79 @@ class CartService {
         $this->session->set('panier', $panier);
         $this->session->set('taille', $panierTaille);
     }
+    public function removeWithTaille($id, $taille) 
+    {
+        $panier         = $this->session->get('panier', []);
+        $panierTaille   = $this->session->get('taille', []);
+  
+/*        if( intval($panier[$id]) > intval($panierTaille[$id."-".$taille]) ) {
+
+            $panier[$id] = intval($panier[$id]) - intval($panierTaille[$id."-".$taille]);
+
+            unset($panierTaille[$id."-".$taille]);
+    
+            if( $panier[$id] == 0 ) {
+                unset($panier[$id]);
+            }
+        }
+        // elseif ($panier[$id] = $panierTaille[$id."-".$taille] ) {
+        else {
+            $panier[$id]--;
+            $panierTaille[$id."-".$taille]--;
+
+            if( $panier[$id] <= 0 ) {
+                unset($panier[$id]);
+            }
+            if( $panierTaille[$id."-".$taille] <= 0 ) {
+                unset($panierTaille[$id."-".$taille]);
+            }
+        }
+*/
+
+        $panierTaille[$id."-".$taille]--;
+        $panier[$id]--;
+
+        if( $panier[$id] <= 0 ) {
+            unset($panier[$id]);
+        }
+        if( $panierTaille[$id."-".$taille] <= 0 ) {
+            unset($panierTaille[$id."-".$taille]);
+        }
+
+        $this->session->set('panier', $panier);
+        $this->session->set('taille', $panierTaille);
+    }
+
+    public function deleteWithTaille($id, $taille) 
+    {
+        $panier         = $this->session->get('panier', []);
+        $panierTaille   = $this->session->get('taille', []);
+
+        if ($taille == "") {
+            // Soustraire le nombre de produit par taille à la somme total de produit :
+
+            if( !empty($panier[$id]) ) {
+                unset($panier[$id]);
+                // unset($panierTaille[$id]);
+            }
+        }
+        else {
+            $panier[$id] = intval($panier[$id]) - intval($panierTaille[$id."-".$taille]);
+
+            unset($panierTaille[$id."-".$taille]);
+
+            if ($panier[$id] == 0) {
+                unset($panier[$id]);
+            }
+        }
+
+        $this->session->set('panier', $panier);
+        $this->session->set('taille', $panierTaille);
+    }
 
     public function delete($id) 
     {
-        $panier = $this->session->get('panier', []);
+        $panier         = $this->session->get('panier', []);
         $panierTaille   = $this->session->get('taille', []);
 
         if( !empty($panier[$id]) ) {
@@ -82,17 +191,54 @@ class CartService {
     }
 
     public function getFullCart() : array {
-        $panier = $this->session->get('panier', []);
-        $panierTaille = $this->session->get('taille', []);
+        $panier         = $this->session->get('panier', []);
+        $panierTaille   = $this->session->get('taille', []);
 
         $panierWithData = [];
 
-        foreach($panier as $id => $quantity) {
+        $trouve         = false;
+
+        // Avant
+/*        foreach($panier as $id => $quantity) {
             $panierWithData[] = [
                 'produit'  => $this->produitRepository->find($id),
                 'quantity' => $quantity,
                 'taille'   => $panierTaille[$id] ?? "",
             ];
+        } 
+*/
+        // apres
+        foreach($panier as $id => $quantity) {
+            $trouve = false;
+
+            // Rechercher l'id dans les tailles sauvegardées :
+            foreach($panierTaille as $id_taille => $quantityByTaille) {
+                // $pos = strpos($id_taille, strval($id));
+                $tab = explode("-", $id_taille);
+
+                // if ($pos !== false) {
+                if ($tab[0] == $id) {
+                    // $tab = explode("-", $id_taille);
+
+                    // Sauvegarder :
+                    $panierWithData[] = [
+                        'produit'  => $this->produitRepository->find($id),
+                        'quantity' => $quantityByTaille,
+                        'taille'   => $tab[1] ?? "",
+                    ];
+
+                    $trouve = true;
+                }
+            }
+
+            // Si aucune taille trouvée :
+            if ($trouve == false) {
+                $panierWithData[] = [
+                    'produit'  => $this->produitRepository->find($id),
+                    'quantity' => $quantity,
+                    'taille'   => $panierTaille[$id] ?? "",
+                ];
+            }
         }
 
         return $panierWithData;
@@ -110,6 +256,31 @@ class CartService {
 
     public function getTotalItemCart() : int {
         $panier = $this->session->get('panier', []);
-        return count($panier);
+        $taillePanier = $this->session->get('taille', []);
+        $nbr = 0;
+
+        foreach($panier as $id => $quantity) {
+            $trouve = false;
+
+            // Rechercher l'id dans les tailles sauvegardées :
+            foreach($taillePanier as $id_taille => $quantityByTaille) {
+                // $pos = strpos($id_taille, strval($id));
+                $tab = explode("-", $id_taille);
+
+                // if ($pos !== false) {
+                if ($tab[0] == $id) {
+                    $nbr++;
+
+                    $trouve = true;
+                }
+            }
+
+            // Si aucune taille trouvée :
+            if ($trouve == false) {
+                $nbr++;
+            }
+        }
+
+        return $nbr;
     }
 }

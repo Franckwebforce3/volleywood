@@ -15,36 +15,6 @@
     </div>
     <!-- /Preloader -->
 
-    <!-- Top Search Form Area -->
-    {# <div class="top-search-area">
-        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <!-- Close -->
-                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
-                        <!-- Form -->
-                        <form action="{{ path('public') }}" method="post">
-                            <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
-                            <button type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> #}
-
-    <!-- Header Area Start -->
-    {# <header class="header-area">
-
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header> #}
-    <!-- Header Area End -->
-
     <!-- Breadcrumb Area Start -->
     <section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({{ asset('assets/img/bg-img/38.jpg') }});">
         <div class="container h-100">
@@ -68,12 +38,13 @@
 
 <section class="container">
     <section class="containerPanier">
-        {# <aside class="retour">
-            <a href="{{ path('nosProduits') }}">Retour</a>
-        </aside> #}
+        <p class="titrePanier">
+            <a href="{{ path('nosProduits') }}" class="retour"><i class="fas fa-undo"></i> Retour</a> 
+            Votre panier
+            <span class="montantTotal"><span class="textepetit">Total :</span> {{ total }} €</span>
+        </p>
 
-        <p><a href="{{ path('nosProduits') }}" class="retour"><i class="fas fa-undo"></i> Retour</a> Votre panier</p>
-
+        {# {% dump(items) %} #}
         {% if items | length > 0 %}
 
             {% if not app.user %}
@@ -83,7 +54,7 @@
             {% endif %}
             
             <div class="table-responsive">
-                <table class="table">
+                <table class="table tableLS">
                     <thead class="thead-dark">
                         <tr>
                             <th>Produit</th>
@@ -114,36 +85,47 @@
 
                                     {% if item.produit.taille %}
 
-                                        <label for="taille-select">Quelle taille ?</label>
+                                        <label for="taille-select">Taille choisie :</label>
                                         {% set tailleDispoTAB = item.produit.taille|split(';') %}
 
-                                        {# <select name="tailles" id="taille-select" onchange="window.location.href = '{{ path('cart_tailleChange', {'id': item.produit.id, 'taille': '+this.value+'}) }}';">
-                                        <option value="choix">--Choix d'une taille--</option>
-                                            {% for tailleDispo in tailleDispoTAB %}
-                                            <option value="{{ tailleDispo }}">{{ tailleDispo }}</option>
-                                            {% endfor %}
-                                        </select> #}
-
                                         {% for tailleDispo in tailleDispoTAB %}
-                                            {% if item.taille == tailleDispo %}
+                                            {# {% if item.taille == tailleDispo %}
                                                 <a class="taille tailleEncadree" href="{{ path('cart_tailleChange', {'id': item.produit.id, 'taille': tailleDispo}) }}">{{ tailleDispo }}</a>
                                             {% else %}
                                                 <a class="taille" href="{{ path('cart_tailleChange', {'id': item.produit.id, 'taille': tailleDispo}) }}">{{ tailleDispo }}</a>
+                                            {% endif %} #}
+
+                                            {% if item.taille == tailleDispo %}
+                                                <a class="taille tailleEncadree" href="#">{{ tailleDispo }}</a>
+                                            {% else %}
+                                                <a class="taille" href="#">{{ tailleDispo }}</a>
                                             {% endif %}
                                         {% endfor %}
                                     {% endif %}
                                 </td>
 
                                 <td class="colQuantite"> 
-                                    <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
-                                    <span>{{ item.quantity }}</span>
-                                    <a href="{{ path('cart_increment', {'id': item.produit.id}) }}" class="plusQuantity">+</a>
+                                    {% if item.produit.taille | length > 0 %}
+                                        <a href="{{ path('cart_removeWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="moinsQuantity">-</a> 
+                                        <span>{{ item.quantity }}</span>
+                                        <a href="{{ path('cart_incrementWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="plusQuantity">+</a>
+                                    {% else %}
+                                        <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
+                                        <span>{{ item.quantity }}</span>
+                                        <a href="{{ path('cart_increment', {'id': item.produit.id}) }}" class="plusQuantity">+</a>
+                                    {% endif %}
                                 </td>
                                 <td>{{ item.produit.prixVente * item.quantity }}  €</td>
                                 <td>
-                                    <a href="{{ path('cart_delete', {'id': item.produit.id}) }}" class="btn btn-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    {% if item.produit.taille | length > 0 %}
+                                        <a href="{{ path('cart_deleteWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('cart_delete', {'id': item.produit.id}) }}" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
@@ -155,7 +137,93 @@
                         </tr>
                     </tfoot>
                 </table>
+
+                {# Affichage pour Mobile #}
+                {% for item in items %}
+                    <table class="table tableMobile">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th colspan="2">{{ item.produit.titre }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img class="imgPrincipale" src="{{ asset('assets/img/produits/'~item.produit.photos[0].nom) }}" alt="test" /></td>
+                                <td>
+                                    {% if item.produit.taille | length > 0 %}
+                                        <a href="{{ path('cart_deleteWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i> Supp.
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('cart_delete', {'id': item.produit.id}) }}" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i> Supp.
+                                        </a>
+                                    {% endif %}
+
+                                    <p>Prix à l'unité:</p>
+                                    <p>{{ item.produit.prixVente }}  €</p>
+                                </td>
+                            </tr>
+
+                            
+                            {# Taille #}
+                            {% if item.produit.taille %}
+                                {% if item.taille == "" %}
+                                    <tr><td colspan="2" class="panierTailleNonChoisi">
+                                {% else %}
+                                    <tr><td colspan="2">
+                                {% endif %}
+                            {% endif %}
+
+                                {% if item.produit.taille %}
+                                    <label for="taille-select">Taille choisie :</label>
+                                    {% set tailleDispoTAB = item.produit.taille|split(';') %}
+
+                                    {% for tailleDispo in tailleDispoTAB %}
+                                        {# {% if item.taille == tailleDispo %}
+                                            <a class="taille tailleEncadree" href="{{ path('cart_tailleChange', {'id': item.produit.id, 'taille': tailleDispo}) }}">{{ tailleDispo }}</a>
+                                        {% else %}
+                                            <a class="taille" href="{{ path('cart_tailleChange', {'id': item.produit.id, 'taille': tailleDispo}) }}">{{ tailleDispo }}</a>
+                                        {% endif %} #}
+
+                                        {% if item.taille == tailleDispo %}
+                                            <a class="taille tailleEncadree" href="#">{{ tailleDispo }}</a>
+                                        {% else %}
+                                            <a class="taille" href="#">{{ tailleDispo }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </td></tr>
+                                {% endif %}
+
+                            <tr>
+                                <td colspan="2" class="colQuantite"> 
+                                    {% if item.produit.taille | length > 0 %}
+                                        <a href="{{ path('cart_removeWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="moinsQuantity">-</a> 
+                                        <span>{{ item.quantity }}</span>
+                                        <a href="{{ path('cart_incrementWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="plusQuantity">+</a>
+                                    {% else %}
+                                        <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
+                                        <span>{{ item.quantity }}</span>
+                                        <a href="{{ path('cart_increment', {'id': item.produit.id}) }}" class="plusQuantity">+</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="PanierMontantTotaldeArticle">
+                                <td class="text-right">Soit :</td>
+                                <td>{{ item.produit.prixVente * item.quantity }}  €</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                {% endfor %}
             </div>
+
+            <p class="titrePanier">
+                <a href="{{ path('nosProduits') }}" class="retour"><i class="fas fa-undo"></i> Retour</a> 
+                Votre panier
+                <span class="montantTotal"><span class="textepetit">Total :</span> {{ total }} €</span>
+            </p>
 
             {% if not app.user %}
                 <button class="button button-mat-connexion btn--8 addCart" onclick="window.location.href = '{{ path('app_login') }}';"><span class="psuedo-text-connexion"><i class="fas fa-user-lock"></i> Se connecter pour réserver le panier</span></button>

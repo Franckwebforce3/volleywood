@@ -69,7 +69,8 @@ h1, h2, h3 {
     text-transform: uppercase;
     margin: 2rem auto 1.5rem auto;
 }
-.containerProduits span.animPanier {
+.containerProduits span.animPanier,
+.containerProduits span.animPanierMobile {
     font-size: 1rem;
     color: var(--p-color);
     text-transform: uppercase;
@@ -205,11 +206,12 @@ ul.listeProduits .panierClick a:last-of-type:hover {
 ul.listeProduits .panierClick2 {
     display: none;
     position: absolute; 
-    top: 200px; /* PJ */
+    top: 220px; /* PJ */
     left: calc(100% / 6);
 
+    z-index: 100;  
+
     opacity: 0;
-    transition: all 0.1s ease-in;
 }
 ul.listeProduits .panierClick2 a:first-of-type{
     background-color: black;
@@ -220,15 +222,6 @@ ul.listeProduits .panierClick2 a:first-of-type{
     position: relative;
     z-index: 1000;
     text-decoration: none;
-}
-ul.listeProduits .panierClick2 a:last-of-type{
-    background-color: black;
-    color: white;
-    font-size: 1.1em;
-    padding: 5px 10px;
-    transition: all 0.1s ease-in;
-    position: relative;
-    z-index: 1000;    
 }
 /*************************************/
 
@@ -364,6 +357,7 @@ ul.listeProduits figure .prix {
 /* Page Modale */
 .titreProduitModal h2 {
     text-align: left;
+    font-size: 1.4em;
 }
 .titreProduitModal h3.prix {
     background: url(../img/image.png) no-repeat;
@@ -390,6 +384,9 @@ ul.listeProduits figure .prix {
     background-color: #f2c506;
     color: black;
 } 
+div.zoneTailleModal {
+    text-align: center;
+}
 /**************************************************************************
 **************************************************************************
 * FIN Main *
@@ -482,7 +479,7 @@ aside.panier a {
     display: inline-block;
     width: 80%;
     min-width: 400px;
-    margin-top: 50px;
+    margin-top: 5px;
     margin-left: 15px;
     vertical-align: top;
 }
@@ -577,7 +574,7 @@ aside.panier a {
 
 .containerUnProduitModal .titreProduitModal figure img {
     max-width: 70%;
-    max-height: 600px;
+    max-height: 480px;
     /* border: 2px solid black; */
     background: var(--bgnav-color);
 }
@@ -643,6 +640,15 @@ button.button {
 .interdit {
     cursor: not-allowed;
 }
+/*********************************/
+/* page modal des tailles des produits */
+div.TailleInfoAffichee {
+    display: inline-block;
+}
+div.TailleInfoCachee {
+    display: none;
+}
+/*********************************/
 /*********************************/
 /* page modal des produits */
 button.buttonAffic {
@@ -793,16 +799,25 @@ button.buttonInterdit {
 
 /********************************************************/
 /* Gestion du panier */
+table.tableMobile {
+    display: none;
+}
+
 div table.table {
     text-align: center;
     border: 0px;
+    margin-bottom: 20px;
 }
 
-table .thead-dark th:nth-of-type(1),
-table .thead-dark th:nth-of-type(2),
-table .thead-dark th:nth-of-type(3), 
-table .thead-dark th:nth-of-type(4),
-table .thead-dark th:nth-of-type(5) {
+table.tableMobile {
+    margin-bottom: 5px;
+}
+
+table.tableLS .thead-dark th:nth-of-type(1),
+table.tableLS .thead-dark th:nth-of-type(2),
+table.tableLS .thead-dark th:nth-of-type(3), 
+table.tableLS .thead-dark th:nth-of-type(4),
+table.tableLS .thead-dark th:nth-of-type(5) {
     width: 15%;
 }
 table.table tbody img {
@@ -829,11 +844,11 @@ table.table a.plusQuantity {
     text-decoration: none;
 }
 table.table a.moinsQuantity {
-    padding: 5px 11px;
+    padding: 1px 11px;
     margin-right: 10px; 
 }
 table.table a.plusQuantity {
-    padding: 5px 7px;
+    padding: 1px 7px;
     margin-left: 10px;
 }
 
@@ -841,6 +856,12 @@ table.table .PanierMontantTotal {
     color: black;
     font-size: 1.2em;
     font-weight: bold;
+}
+table.table .PanierMontantTotaldeArticle {
+    color: black;
+    font-size: 1.1em;
+    font-weight: normal;
+    font-style: italic;
 }
 
 table.table .colQuantite a,
@@ -857,22 +878,41 @@ table.table .colQuantite span {
 * FIN Affichage 1 produit *
 **************************************************************************
 **************************************************************************/
-.containerPanier p:first-of-type {
-    margin: 1% auto 1% 1%;
-    padding: 5px 5px;
-    font-size: 1.4em;
-    font-weight: bold;
-    width: 50%;
+.containerPanier button {
+    margin-bottom: 5px;
+}
+
+.containerPanier p.titrePanier {
+    /* margin: 1% auto 1% 1%; */
+    margin: 1% auto 1% auto;
+    /* padding: 5px 5px; */
+    font-size: 1em;
+    /* font-weight: bold; */
+    width: 100%;
     background-color: lightgray;
     border-radius: 5px 5px;
+    overflow: hidden;
 }
-.containerPanier p:first-of-type a.retour {
-    font-size: 0.6em;
+.containerPanier p.titrePanier a.retour {
+    font-size: 1em;
     margin-right: 20px;
 }
 
+.containerPanier p.titrePanier span.montantTotal {
+    float: right;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: var(--bgnav-color);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.containerPanier p.titrePanier span.montantTotal span.textepetit {
+    font-size: 0.8em;
+}
+
 .containerPanier .vide {
-    margin: 2% auto 2% 2%;
+    margin: 5% auto 57% 2%;
     font-size: 1.2em;
     font-weight: normal;
     /* width: 50%; */
@@ -963,6 +1003,12 @@ div.adminActions a.envelope:hover {
     background-color: black;
     color: #f2c506;
 }
+
+
+.containerProduits div.sticky {
+    display: none;
+  }
+
 /**************************************************************************
 **************************************************************************
 * FIN Gestion admin *
@@ -981,6 +1027,10 @@ div.adminActions a.envelope:hover {
     ul.listeProduits figure {
         text-align: center;
     }    
+
+    table.tableMobile {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -990,34 +1040,38 @@ div.adminActions a.envelope:hover {
         align-content: center;
     }
 
-    ul.listeProduits .panierClickFooter {
-        display: inline;
-        position: absolute;
-        left: calc(100% / 6);
-        transition: all 0.1s ease-in;
-    }
-
     ul.listeProduits .panierClick {
         display: none;
     }
-    /* ul.listeProduits .panierClick2 {
+    ul.listeProduits .panierClick2 {
         display: inline;
         position: absolute;
-        left: calc(100% / 6);        
-    } */
+        z-index: 99;
+        opacity: 1;
+        left: calc(100% / 5);        
+    }
 
     ul.listeProduits figure {
         text-align: center;
     }
 
-    table.table .colQuantite a,
-    table.table .colQuantite span {
+    /* Panier : Tableau */
+    table.tableLS {
+        display: none;
+    }
+    table.tableMobile {
+        display: inline;
+    }
+
+    table.tableLS .colQuantite a,
+    table.tableLS .colQuantite span {
         display: block;
     }
 
     table.table td.colaGauche p {
         text-align: left;
     }
+    /* Fin */
 
     .containerUnProduitModal .infoProduitModal {
         margin-left: 1px;
@@ -1027,16 +1081,27 @@ div.adminActions a.envelope:hover {
         background: url(../img/image.png) no-repeat;
         background-size: contain;
         text-indent : 7px;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         /* font-weight: bold; */
         font-style: italic;
         text-align: center;
         color: white;
         font-style: italic;
-        padding: 1% 1%;
+        padding: 1% 0% 1% 0%;
         margin: 1% auto 0.5% auto;    
-        width: 15%;
+        width: 20%;
     }    
+
+    .containerProduits span.animPanier {
+        display: none;
+    }
+    .containerProduits div.sticky {
+        display: inline;
+        position: -webkit-sticky;
+        position: sticky;
+        text-align: right;
+        top: 150px;
+    }
 }
 /**************************************************************************
 **************************************************************************

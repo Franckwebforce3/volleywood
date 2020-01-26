@@ -84,6 +84,25 @@ class CartController extends AbstractController
     }
     
     /**
+     * @Route("/panier/incrementWithTaille/{id}_{taille}", name="cart_incrementWithTaille")
+     */
+    public function incrementWithTaille($id, $taille, CartService $cartService)
+    {
+        $cartService->incrementWithTaille($id, $taille);
+        
+        return $this->redirectToRoute("cart_index");
+    }   
+
+    /**
+     * @Route("/panier/removeWithTaille/{id}_{taille}", name="cart_removeWithTaille")
+     */    
+    public function removeWithTaille($id, $taille, CartService $cartService) {
+        $cartService->removeWithTaille($id, $taille);
+
+        return $this->redirectToRoute("cart_index");
+    }
+
+    /**
      * @Route("/panier/delete/{id}", name="cart_delete")
      */    
     public function delete($id, CartService $cartService) {
@@ -92,9 +111,17 @@ class CartController extends AbstractController
         return $this->redirectToRoute("cart_index");
     }    
 
-    private function deleteAllCart($id, CartService $cartService) {
-        $cartService->delete($id);
-    }  
+    /**
+     * @Route("/panier/deleteWithTaille/{id}_{taille}", name="cart_deleteWithTaille")
+     */    
+    public function deleteWithTaille($id, $taille, CartService $cartService) {
+        dump($id);
+        dump($taille);
+
+        $cartService->deleteWithTaille($id, $taille);
+
+        return $this->redirectToRoute("cart_index");
+    } 
 
     /**
      * @Route("/panier/reserve", name="cart_reserve")
@@ -157,7 +184,12 @@ class CartController extends AbstractController
             $entityManager->flush();
 
             // Supprimer le produit du panier :
-            $cartService->delete(intval($items[intval($id)]["produit"]->getId()));
+            if ($items[intval($id)]["taille"] != "") {
+                $cartService->deleteWithTaille( intval($items[intval($id)]["produit"]->getId()), $items[intval($id)]["taille"]);
+            }
+            else {
+                $cartService->delete(intval($items[intval($id)]["produit"]->getId()));
+            }
         }
         $contenu .= '</p><p>Cordialement<br>VolleyWood</p>';
 
