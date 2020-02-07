@@ -82,8 +82,26 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserEditType::class, $user);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $avatar = $form['newAvatar']->getData();
+            if ($avatar != '') {
+            $originalFilename = pathinfo($avatar->getClientOriginalName(), PATHINFO_FILENAME);
+                    //$safeFilename = \Transliterator::transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $safeFilename =  $originalFilename;
+                    $fileName = $safeFilename . '-' . uniqid() . '.' . $avatar->guessExtension();
+                    // ON VA STOCKER CE NOM EN BASE DE DONNEES
+                    // $article->setPhoto($fileName);
+                    $user->setAvatar($fileName);
+
+                    // ON VA STOCKER LE FICHIER
+                    $projectDir = $this->getParameter("kernel.project_dir");
+                    $cheminDossier = "$projectDir/public/assets/img/avatar";
+                    //dump($projectDir);
+
+                    $avatar->move($cheminDossier, $fileName);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

@@ -28,6 +28,7 @@
                 <th>Email</th>
                 <th>Roles</th>
                 <th>Pseudo</th>
+                <th>Avatar</th>
                 <th>Ville</th>
                 <th>Cp</th>
                 <th>Adresse</th>
@@ -45,16 +46,19 @@
                             {{ form_row(form.roles) }} 
                         </td>
                         <td>
-                            {{ form_widget(form.pseudo)}}
+                            {{ form_row(form.pseudo)}}
                         </td>
                         <td>
-                            {{ form_widget(form.ville)}}
+                            {{ form_row(form.newAvatar)}}
                         </td>
                         <td>
-                            {{ form_widget(form.cp)}}
+                            {{ form_row(form.ville)}}
                         </td>
                         <td>
-                            {{ form_widget(form.adresse)}}
+                            {{ form_row(form.cp)}}
+                        </td>
+                        <td>
+                            {{ form_row(form.adresse)}}
                         </td>
                         <td>
                             <button class="btn" type="submit">{{ button_label|default('Modifier') }}</button>
