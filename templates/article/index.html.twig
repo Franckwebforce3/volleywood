@@ -122,20 +122,23 @@
         </thead>
         <tbody class="table">
         {% for article in articles %}
+            <tr>
+                <td colspan="7">{{ article.titre }}</td>
+            </tr>
             {% for commentaire in article.commentaires %}
-                <tr>
-                    <td>{{ commentaire.id }}</td>
-                    <td>{{ commentaire.message }}</td>
-                    <td>{{ commentaire.poceBleu }}</td>
-                    <td>{{ commentaire.idParent }}</td>
-                    <td>{{ commentaire.datePublication ? commentaire.datePublication|date('Y-m-d') : '' }}</td>
-                    <td>
-                        {{ include('commentaire/_delete_form.html.twig') }}
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ commentaire.id }}</td>
+                <td>{{ commentaire.message }}</td>
+                <td>{{ commentaire.poceBleu }}</td>
+                <td>{{ commentaire.idParent }}</td>
+                <td>{{ commentaire.datePublication ? commentaire.datePublication|date('Y-m-d') : '' }}</td>
+                <td>
+                    {{ include('commentaire/_delete_form.html.twig') }}
+                </td>
+            </tr>
             {% else %}
                 <tr>
-                    <td colspan="6">no records found</td>
+                    <td colspan="6">Pas de commentaire(s) dans cet article</td>
                 </tr>
             {% endfor %}
         {% endfor %}

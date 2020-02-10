@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Edit Article{% endblock %}
 
@@ -21,43 +21,57 @@
             </div>
         </div>
     </section>
-    <h1>Edit Article</h1>
-
-    {{ form_start(form) }}
-    <div class="row">
-        <div class="col-12">
-            {{ form_row(form.newApercu, { 'label': 'Aperçu'}) }}
-        </div>
-        <div class="col-12">
-            {{ form_row(form.titre) }}
-        </div>
-        <div class="col-12 col-md-6">
-            {{ form_row(form.description) }}
-        </div>
-        <div class="col-12 col-md-6">
-            {{ form_row(form.categorie) }}
-        </div>
-        <div class="col-12 col-md-3">
-            {{ form_row(form.newPhoto, { 'label': 'Photo 1'}) }}
-        </div>
-        <div class="col-12 col-md-3">
-            {{ form_row(form.newPhoto2, { 'label': 'Photo 2'}) }}
-        </div>
-        <div class="col-12 col-md-3">
-            {{ form_row(form.newPhoto3, { 'label': 'Photo 3'}) }}
-        </div>
-        <div class="col-12 col-md-3">
-            {{ form_row(form.newPhoto4, { 'label': 'Photo 4'}) }}
-        </div>
-        <div class="col-6">
-            <button class="btn alime-btn btn-2 mt-15">{{ button_label|default("Modifier l'article") }}</button>
-        </div>
-        <div>
-            <button class="btn alime-btn btn-2 mt-15"><a href="{{ path('admin') }}">Retour</a></button>
+    
+    <div class="comment-area section-padding-80">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h1>Modifier un article</h1>
+                <div class="col-lg-9">
+                    <!-- Comments Area -->
+                    <div class="comment_area clearfix">
+                        <h4 class="mb-30"></h4>
+                        <ol>
+                            <!-- Leave A Reply -->
+                        <div class="alime-contact-form mt-50">
+                            {{ form_start(form) }}
+                                <div class="row">
+                                    <div class="col-12">
+                                        {{ form_row(form.newApercu, { 'label': 'Aperçu'}) }}
+                                    </div>
+                                    <div class="col-12">
+                                        {{ form_row(form.titre) }}
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        {{ form_row(form.description) }}
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        {{ form_row(form.categorie) }}
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        {{ form_row(form.newPhoto, { 'label': 'Photo 1'}) }}
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        {{ form_row(form.newPhoto2, { 'label': 'Photo 2'}) }}
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        {{ form_row(form.newPhoto3, { 'label': 'Photo 3'}) }}
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        {{ form_row(form.newPhoto4, { 'label': 'Photo 4'}) }}
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn alime-btn btn-2 mt-15">{{ button_label|default("Modifier l'article") }}</button>
+                                    </div>
+                                    <div>
+                                        <button class="btn alime-btn btn-2 mt-15"><a href="{{ path('admin') }}">Retour</a></button>
+                                    </div>
+                                </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-{{ form_end(form) }}
-
-    
 {% endblock %}
 {# {{ include('article/_delete_form.html.twig') }} #}
