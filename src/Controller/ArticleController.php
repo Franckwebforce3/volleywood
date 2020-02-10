@@ -40,8 +40,6 @@ class ArticleController extends AbstractController
             $photos["setPhoto3"] = $photo3;
             $photos["setPhoto4"] = $photo4;
             
-            // var_dump($photos);
-            // die;
             // // JE DOIS LE FAIRE SUR 4 CHAMPS
             foreach($photos as $nomMethode => $photo){
             // // IL FAUT GERER LE FICHIER UPLOADE AVEC photo
@@ -62,7 +60,6 @@ class ArticleController extends AbstractController
                     // ON VA STOCKER LE FICHIER
                     $projectDir = $this->getParameter("kernel.project_dir");
                     $cheminDossier = "$projectDir/public/assets/img/article";
-                    //dump($projectDir);
 
                     $photo->move($cheminDossier, $fileName);
                 }
@@ -140,8 +137,6 @@ class ArticleController extends AbstractController
             $photos["setPhoto3"] = $photo3;
             $photos["setPhoto4"] = $photo4;
             
-            // var_dump($photos);
-            // die;
             // // JE DOIS LE FAIRE SUR 4 CHAMPS
             foreach($photos as $nomMethode => $photo){
             // // IL FAUT GERER LE FICHIER UPLOADE AVEC photo
@@ -162,7 +157,6 @@ class ArticleController extends AbstractController
                     // ON VA STOCKER LE FICHIER
                     $projectDir = $this->getParameter("kernel.project_dir");
                     $cheminDossier = "$projectDir/public/assets/img/article";
-                    //dump($projectDir);
 
                     $photo->move($cheminDossier, $fileName);
                 }
