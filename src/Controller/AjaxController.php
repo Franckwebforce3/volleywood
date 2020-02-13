@@ -31,13 +31,14 @@ class AjaxController extends AbstractController
 $req =
 <<<CODESQL
 SELECT 
-produit.id, titre, produit.description, categorie, taille, couleur, prix_vente, photo.nom, magasin.quantite
+produit.id, titre, produit.description, categorie, produit.taille, couleur, prix_vente, photo.nom, sum(magasin.quantite) qty
 FROM produit 
 INNER JOIN photo 
 ON produit.id = photo.produit_id 
 INNER JOIN magasin 
 ON produit.id = magasin.produits_id
 WHERE produit.id = $idProduit
+GROUP BY produit.id, titre, produit.description, categorie, produit.taille, couleur, prix_vente, photo.nom
 CODESQL;
 
         // ON EST REVENU DANS LE MONDE SQL

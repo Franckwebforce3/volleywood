@@ -47,20 +47,29 @@ h1, h2, h3 {
 * Fin GLOBAL *
 **************************************************************************
 **************************************************************************/
+/*
 .container {
     width: 100%;
 	max-width: 1200px;
     margin: 0 auto;
     padding-bottom: 2rem;
 }
+*/
 
 /*************************************/
 /* Section des produits */
 /*************************************/
+/*
 .containerProduits {
     width: 100%;
-    /* margin: 0 auto; */
     margin: 0% auto 0% auto;
+}
+*/
+.containerProduits {
+    width: 100%;
+	max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
 }
 .containerProduits h1 {
     text-align: center;
@@ -170,17 +179,19 @@ ul.listeProduits .panierClick {
     opacity: 0;
     transition: all 0.1s ease-in;
 }
-ul.listeProduits .panierClick a:first-of-type{
+/*first-of-type*/
+ul.listeProduits .panierClick a {
     background-color: black;
     color: white;
     font-size: 1.1em;
     padding: 5px 5px;
+    margin: 2px;
     transition: all 0.1s ease-in;
     position: relative;
     z-index: 1000;
     text-decoration: none;
 }
-ul.listeProduits .panierClick a:last-of-type{
+ul.listeProduits .panierClick a:last-of-type {
     background-color: black;
     color: white;
     font-size: 1.1em;
@@ -189,7 +200,7 @@ ul.listeProduits .panierClick a:last-of-type{
     position: relative;
     z-index: 1000;    
 }
-ul.listeProduits .panierClick a:first-of-type:hover {
+ul.listeProduits .panierClick a:hover {
     background-color: var(--bgnav-color);
     border-top: 1px solid black;
     border-bottom: 1px solid black;
@@ -271,7 +282,7 @@ ul.listeProduits .panierClickFooter a:last-of-type:hover {
 ul.listeProduits figure figcaption {
     /* background-color: #ffffff;  */
     background-color: #fdf8df;
-    min-height: 200px;
+    /* min-height: 200px; */
 } 
 
 ul.listeProduits figure figcaption h2 {
@@ -280,7 +291,8 @@ ul.listeProduits figure figcaption h2 {
 
 ul.listeProduits figure figcaption .stockZero,
 .containerUnProduit .infoProduit .stockZero,
-.containerUnProduitModal .infoProduitModal .stockZero {
+.containerUnProduitModal .infoProduitModal .stockZero, 
+#idLargeModal_Taille .stockZero {
     font-size: 0.8em;
     background-color: red;
     color: white;
@@ -288,7 +300,8 @@ ul.listeProduits figure figcaption .stockZero,
 } 
 ul.listeProduits figure figcaption .stockOk,
 .containerUnProduit .infoProduit .stockOk,
-.containerUnProduitModal .infoProduitModal .stockOk {
+.containerUnProduitModal .infoProduitModal .stockOk,
+#idLargeModal_Taille .stockOk {
     font-size: 0.8em;
     background-color: #C5E1A5;
     color: var(--p-color);    
@@ -304,7 +317,7 @@ ul.listeProduits figure p
 ul.listeProduits figure h2
 {
     font-size: 1em;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 ul.listeProduits figure h3
 {
@@ -339,18 +352,22 @@ ul.listeProduits figure p {
 }
 
 ul.listeProduits figure .prix {
-    background: url(../img/image.png) no-repeat;
-    background-size: contain;
+    /* background: url(../img/image.png) no-repeat;
+    background-size: contain; 
+    padding: 5% 4%; */
+
+    background-color: var(--bgbleu-color);
+    padding: 2% 2%;
+    transform: skew(-5deg);
+
     text-indent : 3px;
     font-size: 1rem;
     /* font-weight: bold; */
-    font-style: italic;
+    /* font-style: italic; */
     text-align: center;
     color: white;
     font-style: italic;
-    padding: 5% 4%;
-    margin: 5% auto 0% auto;    
-    /* width: 45%; */
+    margin: 5% auto 1% auto;    
     width: 36%;
 }
 /**********************************************/
@@ -360,12 +377,16 @@ ul.listeProduits figure .prix {
     font-size: 1.4em;
 }
 .titreProduitModal h3.prix {
-    background: url(../img/image.png) no-repeat;
-    background-size: contain;
+    /* background: url(../img/image.png) no-repeat;
+    background-size: contain; */
+
+    background-color: var(--bgbleu-color);
+    transform: skew(-5deg);
+
     text-indent : 7px;
     font-size: 1.1rem;
     /* font-weight: bold; */
-    font-style: italic;
+    /* font-style: italic; */
     text-align: center;
     color: white;
     font-style: italic;
@@ -384,9 +405,35 @@ ul.listeProduits figure .prix {
     background-color: #f2c506;
     color: black;
 } 
+
 div.zoneTailleModal {
     text-align: center;
 }
+div.zoneTailleModal .listeTaillesQty a {
+    text-align: center;
+}
+#idLargeModal_Taille .stockZero {
+    font-size: 0.9em;
+    background-color: red;
+    color: white;
+    padding: 5px 5px;
+    float: right;
+} 
+#idLargeModal_Taille .stockAlert {
+    font-size: 0.9em;
+    background-color: orange;
+    color: white;
+    padding: 5px 5px;
+    float: right;
+}
+#idLargeModal_Taille .stockOk {
+    font-size: 0.9em;
+    background-color: #C5E1A5;
+    color: var(--p-color);    
+    padding: 5px 5px;
+    float: right;
+} 
+
 /**************************************************************************
 **************************************************************************
 * FIN Main *
@@ -573,7 +620,7 @@ aside.panier a {
 } */
 
 .containerUnProduitModal .titreProduitModal figure img {
-    max-width: 70%;
+    max-width: 60%;
     max-height: 480px;
     /* border: 2px solid black; */
     background: var(--bgnav-color);
@@ -1026,7 +1073,7 @@ div.adminActions a.envelope:hover {
 * FIN Gestion admin *
 **************************************************************************
 **************************************************************************/
-
+/*
 @media screen and (max-width: 800px) {
     ul.listeProduits {
         flex-direction: column;
@@ -1044,12 +1091,23 @@ div.adminActions a.envelope:hover {
         display: none;
     }
 }
+*/
 
-@media screen and (max-width: 500px) {
-    .containerProduits aside ul {
-        flex-direction: column;
+@media screen and (max-width: 540px) {
+    .containerProduits ul {
+        flex-direction: row;
         justify-content: center;
         align-content: center;
+    }
+
+    ul.listeProduits li {
+        /* **2 produits par ligne** */
+        width: calc(100% / 3);
+        min-width: 200px;
+        margin-right: 5px;
+    }
+    ul.listeProduits figure img {
+        max-width: 80%;
     }
 
     ul.listeProduits .panierClick {
@@ -1060,7 +1118,8 @@ div.adminActions a.envelope:hover {
         position: absolute;
         z-index: 99;
         opacity: 1;
-        left: calc(100% / 5);        
+        left: calc(50% / 5);  
+        top: 180px; /* PJ */
     }
 
     ul.listeProduits figure {
@@ -1090,16 +1149,20 @@ div.adminActions a.envelope:hover {
     }
 
     .titreProduitModal h3.prix {
-        background: url(../img/image.png) no-repeat;
-        background-size: contain;
+        /* background: url(../img/image.png) no-repeat;
+        background-size: contain; */
+
+        background-color: var(--bgbleu-color);
+        padding: 1% 1%;
+        transform: skew(-5deg);
+
         text-indent : 7px;
         font-size: 0.9rem;
         /* font-weight: bold; */
-        font-style: italic;
+        /* font-style: italic; */
         text-align: center;
         color: white;
-        font-style: italic;
-        padding: 1% 0% 1% 0%;
+        /* padding: 1% 0% 1% 0%; */
         margin: 1% auto 0.5% auto;    
         width: 20%;
     }    

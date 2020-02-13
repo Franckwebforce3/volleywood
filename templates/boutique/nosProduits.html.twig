@@ -54,7 +54,7 @@
     </section>
     <!-- Breadcrumb Area End -->
 
-<section class="container">
+<!-- <section class="container"> -->
     <section class="containerProduits">
 
         <div class="stickyMobile">
@@ -116,24 +116,28 @@
                     </a>
                     <p class="panierClick">
                         {# Gestion du stock : #}
-                        {% if produit.magasin.quantite == 0 %} 
-                            <i class="fas fa-shopping-basket"></i> Ajouter au panier
-                        {% else %}
+                        {% if produit.magasin[0].quantite == 0 %} 
+                            {# <i class="fas fa-shopping-basket"></i> Ajouter au panier #}
+                            <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target="#idLargeModal_produit"><i class="far fa-eye"></i> Voir le produit</a>
+                        {% else %} 
                             {# Taille disponible ? Obliger de choisir la taille !! #}
                             {% if produit.taille %}
                                 <a href="#" class="tailleView" data-id="{{ produit.id }}" data-toggle="modal" data-target="#idLargeModal_Taille"><i class="fas fa-shopping-basket"></i> Ajouter au panier</a>
+                                {# <a href="#" class="tailleView" data-id="{{ produit.id }}" data-toggle="modal" data-target="#idLargeModal_Taille">M</a>
+                                <a href="#" class="tailleView" data-id="{{ produit.id }}" data-toggle="modal" data-target="#idLargeModal_Taille">L</a>
+                                <a href="#" class="tailleView" data-id="{{ produit.id }}" data-toggle="modal" data-target="#idLargeModal_Taille">XL</a> #}
                             {% else %}   
                                 <a href="#" data-id="{{ produit.id }}" data-taille="" class="addCartAll"><i class="fas fa-shopping-basket"></i> Ajouter au panier</a>
                             {% endif %}   
+                            <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target="#idLargeModal_produit"><i class="far fa-eye"></i></a>
                         {% endif %}      
-                                          
-                        <a href="#" class="chargerProduit" data-id="{{ produit.id }}" data-toggle="modal" data-target="#idLargeModal_produit"><i class="far fa-eye"></i></a>
                     </p>
 
                     <p class="panierClick2">
-                        {% if produit.magasin.quantite == 0 %} 
+                        {# {% if produit.magasin.quantite == 0 %} 
                             <i class="fas fa-shopping-basket"></i> Ajouter au panier
-                        {% else %}
+                        {% else %} #}
+                        {% if produit.magasin[0].quantite > 0 %} 
                             {# Taille disponible ? Obliger de choisir la taille !! #}
                             {% if produit.taille %}
                                 <a href="#" class="tailleView" data-id="{{ produit.id }}" data-toggle="modal" data-target="#idLargeModal_Taille"><i class="fas fa-shopping-basket"></i> Ajouter au panier</a>
@@ -145,7 +149,7 @@
 
                     <figcaption>
                         {# Gestion du stock : #}
-                        {% if produit.magasin.quantite == 0 %} 
+                        {% if produit.magasin[0].quantite == 0 %} 
                             <p class="stockZero"><i class="fas fa-exclamation-triangle"></i> Produit indisponible</p>
                         {% else %}
                             <p class="stockOk"><i class="fas fa-cart-arrow-down"></i> Produit en stock</p>
@@ -153,7 +157,7 @@
 
                         <h2>{{ produit.titre }}</h2>
 
-                        {% if produit.taille %}
+                        {# {% if produit.taille %}
                             <p>Taille disponible :</p>
                             {% set tailleDispoTAB = produit.taille|split(';') %}
                             <p>
@@ -161,7 +165,7 @@
                                  <span class="taille">{{ tailleDispo }}</span>
                             {% endfor %}
                             </p>
-                        {% endif %}
+                        {% endif %} #}
 
                         {# {% if produit.couleur %}
                             <p>Couleur disponible :</p>
@@ -185,7 +189,7 @@
             {% endfor %}
         </ul>
     </section>
-</section>
+<!--</section>-->
 
 {# Popup d'affichage du produit : #}
 <div id="idLargeModal_produit" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModal_produit" aria-hidden="true">
@@ -200,7 +204,7 @@
         {# Affichage des boutons 'Panier' #}
         <div class="zoneAddCartModal">
             {% for produit in produits %}
-                {% if produit.magasin.quantite == 0 %} 
+                {% if produit.magasin[0].quantite == 0 %} 
                     <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee" disabled="true"><span class="psuedo-text"><i class="fas fa-ban"></i> Stock indisponible</span></button>
                 {% else %}
 {# <button id="boutonCart{{ produit.id }}" class="button button-mat btn--8 addCart buttonCachee" data-id="{{ produit.id }}" onclick="window.location.href = '{{ path('cart_add', {'id': produit.id}) }}';"><span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouter au panier</span></button> #}
@@ -231,15 +235,36 @@
         <div class="zoneTailleModal">
             {% for produit in produits %}
                 {% if produit.taille %}
-                    <div id="modalTailleIdProduit{{ produit.id }}" class="TailleInfo TailleInfoCachee">
+                    <!-- Avant -->
+                    {# <div id="modalTailleIdProduit{{ produit.id }}" class="TailleInfo TailleInfoCachee">
                         <p>Choisissez la taille à ajouter au panier</p>
                         {% set tailleDispoTAB = produit.taille|split(';') %}
                         <p>
                         {% for tailleDispo in tailleDispoTAB %}
-                                {# <span class="taille">{{ tailleDispo }}</span> #}
                             <a href="#" data-id="{{ produit.id }}" data-taille="{{ tailleDispo }}" class="addCartAll taille">{{ tailleDispo }}</a>
                         {% endfor %}
                         </p>
+                    </div> #}
+
+                    <!-- Apres -->
+                    <div id="modalTailleIdProduit{{ produit.id }}" class="TailleInfo TailleInfoCachee">
+                        <p>Choisissez la taille à ajouter au panier</p>
+                        {% for magasinWithSizeQty in produit.magasin %}
+                            <p class="listeTaillesQty">
+                                {% if magasinWithSizeQty.quantite > 5 %}
+                                    <a href="#" data-id="{{ produit.id }}" data-taille="{{ magasinWithSizeQty.taille }}" class="addCartAll taille">
+                                    {{ magasinWithSizeQty.taille }}</a>
+                                    <span class="stockOk">En stock</span>
+                                {% elseif magasinWithSizeQty.quantite > 0 and magasinWithSizeQty.quantite <= 5 %}
+                                    <a href="#" data-id="{{ produit.id }}" data-taille="{{ magasinWithSizeQty.taille }}" class="addCartAll taille">
+                                    {{ magasinWithSizeQty.taille }}</a>
+                                    <span class="stockAlert">+ que {{ magasinWithSizeQty.quantite }} en stock</span>
+                                {% else %}
+                                    <a href="#" class="taille">{{ magasinWithSizeQty.taille }}</a>
+                                    <span class="stockZero">0 en stock</span>
+                                {% endif %}
+                            </p>
+                        {% endfor %}
                     </div>
                 {% endif %}
             {% endfor %}
@@ -314,6 +339,8 @@ if (btnaddProduit.length != 0)
                 boutonCartId.innerHTML = '<span class="psuedo-text"><i class="fas fa-shopping-basket"></i> Ajouté +1</span>';
 
                 $('#idLargeModal_Taille').modal('hide');
+
+                $('#idLargeModal_produit').modal('hide');
             });
         });
     });
@@ -402,7 +429,7 @@ if (btnchargerProduit.length != 0)
                                     
                             `;
 
-                            if (produit.quantite == 0) {
+                            if (produit.qty == 0) {
                                 htmlArticle += `<p class="stockZero"><i class="fas fa-exclamation-triangle"></i> Produit indisponible</p>`;
                             } else {
                                 htmlArticle += `<p class="stockOk"><i class="fas fa-cart-arrow-down"></i> Produit en stock</p>`;

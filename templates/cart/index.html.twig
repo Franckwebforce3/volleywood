@@ -106,11 +106,15 @@
 
                                 <td class="colQuantite"> 
                                     {% if item.produit.taille | length > 0 %}
-                                        <a href="{{ path('cart_removeWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="moinsQuantity">-</a> 
+                                        {% if item.quantity > 1 %}
+                                            <a href="{{ path('cart_removeWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="moinsQuantity">-</a> 
+                                        {% endif %}
                                         <span>{{ item.quantity }}</span>
                                         <a href="{{ path('cart_incrementWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="plusQuantity">+</a>
                                     {% else %}
-                                        <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
+                                        {% if item.quantity > 1 %}
+                                            <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
+                                        {% endif %}
                                         <span>{{ item.quantity }}</span>
                                         <a href="{{ path('cart_increment', {'id': item.produit.id}) }}" class="plusQuantity">+</a>
                                     {% endif %}
@@ -198,11 +202,15 @@
                             <tr>
                                 <td colspan="2" class="colQuantite"> 
                                     {% if item.produit.taille | length > 0 %}
-                                        <a href="{{ path('cart_removeWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="moinsQuantity">-</a> 
+                                        {% if item.quantity > 1 %}
+                                            <a href="{{ path('cart_removeWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="moinsQuantity">-</a> 
+                                        {% endif %}
                                         <span>{{ item.quantity }}</span>
                                         <a href="{{ path('cart_incrementWithTaille', {'id': item.produit.id, 'taille': item.taille}) }}" class="plusQuantity">+</a>
                                     {% else %}
-                                        <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
+                                        {% if item.quantity > 1 %}
+                                            <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="moinsQuantity">-</a> 
+                                        {% endif %}
                                         <span>{{ item.quantity }}</span>
                                         <a href="{{ path('cart_increment', {'id': item.produit.id}) }}" class="plusQuantity">+</a>
                                     {% endif %}

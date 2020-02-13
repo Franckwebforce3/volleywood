@@ -59,9 +59,9 @@ class Produit
     // private $commandes;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Magasin", mappedBy="produits", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Magasin", mappedBy="produits", cascade={"persist", "remove"})
      */
-    private $magasin;
+    private $magasins;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CommandeProduit", mappedBy="produits")
@@ -70,10 +70,11 @@ class Produit
 
     public function __construct()
     {
-        $this->produit_id = new ArrayCollection();
-        $this->photos = new ArrayCollection();
-        $this->commandes = new ArrayCollection();
+        $this->produit_id       = new ArrayCollection();
+        $this->photos           = new ArrayCollection();
+        $this->commandes        = new ArrayCollection();
         $this->commandeProduits = new ArrayCollection();
+        $this->magasins         = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -212,14 +213,19 @@ class Produit
     //     return $this;
     // }
 
-    public function getMagasin(): ?Magasin
+    // public function getMagasin(): ?Magasin
+
+    /**
+     * @return Collection|Magasin[]
+     */
+    public function getMagasin(): Collection
     {
-        return $this->magasin;
+        return $this->magasins;
     }
 
     public function setMagasin(?Magasin $magasin): self
     {
-        $this->magasin = $magasin;
+        $this->magasins = $magasin;
 
         // set (or unset) the owning side of the relation if necessary
         $newProduits = null === $magasin ? null : $this;

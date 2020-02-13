@@ -17,7 +17,7 @@ class Magasin
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Produit", inversedBy="magasin", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="magasin", cascade={"persist", "remove"})
      */
     private $produits;
 
@@ -25,6 +25,11 @@ class Magasin
      * @ORM\Column(type="integer")
      */
     private $quantite;
+
+    /**
+     * @ORM\Column(type="string", length=3, nullable=true)
+     */
+    private $taille;
 
     public function getId(): ?int
     {
@@ -51,6 +56,18 @@ class Magasin
     public function setQuantite(int $quantite): self
     {
         $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    public function getTaille(): ?string
+    {
+        return $this->taille;
+    }
+
+    public function setTaille(?string $taille): self
+    {
+        $this->taille = $taille;
 
         return $this;
     }
